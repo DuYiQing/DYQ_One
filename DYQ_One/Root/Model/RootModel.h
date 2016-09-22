@@ -11,6 +11,12 @@
 
 @interface RootModel : DYQBaseModel
 
-
+@property (nonatomic, copy) NSString *hpcontent_id;
+@property (nonatomic, copy) NSString *hp_title;
+@property (nonatomic, copy) NSString *hp_img_url;
+@property (nonatomic, copy) NSString *hp_author;
+@property (nonatomic, copy) NSString *hp_content;
+@property (nonatomic, copy) NSString *hp_makettime;
+@property (nonatomic, copy) NSNumber *praisenum;
 
 @end

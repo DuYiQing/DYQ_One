@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49CC55941D92501C000C8C40 /* WeChat_1474434946.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 49CC55931D92501C000C8C40 /* WeChat_1474434946.jpeg */; };
+		49CC55961D925023000C8C40 /* 28B58PICxtD_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CC55951D925023000C8C40 /* 28B58PICxtD_1024.png */; };
+		49CC55991D9288C5000C8C40 /* LikeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CC55981D9288C5000C8C40 /* LikeView.m */; };
 		49F6CA331D90C0DC002D3EF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CA321D90C0DC002D3EF2 /* main.m */; };
 		49F6CA361D90C0DC002D3EF2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CA351D90C0DC002D3EF2 /* AppDelegate.m */; };
 		49F6CA3E1D90C0DC002D3EF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F6CA3D1D90C0DC002D3EF2 /* Assets.xcassets */; };
@@ -64,6 +67,10 @@
 /* Begin PBXFileReference section */
 		0F7ECDA7C8D9A9BDF5F0A587 /* Pods-DYQ_One.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DYQ_One.release.xcconfig"; path = "Pods/Target Support Files/Pods-DYQ_One/Pods-DYQ_One.release.xcconfig"; sourceTree = "<group>"; };
 		35AD2A44E3AF407ED8980F21 /* libPods-DYQ_One.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DYQ_One.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49CC55931D92501C000C8C40 /* WeChat_1474434946.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WeChat_1474434946.jpeg; sourceTree = "<group>"; };
+		49CC55951D925023000C8C40 /* 28B58PICxtD_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 28B58PICxtD_1024.png; sourceTree = "<group>"; };
+		49CC55971D9288C5000C8C40 /* LikeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikeView.h; sourceTree = "<group>"; };
+		49CC55981D9288C5000C8C40 /* LikeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeView.m; sourceTree = "<group>"; };
 		49F6CA2E1D90C0DC002D3EF2 /* DYQ_One.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DYQ_One.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F6CA321D90C0DC002D3EF2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		49F6CA341D90C0DC002D3EF2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -282,6 +289,8 @@
 			children = (
 				49F6CAB81D90DD98002D3EF2 /* ImageLabelView.h */,
 				49F6CAB91D90DD98002D3EF2 /* ImageLabelView.m */,
+				49CC55971D9288C5000C8C40 /* LikeView.h */,
+				49CC55981D9288C5000C8C40 /* LikeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -289,6 +298,8 @@
 		49F6CABB1D90FCB1002D3EF2 /* 素材 */ = {
 			isa = PBXGroup;
 			children = (
+				49CC55951D925023000C8C40 /* 28B58PICxtD_1024.png */,
+				49CC55931D92501C000C8C40 /* WeChat_1474434946.jpeg */,
 				49F6CABC1D90FCB1002D3EF2 /* Unknown-1.png */,
 				49F6CABD1D90FCB1002D3EF2 /* Unknown-10.png */,
 				49F6CABE1D90FCB1002D3EF2 /* Unknown-11.png */,
@@ -534,6 +545,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49CC55961D925023000C8C40 /* 28B58PICxtD_1024.png in Resources */,
 				49F6CAD81D90FCB1002D3EF2 /* Unknown-3.png in Resources */,
 				49F6CA411D90C0DC002D3EF2 /* LaunchScreen.storyboard in Resources */,
 				49F6CADE1D90FCB1002D3EF2 /* Unknown-9.png in Resources */,
@@ -545,6 +557,7 @@
 				49F6CADD1D90FCB1002D3EF2 /* Unknown-8.png in Resources */,
 				49F6CACE1D90FCB1002D3EF2 /* Unknown-1.png in Resources */,
 				49F6CAD91D90FCB1002D3EF2 /* Unknown-4.png in Resources */,
+				49CC55941D92501C000C8C40 /* WeChat_1474434946.jpeg in Resources */,
 				49F6CADB1D90FCB1002D3EF2 /* Unknown-6.png in Resources */,
 				49F6CADC1D90FCB1002D3EF2 /* Unknown-7.png in Resources */,
 				49F6CAD31D90FCB1002D3EF2 /* Unknown-14.png in Resources */,
@@ -617,6 +630,7 @@
 				49F6CB991D915BC2002D3EF2 /* NSUserDefaultsUtils.m in Sources */,
 				49F6CB941D915BC2002D3EF2 /* UIView+Frame.m in Sources */,
 				49F6CB961D915BC2002D3EF2 /* HttpClient.m in Sources */,
+				49CC55991D9288C5000C8C40 /* LikeView.m in Sources */,
 				49F6CB8B1D915BC2002D3EF2 /* NSDate+EasyExtend.mm in Sources */,
 				49F6CB891D915BC2002D3EF2 /* NSArray+Categories.m in Sources */,
 				49F6CB901D915BC2002D3EF2 /* NSUserDefaults+Categories.m in Sources */,
