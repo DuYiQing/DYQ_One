@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		496DD9621D93C8CC00D5781A /* ScrollViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 496DD9611D93C8CC00D5781A /* ScrollViewModel.m */; };
+		496DD9651D93D45F00D5781A /* CarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496DD9641D93D45F00D5781A /* CarouselView.m */; };
+		496DD9681D93D56600D5781A /* ZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496DD9671D93D56600D5781A /* ZoomScrollView.m */; };
+		496DD96B1D93DEC800D5781A /* ColorfulViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496DD96A1D93DEC800D5781A /* ColorfulViewController.m */; };
+		496DD9711D93FCF700D5781A /* EssayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 496DD9701D93FCF700D5781A /* EssayModel.m */; };
+		496DD9741D93FD0300D5781A /* SerialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 496DD9731D93FD0300D5781A /* SerialModel.m */; };
+		496DD9771D93FD0D00D5781A /* QuestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 496DD9761D93FD0D00D5781A /* QuestionModel.m */; };
+		496DD97A1D93FEA100D5781A /* AuthorInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 496DD9791D93FEA100D5781A /* AuthorInfoModel.m */; };
+		496DD97D1D9410C900D5781A /* ReadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 496DD97C1D9410C900D5781A /* ReadTableViewCell.m */; };
+		49987BF81D9662F600E8F9ED /* NovelBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49987BF71D9662F600E8F9ED /* NovelBaseViewController.m */; };
+		49987BFB1D966EA600E8F9ED /* NovelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49987BFA1D966EA600E8F9ED /* NovelCollectionViewCell.m */; };
+		49987BFE1D9676A400E8F9ED /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49987BFD1D9676A400E8F9ED /* StoryViewController.m */; };
+		49987C011D9676B600E8F9ED /* SerialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49987C001D9676B600E8F9ED /* SerialViewController.m */; };
+		49987C041D967E4E00E8F9ED /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49987C031D967E4E00E8F9ED /* QuestionViewController.m */; };
+		49B802EC1D94D4A6004D3D85 /* X.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B802EB1D94D4A6004D3D85 /* X.png */; };
+		49B802EF1D951A5C004D3D85 /* ListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B802EE1D951A5C004D3D85 /* ListCollectionViewCell.m */; };
+		49B802F51D9557E3004D3D85 /* ColorfulViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B802F41D9557E3004D3D85 /* ColorfulViewModel.m */; };
+		49B802F81D955C4F004D3D85 /* ThreeLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B802F71D955C4F004D3D85 /* ThreeLabelView.m */; };
+		49B802FB1D9563CD004D3D85 /* ColorfulTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B802FA1D9563CD004D3D85 /* ColorfulTableViewCell.m */; };
 		49CC55941D92501C000C8C40 /* WeChat_1474434946.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 49CC55931D92501C000C8C40 /* WeChat_1474434946.jpeg */; };
 		49CC55961D925023000C8C40 /* 28B58PICxtD_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CC55951D925023000C8C40 /* 28B58PICxtD_1024.png */; };
 		49CC55991D9288C5000C8C40 /* LikeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CC55981D9288C5000C8C40 /* LikeView.m */; };
@@ -67,6 +86,43 @@
 /* Begin PBXFileReference section */
 		0F7ECDA7C8D9A9BDF5F0A587 /* Pods-DYQ_One.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DYQ_One.release.xcconfig"; path = "Pods/Target Support Files/Pods-DYQ_One/Pods-DYQ_One.release.xcconfig"; sourceTree = "<group>"; };
 		35AD2A44E3AF407ED8980F21 /* libPods-DYQ_One.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DYQ_One.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		496DD9601D93C8CC00D5781A /* ScrollViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewModel.h; sourceTree = "<group>"; };
+		496DD9611D93C8CC00D5781A /* ScrollViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewModel.m; sourceTree = "<group>"; };
+		496DD9631D93D45F00D5781A /* CarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselView.h; sourceTree = "<group>"; };
+		496DD9641D93D45F00D5781A /* CarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselView.m; sourceTree = "<group>"; };
+		496DD9661D93D56600D5781A /* ZoomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomScrollView.h; sourceTree = "<group>"; };
+		496DD9671D93D56600D5781A /* ZoomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomScrollView.m; sourceTree = "<group>"; };
+		496DD9691D93DEC800D5781A /* ColorfulViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorfulViewController.h; sourceTree = "<group>"; };
+		496DD96A1D93DEC800D5781A /* ColorfulViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorfulViewController.m; sourceTree = "<group>"; };
+		496DD96F1D93FCF700D5781A /* EssayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EssayModel.h; sourceTree = "<group>"; };
+		496DD9701D93FCF700D5781A /* EssayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EssayModel.m; sourceTree = "<group>"; };
+		496DD9721D93FD0300D5781A /* SerialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialModel.h; sourceTree = "<group>"; };
+		496DD9731D93FD0300D5781A /* SerialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialModel.m; sourceTree = "<group>"; };
+		496DD9751D93FD0D00D5781A /* QuestionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionModel.h; sourceTree = "<group>"; };
+		496DD9761D93FD0D00D5781A /* QuestionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionModel.m; sourceTree = "<group>"; };
+		496DD9781D93FEA100D5781A /* AuthorInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorInfoModel.h; sourceTree = "<group>"; };
+		496DD9791D93FEA100D5781A /* AuthorInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorInfoModel.m; sourceTree = "<group>"; };
+		496DD97B1D9410C900D5781A /* ReadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadTableViewCell.h; sourceTree = "<group>"; };
+		496DD97C1D9410C900D5781A /* ReadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadTableViewCell.m; sourceTree = "<group>"; };
+		49987BF61D9662F600E8F9ED /* NovelBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NovelBaseViewController.h; sourceTree = "<group>"; };
+		49987BF71D9662F600E8F9ED /* NovelBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NovelBaseViewController.m; sourceTree = "<group>"; };
+		49987BF91D966EA600E8F9ED /* NovelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NovelCollectionViewCell.h; sourceTree = "<group>"; };
+		49987BFA1D966EA600E8F9ED /* NovelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NovelCollectionViewCell.m; sourceTree = "<group>"; };
+		49987BFC1D9676A400E8F9ED /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
+		49987BFD1D9676A400E8F9ED /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
+		49987BFF1D9676B600E8F9ED /* SerialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialViewController.h; sourceTree = "<group>"; };
+		49987C001D9676B600E8F9ED /* SerialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialViewController.m; sourceTree = "<group>"; };
+		49987C021D967E4E00E8F9ED /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionViewController.h; sourceTree = "<group>"; };
+		49987C031D967E4E00E8F9ED /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
+		49B802EB1D94D4A6004D3D85 /* X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = X.png; sourceTree = "<group>"; };
+		49B802ED1D951A5C004D3D85 /* ListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionViewCell.h; sourceTree = "<group>"; };
+		49B802EE1D951A5C004D3D85 /* ListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionViewCell.m; sourceTree = "<group>"; };
+		49B802F31D9557E3004D3D85 /* ColorfulViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorfulViewModel.h; sourceTree = "<group>"; };
+		49B802F41D9557E3004D3D85 /* ColorfulViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorfulViewModel.m; sourceTree = "<group>"; };
+		49B802F61D955C4F004D3D85 /* ThreeLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeLabelView.h; sourceTree = "<group>"; };
+		49B802F71D955C4F004D3D85 /* ThreeLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreeLabelView.m; sourceTree = "<group>"; };
+		49B802F91D9563CD004D3D85 /* ColorfulTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorfulTableViewCell.h; sourceTree = "<group>"; };
+		49B802FA1D9563CD004D3D85 /* ColorfulTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorfulTableViewCell.m; sourceTree = "<group>"; };
 		49CC55931D92501C000C8C40 /* WeChat_1474434946.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = WeChat_1474434946.jpeg; sourceTree = "<group>"; };
 		49CC55951D925023000C8C40 /* 28B58PICxtD_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 28B58PICxtD_1024.png; sourceTree = "<group>"; };
 		49CC55971D9288C5000C8C40 /* LikeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikeView.h; sourceTree = "<group>"; };
@@ -183,6 +239,89 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		496DD95D1D93C5C300D5781A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				49B802F21D955758004D3D85 /* ColorfulViewModel */,
+				49B802F11D95570E004D3D85 /* ListModel */,
+				49B802F01D955697004D3D85 /* CarouselViewModel */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		496DD95E1D93C5D300D5781A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				496DD9631D93D45F00D5781A /* CarouselView.h */,
+				496DD9641D93D45F00D5781A /* CarouselView.m */,
+				496DD9661D93D56600D5781A /* ZoomScrollView.h */,
+				496DD9671D93D56600D5781A /* ZoomScrollView.m */,
+				496DD97B1D9410C900D5781A /* ReadTableViewCell.h */,
+				496DD97C1D9410C900D5781A /* ReadTableViewCell.m */,
+				49B802ED1D951A5C004D3D85 /* ListCollectionViewCell.h */,
+				49B802EE1D951A5C004D3D85 /* ListCollectionViewCell.m */,
+				49B802F61D955C4F004D3D85 /* ThreeLabelView.h */,
+				49B802F71D955C4F004D3D85 /* ThreeLabelView.m */,
+				49B802F91D9563CD004D3D85 /* ColorfulTableViewCell.h */,
+				49B802FA1D9563CD004D3D85 /* ColorfulTableViewCell.m */,
+				49987BF91D966EA600E8F9ED /* NovelCollectionViewCell.h */,
+				49987BFA1D966EA600E8F9ED /* NovelCollectionViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		496DD95F1D93C5E200D5781A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				49F6CA921D90CBDD002D3EF2 /* ReadViewController.h */,
+				49F6CA931D90CBDD002D3EF2 /* ReadViewController.m */,
+				496DD9691D93DEC800D5781A /* ColorfulViewController.h */,
+				496DD96A1D93DEC800D5781A /* ColorfulViewController.m */,
+				49987BF61D9662F600E8F9ED /* NovelBaseViewController.h */,
+				49987BF71D9662F600E8F9ED /* NovelBaseViewController.m */,
+				49987BFC1D9676A400E8F9ED /* StoryViewController.h */,
+				49987BFD1D9676A400E8F9ED /* StoryViewController.m */,
+				49987BFF1D9676B600E8F9ED /* SerialViewController.h */,
+				49987C001D9676B600E8F9ED /* SerialViewController.m */,
+				49987C021D967E4E00E8F9ED /* QuestionViewController.h */,
+				49987C031D967E4E00E8F9ED /* QuestionViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		49B802F01D955697004D3D85 /* CarouselViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				496DD9601D93C8CC00D5781A /* ScrollViewModel.h */,
+				496DD9611D93C8CC00D5781A /* ScrollViewModel.m */,
+			);
+			name = CarouselViewModel;
+			sourceTree = "<group>";
+		};
+		49B802F11D95570E004D3D85 /* ListModel */ = {
+			isa = PBXGroup;
+			children = (
+				496DD9781D93FEA100D5781A /* AuthorInfoModel.h */,
+				496DD9791D93FEA100D5781A /* AuthorInfoModel.m */,
+				496DD96F1D93FCF700D5781A /* EssayModel.h */,
+				496DD9701D93FCF700D5781A /* EssayModel.m */,
+				496DD9721D93FD0300D5781A /* SerialModel.h */,
+				496DD9731D93FD0300D5781A /* SerialModel.m */,
+				496DD9751D93FD0D00D5781A /* QuestionModel.h */,
+				496DD9761D93FD0D00D5781A /* QuestionModel.m */,
+			);
+			name = ListModel;
+			sourceTree = "<group>";
+		};
+		49B802F21D955758004D3D85 /* ColorfulViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				49B802F31D9557E3004D3D85 /* ColorfulViewModel.h */,
+				49B802F41D9557E3004D3D85 /* ColorfulViewModel.m */,
+			);
+			name = ColorfulViewModel;
+			sourceTree = "<group>";
+		};
 		49F6CA251D90C0DC002D3EF2 = {
 			isa = PBXGroup;
 			children = (
@@ -250,8 +389,9 @@
 		49F6CA4D1D90C23B002D3EF2 /* Read */ = {
 			isa = PBXGroup;
 			children = (
-				49F6CA921D90CBDD002D3EF2 /* ReadViewController.h */,
-				49F6CA931D90CBDD002D3EF2 /* ReadViewController.m */,
+				496DD95F1D93C5E200D5781A /* Controller */,
+				496DD95E1D93C5D300D5781A /* View */,
+				496DD95D1D93C5C300D5781A /* Model */,
 			);
 			path = Read;
 			sourceTree = "<group>";
@@ -300,6 +440,7 @@
 			children = (
 				49CC55951D925023000C8C40 /* 28B58PICxtD_1024.png */,
 				49CC55931D92501C000C8C40 /* WeChat_1474434946.jpeg */,
+				49B802EB1D94D4A6004D3D85 /* X.png */,
 				49F6CABC1D90FCB1002D3EF2 /* Unknown-1.png */,
 				49F6CABD1D90FCB1002D3EF2 /* Unknown-10.png */,
 				49F6CABE1D90FCB1002D3EF2 /* Unknown-11.png */,
@@ -562,6 +703,7 @@
 				49F6CADC1D90FCB1002D3EF2 /* Unknown-7.png in Resources */,
 				49F6CAD31D90FCB1002D3EF2 /* Unknown-14.png in Resources */,
 				49F6CACF1D90FCB1002D3EF2 /* Unknown-10.png in Resources */,
+				49B802EC1D94D4A6004D3D85 /* X.png in Resources */,
 				49F6CAD71D90FCB1002D3EF2 /* Unknown-2.png in Resources */,
 				49F6CAD11D90FCB1002D3EF2 /* Unknown-12.png in Resources */,
 				49F6CADF1D90FCB1002D3EF2 /* Unknown.png in Resources */,
@@ -625,36 +767,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49987BFB1D966EA600E8F9ED /* NovelCollectionViewCell.m in Sources */,
 				49F6CB8E1D915BC2002D3EF2 /* NSString+Categories.m in Sources */,
 				49F6CBA61D9167AA002D3EF2 /* UIImageView+XLWebCache.m in Sources */,
 				49F6CB991D915BC2002D3EF2 /* NSUserDefaultsUtils.m in Sources */,
+				496DD9621D93C8CC00D5781A /* ScrollViewModel.m in Sources */,
 				49F6CB941D915BC2002D3EF2 /* UIView+Frame.m in Sources */,
+				49987C041D967E4E00E8F9ED /* QuestionViewController.m in Sources */,
 				49F6CB961D915BC2002D3EF2 /* HttpClient.m in Sources */,
+				49B802F51D9557E3004D3D85 /* ColorfulViewModel.m in Sources */,
 				49CC55991D9288C5000C8C40 /* LikeView.m in Sources */,
+				496DD9771D93FD0D00D5781A /* QuestionModel.m in Sources */,
 				49F6CB8B1D915BC2002D3EF2 /* NSDate+EasyExtend.mm in Sources */,
+				49B802F81D955C4F004D3D85 /* ThreeLabelView.m in Sources */,
 				49F6CB891D915BC2002D3EF2 /* NSArray+Categories.m in Sources */,
 				49F6CB901D915BC2002D3EF2 /* NSUserDefaults+Categories.m in Sources */,
 				49F6CA941D90CBDD002D3EF2 /* ReadViewController.m in Sources */,
 				49F6CAE21D90FE1C002D3EF2 /* BaseViewController.m in Sources */,
 				49F6CB5D1D915AB6002D3EF2 /* DYQBaseView.m in Sources */,
+				496DD9711D93FCF700D5781A /* EssayModel.m in Sources */,
 				49F6CABA1D90DD98002D3EF2 /* ImageLabelView.m in Sources */,
+				49987BF81D9662F600E8F9ED /* NovelBaseViewController.m in Sources */,
 				49F6CB8F1D915BC2002D3EF2 /* NSString+Regex.m in Sources */,
 				49F6CB591D9158F8002D3EF2 /* DYQBaseModel.m in Sources */,
+				496DD9651D93D45F00D5781A /* CarouselView.m in Sources */,
 				49F6CA361D90C0DC002D3EF2 /* AppDelegate.m in Sources */,
+				496DD97A1D93FEA100D5781A /* AuthorInfoModel.m in Sources */,
 				49F6CB911D915BC2002D3EF2 /* UIButton+Block.m in Sources */,
 				49F6CA331D90C0DC002D3EF2 /* main.m in Sources */,
+				496DD96B1D93DEC800D5781A /* ColorfulViewController.m in Sources */,
 				49F6CB8D1D915BC2002D3EF2 /* NSNumber+Extend.m in Sources */,
 				49F6CA4A1D90C0FD002D3EF2 /* RootViewController.m in Sources */,
+				49B802EF1D951A5C004D3D85 /* ListCollectionViewCell.m in Sources */,
+				496DD97D1D9410C900D5781A /* ReadTableViewCell.m in Sources */,
+				49987BFE1D9676A400E8F9ED /* StoryViewController.m in Sources */,
 				49F6CA541D90C3AE002D3EF2 /* RootModel.m in Sources */,
 				49F6CB8C1D915BC2002D3EF2 /* NSDictionary+Categories.m in Sources */,
 				49F6CA9A1D90CBF2002D3EF2 /* MovieViewController.m in Sources */,
 				49F6CB8A1D915BC2002D3EF2 /* NSDate+Categories.m in Sources */,
 				49F6CBA71D9167AA002D3EF2 /* XLImagePageDetailCell.m in Sources */,
+				496DD9741D93FD0300D5781A /* SerialModel.m in Sources */,
 				49F6CB981D915BC2002D3EF2 /* FileManagerUtils.m in Sources */,
 				49F6CBA81D9167AA002D3EF2 /* XLImagePageView.m in Sources */,
 				49F6CB951D915BC2002D3EF2 /* DataBaseManager.m in Sources */,
 				49F6CB931D915BC2002D3EF2 /* UIImage+Categories.m in Sources */,
+				49987C011D9676B600E8F9ED /* SerialViewController.m in Sources */,
+				496DD9681D93D56600D5781A /* ZoomScrollView.m in Sources */,
 				49F6CA971D90CBEA002D3EF2 /* MusicViewController.m in Sources */,
+				49B802FB1D9563CD004D3D85 /* ColorfulTableViewCell.m in Sources */,
 				49F6CB921D915BC2002D3EF2 /* UIColor+Categories.m in Sources */,
 				49F6CB971D915BC2002D3EF2 /* AppStoreUtils.m in Sources */,
 			);

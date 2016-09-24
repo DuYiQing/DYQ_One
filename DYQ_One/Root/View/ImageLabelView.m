@@ -38,6 +38,7 @@
     if (self) {
         
         self.emptyView = [[UIView alloc] initWithFrame:CGRectZero];
+//        _emptyView.backgroundColor = [UIColor whiteColor];
         _emptyView.layer.cornerRadius = 5.0f;
         _emptyView.layer.borderWidth = 2.0f;
         _emptyView.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -67,7 +68,6 @@
         self.contentLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 //        _contentLabel.backgroundColor = [UIColor yellowColor];
         _contentLabel.numberOfLines = 0;
-        [_contentLabel sizeToFit];
         [_emptyView addSubview:_contentLabel];
         [_contentLabel release];
         
@@ -98,6 +98,7 @@
     _authorLabel.frame = CGRectMake(_volLabel.frame.origin.x + _volLabel.bounds.size.width + 15, _volLabel.frame.origin.y, _topImageView.bounds.size.width - _volLabel.bounds.size.width - 15 , _volLabel.bounds.size.height);
     
     _contentLabel.frame = CGRectMake(_topImageView.frame.origin.x, _authorLabel.frame.origin.y + _authorLabel.bounds.size.height + 10, _topImageView.bounds.size.width, 100);
+    [_contentLabel sizeToFit];
     
     _dateLabel.frame = CGRectMake(SCREEN_WIDTH / 2, _contentLabel.frame.origin.y + _contentLabel.frame.size.height + 30, _topImageView.bounds.size.width / 2 - 10, _volLabel.bounds.size.height);
     

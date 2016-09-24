@@ -99,6 +99,7 @@ UIScrollViewDelegate
     _tableView.rowHeight = SCREEN_HEIGHT;
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     [_tableView release];
     
@@ -134,7 +135,7 @@ UIScrollViewDelegate
         }
         
         [self setView];
-        NSLog(@"%@", _rootDataArr);
+//        NSLog(@"%@", _rootDataArr);
     } failure:^(id error) {
         NSLog(@"error :%@", error);
     }];
