@@ -86,7 +86,7 @@ UITableViewDelegate
     
     if (0 == indexPath.row) {
         EssayModel *essayModel = _essayArr[_currentSection];
-        NSLog(@"  : %ld", _currentSection);
+//        NSLog(@"  : %ld", _currentSection);
         cell.essayModel = essayModel;
         
     }
@@ -133,7 +133,7 @@ UITableViewDelegate
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _listTableView.frame = CGRectMake(0, -50, SCREEN_WIDTH, 500);
+    _listTableView.frame = CGRectMake(0, -50, SCREEN_WIDTH, 430);
     
     _emptyView.frame = CGRectMake(10, 10, SCREEN_WIDTH - 20, _listTableView.bounds.size.height);
 }

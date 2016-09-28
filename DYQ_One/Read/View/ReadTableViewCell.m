@@ -125,7 +125,7 @@
     _typeLabel.frame = CGRectMake(self.contentView.bounds.size.width - 10 - 55, _titleLabel.frame.origin.y, 45, 20);
     
     _rowHeight = _contentLabel.frame.origin.y + _contentLabel.bounds.size.height + 15;
-//    NSLog(@"%lf", _rowHeight);
+
 }
 
 - (void)awakeFromNib {

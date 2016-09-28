@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NovelBaseViewController.h"
+
 
 @interface StoryViewController : UIViewController
+
+@property (nonatomic, copy) NSString *contentID;
 
 @end

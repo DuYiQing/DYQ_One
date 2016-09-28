@@ -1,29 +1,25 @@
 //
-//  MovieViewController.m
+//  SerialViewController.m
 //  DYQ_One
 //
-//  Created by dllo on 16/9/20.
+//  Created by dllo on 16/9/24.
 //  Copyright © 2016年 dllo. All rights reserved.
 //
 
-#import "MovieViewController.h"
+#import "SerialViewController.h"
 
-@interface MovieViewController ()
+@interface SerialViewController ()
 
 @end
 
-@implementation MovieViewController
+@implementation SerialViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
-    self.navigationItem.title = @"电影";
-
-
+    self.view.backgroundColor = [UIColor orangeColor];
+    self.tabBarController.tabBar.hidden = YES;
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

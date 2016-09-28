@@ -10,4 +10,7 @@
 
 @interface NovelCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, retain) NSArray *storyArr;
+@property (nonatomic, retain) NSArray *contentArr;
+
 @end

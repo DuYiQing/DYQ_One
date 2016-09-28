@@ -6,7 +6,7 @@
 //  Copyright © 2016年 dllo. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "NovelBaseViewController.h"
+
 
 @interface SerialViewController : UIViewController
 

@@ -64,7 +64,6 @@ ListCollectionViewCellDelegate
     self.essayArr = [NSMutableArray array];
     self.serialArr = [NSMutableArray array];
     self.questionArr = [NSMutableArray array];
-
     [self data];
     
     
@@ -117,7 +116,7 @@ ListCollectionViewCellDelegate
     ListCollectionViewCell *listCell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionViewCell forIndexPath:indexPath];
     listCell.indexDelegate = self;
     listCell.currentSection = indexPath.section;
-    NSLog(@"section : %ld", indexPath.section);
+    _currentIndex = indexPath.section;
     listCell.essayArr = _essayArr;
     listCell.serialArr = _serialArr;
     listCell.questionArr = _questionArr;
@@ -126,10 +125,15 @@ ListCollectionViewCellDelegate
 
 - (void)getCellIndex:(NSInteger)index {
     if (0 == index) {
+        
+        EssayModel *essayModel = _essayArr[_currentIndex];
+        NSLog(@"%ld", _currentIndex);
         StoryViewController *storyVC = [[StoryViewController alloc] init];
+        storyVC.contentID = essayModel.content_id;
         [self.navigationController pushViewController:storyVC animated:YES];
         [storyVC release];
     } else if (1 == index) {
+        
         SerialViewController *serialVC = [[SerialViewController alloc] init];
         [self.navigationController pushViewController:serialVC animated:YES];
         [serialVC release];
