@@ -302,8 +302,8 @@
 		496DD95E1D93C5D300D5781A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				49D187C41D9B74BA00F55888 /* Serial */,
 				49D187C31D9B741500F55888 /* Read */,
+				49D187C41D9B74BA00F55888 /* Serial */,
 				49D187BF1D9B4C0600F55888 /* Story */,
 			);
 			path = View;
@@ -312,13 +312,13 @@
 		496DD95F1D93C5E200D5781A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				49D187BC1D9B4B8900F55888 /* Question */,
+				49D187BE1D9B4BC600F55888 /* Serial */,
+				49D187BD1D9B4BB000F55888 /* Story */,
 				496DD9691D93DEC800D5781A /* ColorfulViewController.h */,
 				496DD96A1D93DEC800D5781A /* ColorfulViewController.m */,
 				49F6CA921D90CBDD002D3EF2 /* ReadViewController.h */,
 				49F6CA931D90CBDD002D3EF2 /* ReadViewController.m */,
-				49D187BE1D9B4BC600F55888 /* Serial */,
-				49D187BD1D9B4BB000F55888 /* Story */,
-				49D187BC1D9B4B8900F55888 /* Question */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -326,10 +326,10 @@
 		497AA65B1D9A5F050059A972 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				497AA65E1D9A5F390059A972 /* MovieModel.h */,
-				497AA65F1D9A5F390059A972 /* MovieModel.m */,
 				499EE5571D9C9A2E005C0029 /* MovieInfoModel.h */,
 				499EE5581D9C9A2E005C0029 /* MovieInfoModel.m */,
+				497AA65E1D9A5F390059A972 /* MovieModel.h */,
+				497AA65F1D9A5F390059A972 /* MovieModel.m */,
 				499EE55A1D9CA64E005C0029 /* MovieStoryModel.h */,
 				499EE55B1D9CA64E005C0029 /* MovieStoryModel.m */,
 				499EE55D1D9CAF5D005C0029 /* UserModel.h */,
@@ -351,10 +351,10 @@
 		497AA65D1D9A5F140059A972 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				49F6CA981D90CBF2002D3EF2 /* MovieViewController.h */,
-				49F6CA991D90CBF2002D3EF2 /* MovieViewController.m */,
 				49D187EE1D9BDB4100F55888 /* MovieInfoViewController.h */,
 				49D187EF1D9BDB4100F55888 /* MovieInfoViewController.m */,
+				49F6CA981D90CBF2002D3EF2 /* MovieViewController.h */,
+				49F6CA991D90CBF2002D3EF2 /* MovieViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -398,7 +398,7 @@
 				49987C021D967E4E00E8F9ED /* QuestionViewController.h */,
 				49987C031D967E4E00E8F9ED /* QuestionViewController.m */,
 			);
-			name = Question;
+			path = Question;
 			sourceTree = "<group>";
 		};
 		49D187BD1D9B4BB000F55888 /* Story */ = {
@@ -407,7 +407,7 @@
 				49987BFC1D9676A400E8F9ED /* StoryViewController.h */,
 				49987BFD1D9676A400E8F9ED /* StoryViewController.m */,
 			);
-			name = Story;
+			path = Story;
 			sourceTree = "<group>";
 		};
 		49D187BE1D9B4BC600F55888 /* Serial */ = {
@@ -416,22 +416,22 @@
 				49987BFF1D9676B600E8F9ED /* SerialViewController.h */,
 				49987C001D9676B600E8F9ED /* SerialViewController.m */,
 			);
-			name = Serial;
+			path = Serial;
 			sourceTree = "<group>";
 		};
 		49D187BF1D9B4C0600F55888 /* Story */ = {
 			isa = PBXGroup;
 			children = (
-				49987BF91D966EA600E8F9ED /* NovelCollectionViewCell.h */,
-				49987BFA1D966EA600E8F9ED /* NovelCollectionViewCell.m */,
 				4914B6061D98C3A800D3A53F /* BottonAuthorTableViewCell.h */,
 				4914B6071D98C3A800D3A53F /* BottonAuthorTableViewCell.m */,
 				49987C0F1D96ACEB00E8F9ED /* ContentTableViewCell.h */,
 				49987C101D96ACEB00E8F9ED /* ContentTableViewCell.m */,
+				49987BF91D966EA600E8F9ED /* NovelCollectionViewCell.h */,
+				49987BFA1D966EA600E8F9ED /* NovelCollectionViewCell.m */,
 				49987C051D969D2200E8F9ED /* TopAuthorTableViewCell.h */,
 				49987C061D969D2200E8F9ED /* TopAuthorTableViewCell.m */,
 			);
-			name = Story;
+			path = Story;
 			sourceTree = "<group>";
 		};
 		49D187C31D9B741500F55888 /* Read */ = {
@@ -450,7 +450,7 @@
 				496DD9661D93D56600D5781A /* ZoomScrollView.h */,
 				496DD9671D93D56600D5781A /* ZoomScrollView.m */,
 			);
-			name = Read;
+			path = Read;
 			sourceTree = "<group>";
 		};
 		49D187C41D9B74BA00F55888 /* Serial */ = {
@@ -459,7 +459,7 @@
 				49D187C51D9B74F000F55888 /* SerialCollectionViewCell.h */,
 				49D187C61D9B74F000F55888 /* SerialCollectionViewCell.m */,
 			);
-			name = Serial;
+			path = Serial;
 			sourceTree = "<group>";
 		};
 		49D187F11D9BE3BE00F55888 /* InfoVC */ = {
@@ -468,7 +468,7 @@
 				49D187F21D9BE3E800F55888 /* MovieInfoTableViewCell.h */,
 				49D187F31D9BE3E800F55888 /* MovieInfoTableViewCell.m */,
 			);
-			name = InfoVC;
+			path = InfoVC;
 			sourceTree = "<group>";
 		};
 		49F6CA251D90C0DC002D3EF2 = {
