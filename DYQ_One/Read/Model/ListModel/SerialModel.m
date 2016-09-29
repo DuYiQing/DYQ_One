@@ -7,11 +7,13 @@
 //
 
 #import "SerialModel.h"
+#import "MJExtension.h"
 
 @implementation SerialModel
 
-//+ (NSDictionary *)objectClassInArray {
-//    return @{@"author" : @"AuthorInfoModel"};
-//}
++ (NSDictionary *)replacedKeyFromPropertyName {
+    return @{@"contentID" : @"id"};
+}
+
 
 @end

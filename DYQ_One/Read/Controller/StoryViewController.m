@@ -23,6 +23,7 @@ UICollectionViewDataSource
 @property (nonatomic, retain) UICollectionView *novelCollectionView;
 @property (nonatomic, retain) NSMutableArray *storyArr;
 @property (nonatomic, retain) NSArray *contentArr;
+@property (nonatomic, assign) long currentSection;
 
 @end
 
@@ -60,6 +61,13 @@ UICollectionViewDataSource
     
 }
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    NSLog(@"%ld", _currentSection);
+//    _contentID = _storyArr[_currentSection];
+    NSLog(@"id : %@", _contentID);
+    
+}
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 10;
 }
@@ -70,6 +78,7 @@ UICollectionViewDataSource
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     NovelCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionViewCell forIndexPath:indexPath];
+    self.currentSection = indexPath.section;
     cell.storyArr = _storyArr;
     cell.contentArr = _contentArr;
 
@@ -88,7 +97,6 @@ UICollectionViewDataSource
         
         NovelModel *novelModel = [NovelModel modelWithDic:dataDic];
         [_storyArr addObject:novelModel];
-//        NSLog(@"count : %ld", _storyArr.count);
 
         [_novelCollectionView reloadData];
         [self getView];

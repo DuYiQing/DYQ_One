@@ -7,9 +7,10 @@
 //
 
 #import "InfoBaseTableViewCell.h"
-#import "NovelModel.h"
 #import "UIImageView+XLWebCache.h"
 #import "AuthorInfoModel.h"
+#import "SerialModel.h"
+
 
 @interface InfoBaseTableViewCell ()
 
@@ -54,15 +55,13 @@
     
 }
 
-- (void)setNovelModel:(NovelModel *)novelModel {
-    if (_novelModel != novelModel) {
-        [_novelModel release];
-        _novelModel = [novelModel retain];
+- (void)setSerialModel:(SerialModel *)serialModel {
+    if (_serialModel != serialModel) {
+        [_serialModel release];
+        _serialModel = [serialModel retain];
         
-        AuthorInfoModel *authorInfoModel = novelModel.author[0];
-        [_headImageView xl_setImageWithURL:[NSURL URLWithString:authorInfoModel.web_url] placeholderImage:nil];
-        _nameLabel.text = novelModel.hp_author;
-        _descLabel.text = novelModel.hp_makettime;
+        _nameLabel.text = serialModel.author.user_name;
+        _descLabel.text = serialModel.author.desc;
     }
 }
 

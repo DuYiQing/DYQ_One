@@ -8,9 +8,11 @@
 
 #import "InfoBaseTableViewCell.h"
 @class NovelModel;
+@class SerialModel;
 
 @interface BottonAuthorTableViewCell : UITableViewCell
 
 @property (nonatomic, retain) NovelModel *novelModel;
+@property (nonatomic, retain) SerialModel *serialModel;
 
 @end

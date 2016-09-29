@@ -11,6 +11,7 @@
 #import "NovelModel.h"
 #import "AuthorInfoModel.h"
 #import "UIImageView+XLWebCache.h"
+#import "SerialModel.h"
 
 @interface BottonAuthorTableViewCell ()
 
@@ -62,9 +63,9 @@
     _headImageView.frame = CGRectMake(30, 30, 60, 60);
     _nameLabel.frame = CGRectMake(100, 30, 200, 40);
     [_nameLabel sizeToFit];
-    _descLabel.frame = CGRectMake(_nameLabel.frame.origin.x, _nameLabel.frame.origin.y + _nameLabel.bounds.size.height + 10, 200, 40);
+    _descLabel.frame = CGRectMake(_nameLabel.frame.origin.x, _nameLabel.frame.origin.y + _nameLabel.bounds.size.height + 5, 200, 40);
     [_descLabel sizeToFit];
-    _weiboLabel.frame = CGRectMake(100, 90, 250, 40);
+    _weiboLabel.frame = CGRectMake(100, _descLabel.frame.origin.y + _descLabel.bounds.size.height + 5, 250, 40);
 //    [_weiboLabel sizeToFit];
 }
 
@@ -80,7 +81,15 @@
 //        _weiboLabel.text = authorInfoModel.wb_name;
     }
 }
-
+- (void)setSerialModel:(SerialModel *)serialModel {
+    if (_serialModel != serialModel) {
+        [_serialModel release];
+        _serialModel = [serialModel retain];
+        
+        _nameLabel.text = serialModel.author.user_name;
+        _descLabel.text = serialModel.author.desc;
+    }
+}
 
 
 

@@ -127,14 +127,16 @@ ListCollectionViewCellDelegate
     if (0 == index) {
         
         EssayModel *essayModel = _essayArr[_currentIndex];
-        NSLog(@"%ld", _currentIndex);
+//        NSLog(@"%ld", _currentIndex);
         StoryViewController *storyVC = [[StoryViewController alloc] init];
         storyVC.contentID = essayModel.content_id;
         [self.navigationController pushViewController:storyVC animated:YES];
         [storyVC release];
     } else if (1 == index) {
+        SerialModel *serialModel = _serialArr[_currentIndex];
         
         SerialViewController *serialVC = [[SerialViewController alloc] init];
+        serialVC.contentID = serialModel.contentID;
         [self.navigationController pushViewController:serialVC animated:YES];
         [serialVC release];
     } else {

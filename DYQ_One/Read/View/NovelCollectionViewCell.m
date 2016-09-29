@@ -13,6 +13,7 @@
 #import "NovelModel.h"
 #import "ColorfulTableViewCell.h"
 
+
 static NSString *const novelCVCell = @"novelCVCell";
 static NSString *const contentCell = @"contentCell";
 static NSString *const commentCell = @"commentCell";
@@ -138,7 +139,7 @@ UITableViewDelegate
         }
         cell.contentArr = _contentArr;
         return cell;
-
+        
     }
     if (3 == indexPath.section) {
         BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:bottomAuthorCell];

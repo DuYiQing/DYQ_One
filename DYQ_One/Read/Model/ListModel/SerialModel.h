@@ -11,7 +11,7 @@
 
 @interface SerialModel : DYQBaseModel
 
-@property (nonatomic, copy) NSString *id;
+@property (nonatomic, copy) NSString *contentID;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *excerpt;
 @property (nonatomic, retain) AuthorInfoModel *author;

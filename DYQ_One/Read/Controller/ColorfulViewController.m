@@ -111,14 +111,10 @@ UITableViewDelegate
     
 }
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    CGFloat contentOffsetY = scrollView.contentOffset.y;
-//    NSLog(@"%lf", contentOffsetY);
-//
-//}
-
-
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _colorfulArr.count;

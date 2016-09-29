@@ -10,4 +10,6 @@
 
 @interface SerialViewController : UIViewController
 
+@property (nonatomic, copy) NSString *contentID;
+
 @end

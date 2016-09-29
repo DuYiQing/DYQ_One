@@ -11,6 +11,7 @@
 #import "MovieModel.h"
 #import "MJExtension.h"
 #import "MovieTableViewCell.h"
+#import "MovieInfoViewController.h"
 
 static NSString *const movieCell = @"movieCell";
 
@@ -46,6 +47,16 @@ UITableViewDelegate
     _tableView.rowHeight = SCREEN_HEIGHT / 4;
     [self.view addSubview:_tableView];
     [_tableView release];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MovieInfoViewController *movieInfoVC = [[MovieInfoViewController alloc] init];
+    [self.navigationController pushViewController:movieInfoVC animated:YES];
+    MovieModel *movieModel = _movieArr[indexPath.row];
+    movieInfoVC.movieModel = movieModel;
+    
+    [movieInfoVC release];
+ 
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
