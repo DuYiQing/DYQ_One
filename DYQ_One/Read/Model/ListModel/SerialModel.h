@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString *contentID;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *excerpt;
+@property (nonatomic, copy) NSString *maketime;
 @property (nonatomic, retain) AuthorInfoModel *author;
 
 

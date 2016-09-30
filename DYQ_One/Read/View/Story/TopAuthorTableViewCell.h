@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "InfoBaseTableViewCell.h"
+
 @class NovelModel;
+@class SerialModel;
 
 
 @interface TopAuthorTableViewCell : UITableViewCell
 
 @property (nonatomic, retain) NovelModel *novelModel;
+@property (nonatomic, retain) SerialModel *serialModel;
 
 @end

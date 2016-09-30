@@ -10,6 +10,7 @@
 #import "AuthorInfoModel.h"
 #import "NovelModel.h"
 #import "UIImageView+XLWebCache.h"
+#import "SerialModel.h"
 
 @interface TopAuthorTableViewCell ()
 
@@ -94,6 +95,16 @@
 
 }
 
+- (void)setSerialModel:(SerialModel *)serialModel {
+    if (_serialModel != serialModel) {
+        [_serialModel release];
+        _serialModel = [serialModel retain];
+        
+        [_headImageView xl_setImageWithURL:[NSURL URLWithString:serialModel.author.web_url] placeholderImage:nil];
+        _nameLabel.text = serialModel.author.user_name;
+        _dateLabel.text = serialModel.maketime;
+    }
+}
 
 
 - (void)awakeFromNib {

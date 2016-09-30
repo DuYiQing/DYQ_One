@@ -12,6 +12,7 @@
 #import "AuthorInfoModel.h"
 #import "UIImageView+XLWebCache.h"
 #import "SerialModel.h"
+#import "CommentModel.h"
 
 @interface BottonAuthorTableViewCell ()
 
@@ -23,6 +24,15 @@
 @end
 
 @implementation BottonAuthorTableViewCell
+
+- (void)dealloc {
+    [_headImageView release];
+    [_nameLabel release];
+    [_descLabel release];
+    [_weiboLabel release];
+    [_commentArr release];
+    [super dealloc];
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -93,7 +103,16 @@
         _descLabel.text = serialModel.author.desc;
     }
 }
-
-
+- (void)setCommentModel:(CommentModel *)commentModel {
+    if (_commentModel != commentModel) {
+        [_commentModel release];
+        _commentModel = [commentModel retain];
+        
+        [_headImageView xl_setImageWithURL:[NSURL URLWithString:commentModel.user.web_url] placeholderImage:nil];
+        _nameLabel.text = commentModel.user.user_name;
+        _descLabel.text = commentModel.input_date;
+        _weiboLabel.text = commentModel.content;
+    }
+}
 
 @end

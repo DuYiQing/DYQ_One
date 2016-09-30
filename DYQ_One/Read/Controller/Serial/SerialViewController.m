@@ -88,7 +88,7 @@ UICollectionViewDelegate
     [HttpClient GETWithURLString:urlString success:^(id result) {
         NSDictionary *dataDic = [result objectForKey:@"data"];
         NSString *content = [dataDic objectForKey:@"content"];
-        self.contentArr = [content componentsSeparatedByString:@"<br>"];
+        self.contentArr = [content componentsSeparatedByString:@"<br>\n"];
         self.serialModel = [SerialModel mj_objectWithKeyValues:dataDic];
 
         [self getView];

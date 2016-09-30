@@ -15,6 +15,7 @@
 
 static NSString *const titleCell = @"titleCell";
 static NSString *const bottomAuthorCell = @"bottomCell";
+static NSString *const topAuthorCell = @"top";
 static NSString *const commentCell = @"commentCell";
 
 @interface SerialCollectionViewCell ()
@@ -41,6 +42,7 @@ UITableViewDelegate
         self.serialTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
         _serialTableView.delegate = self;
         _serialTableView.dataSource = self;
+        _serialTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.contentView addSubview:_serialTableView];
         [_serialTableView release];
     }
@@ -79,6 +81,15 @@ UITableViewDelegate
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (0 == indexPath.section) {
+        TopAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:topAuthorCell];
+        if (nil == cell) {
+            cell = [[TopAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:topAuthorCell];
+        }
+        cell.serialModel = _serialModel;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
 
     if (1 == indexPath.section) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:titleCell];

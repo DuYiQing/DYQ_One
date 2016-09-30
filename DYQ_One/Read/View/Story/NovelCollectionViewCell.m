@@ -165,12 +165,14 @@ UITableViewDelegate
         }
         return cell;
     }
-    InfoBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]];
+    BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]];
     cell.commentArr = _commentArr;
     cell.currentRow = indexPath.row;
     if (nil == cell) {
-        cell = [[InfoBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]];
+        cell = [[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]];
     }
+    CommentModel *commentModel = _commentArr[indexPath.row];
+    cell.commentModel = commentModel;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
