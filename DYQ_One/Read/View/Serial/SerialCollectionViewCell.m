@@ -70,7 +70,6 @@ UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (2 == section) {
-        NSLog(@"count : %ld", _contentArr.count);
         return _contentArr.count;
     } else if (4 == section) {
         return 8;

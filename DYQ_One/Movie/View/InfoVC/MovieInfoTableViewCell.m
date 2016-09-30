@@ -91,7 +91,6 @@
     if (_movieInfoModel != movieInfoModel) {
         [_movieInfoModel release];
         _movieInfoModel = [movieInfoModel retain];
-//        _authorLabel.text = movieInfoModel
     }
 }
 

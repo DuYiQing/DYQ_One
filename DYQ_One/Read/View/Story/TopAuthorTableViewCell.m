@@ -34,7 +34,7 @@
     if (self) {
         
         self.headImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _headImageView.backgroundColor = [UIColor redColor];
+        _headImageView.backgroundColor = [UIColor colorWithRed:93.2 / 255.f green:182.1 / 255.f blue:223.6 / 255.f alpha:1.0];
         [self.contentView addSubview:_headImageView];
         [_headImageView release];
         
@@ -71,7 +71,9 @@
     [super layoutSubviews];
     
     _headImageView.frame = CGRectMake(30, 30, 60, 60);
-    _nameLabel.frame = CGRectMake(100, 30, 200, 40);
+    _headImageView.layer.cornerRadius = _headImageView.bounds.size.width / 2;
+    _headImageView.clipsToBounds = YES;
+    _nameLabel.frame = CGRectMake(100, 35, 200, 40);
     [_nameLabel sizeToFit];
     _dateLabel.frame = CGRectMake(_nameLabel.frame.origin.x, _nameLabel.frame.origin.y + _nameLabel.bounds.size.height + 10, 200, 40);
     [_dateLabel sizeToFit];
@@ -84,13 +86,15 @@
         [_novelModel release];
         _novelModel = [novelModel retain];
         
-//        AuthorInfoModel *authorInfoModel = novelModel.author[0];
-//        [_headImageView xl_setImageWithURL:[NSURL URLWithString:authorInfoModel.web_url] placeholderImage:nil];
+        AuthorInfoModel *authorInfoModel = novelModel.author[0];
+        [_headImageView xl_setImageWithURL:[NSURL URLWithString:authorInfoModel.web_url] placeholderImage:nil];
         _nameLabel.text = novelModel.hp_author;
         _dateLabel.text = novelModel.hp_makettime;
     }
 
 }
+
+
 
 - (void)awakeFromNib {
     // Initialization code

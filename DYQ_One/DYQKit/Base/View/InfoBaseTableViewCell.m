@@ -10,6 +10,7 @@
 #import "UIImageView+XLWebCache.h"
 #import "AuthorInfoModel.h"
 #import "SerialModel.h"
+#import "CommentModel.h"
 
 
 @interface InfoBaseTableViewCell ()
@@ -62,6 +63,18 @@
         
         _nameLabel.text = serialModel.author.user_name;
         _descLabel.text = serialModel.author.desc;
+    }
+}
+
+- (void)setCommentArr:(NSArray *)commentArr {
+    if (_commentArr != commentArr) {
+        [_commentArr release];
+        _commentArr = [commentArr retain];
+        
+        CommentModel *commentModel = commentArr[_currentRow];
+        [_headImageView xl_setImageWithURL:[NSURL URLWithString:commentModel.user.web_url] placeholderImage:nil];
+        _nameLabel.text = commentModel.user.user_name;
+        _descLabel.text = commentModel.content;
     }
 }
 

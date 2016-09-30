@@ -29,26 +29,27 @@
     
     if (self) {
         self.headImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _headImageView.backgroundColor = [UIColor redColor];
+        _headImageView.backgroundColor = [UIColor colorWithRed:93.2 / 255.f green:182.1 / 255.f blue:223.6 / 255.f alpha:1.0];
         [self.contentView addSubview:_headImageView];
         [_headImageView release];
         
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _nameLabel.backgroundColor = [UIColor blueColor];
+//        _nameLabel.backgroundColor = [UIColor blueColor];
         _nameLabel.textColor = [UIColor colorWithRed:93.2 / 255.f green:182.1 / 255.f blue:223.6 / 255.f alpha:1.0];
         [self.contentView addSubview:_nameLabel];
         [_nameLabel release];
         
         self.descLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _descLabel.backgroundColor = [UIColor grayColor];
+//        _descLabel.backgroundColor = [UIColor grayColor];
         _descLabel.textColor = [UIColor lightGrayColor];
+        _descLabel.numberOfLines = 0;
         _descLabel.font = kFONT_SIZE_13;
         [self.contentView addSubview:_descLabel];
         [_descLabel release];
 
         
         self.weiboLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _weiboLabel.backgroundColor = [UIColor cyanColor];
+//        _weiboLabel.backgroundColor = [UIColor cyanColor];
         _weiboLabel.textColor = [UIColor lightGrayColor];
         _weiboLabel.font = kFONT_SIZE_13;
         [self.contentView addSubview:_weiboLabel];
@@ -60,13 +61,15 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _headImageView.frame = CGRectMake(30, 30, 60, 60);
-    _nameLabel.frame = CGRectMake(100, 30, 200, 40);
+    _headImageView.frame = CGRectMake(25, 30, 60, 60);
+    _headImageView.layer.cornerRadius = _headImageView.bounds.size.width / 2;
+    _headImageView .clipsToBounds = YES;
+    _nameLabel.frame = CGRectMake(100, 35, 200, 40);
     [_nameLabel sizeToFit];
-    _descLabel.frame = CGRectMake(_nameLabel.frame.origin.x, _nameLabel.frame.origin.y + _nameLabel.bounds.size.height + 5, 200, 40);
+    _descLabel.frame = CGRectMake(_nameLabel.frame.origin.x, _nameLabel.frame.origin.y + _nameLabel.bounds.size.height + 5, SCREEN_WIDTH - 120, 40);
     [_descLabel sizeToFit];
     _weiboLabel.frame = CGRectMake(100, _descLabel.frame.origin.y + _descLabel.bounds.size.height + 5, 250, 40);
-//    [_weiboLabel sizeToFit];
+    [_weiboLabel sizeToFit];
 }
 
 - (void)setNovelModel:(NovelModel *)novelModel {
@@ -74,11 +77,11 @@
         [_novelModel release];
         _novelModel = [novelModel retain];
         
-//        AuthorInfoModel *authorInfoModel = novelModel.author[0];
-//        [_headImageView xl_setImageWithURL:[NSURL URLWithString:authorInfoModel.web_url] placeholderImage:[UIImage imageNamed:@"Unknown-1.png"]];
+        AuthorInfoModel *authorInfoModel = novelModel.author[0];
+        [_headImageView xl_setImageWithURL:[NSURL URLWithString:authorInfoModel.web_url] placeholderImage:[UIImage imageNamed:@"Unknown-1.png"]];
         _nameLabel.text = novelModel.hp_author;
         _descLabel.text = novelModel.auth_it;
-//        _weiboLabel.text = authorInfoModel.wb_name;
+        _weiboLabel.text = [NSString stringWithFormat:@"weibo:%@", authorInfoModel.wb_name];
     }
 }
 - (void)setSerialModel:(SerialModel *)serialModel {

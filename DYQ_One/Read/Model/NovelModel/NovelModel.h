@@ -7,6 +7,7 @@
 //
 
 #import "DYQBaseModel.h"
+#import "AuthorInfoModel.h"
 
 @interface NovelModel : DYQBaseModel
 

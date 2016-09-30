@@ -68,9 +68,16 @@ UITableViewDelegate
 
 - (void)setStoryArr:(NSArray *)storyArr {
     if (_storyArr != storyArr) {
-        [_storyArr release
-         ];
+        [_storyArr release];
         _storyArr = [storyArr retain];
+    }
+    [_novelTableView reloadData];
+}
+
+- (void)setCommentArr:(NSArray *)commentArr {
+    if (_commentArr != commentArr) {
+        [_commentArr release];
+        _commentArr = [commentArr retain];
     }
     [_novelTableView reloadData];
 }
@@ -114,7 +121,6 @@ UITableViewDelegate
             cell = [[TopAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:novelCVCell];
         }
         NovelModel *novelModel = _storyArr[0];
-//        NSLog(@"storyArr.count : %ld", _storyArr.count);
         cell.novelModel = novelModel;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -137,6 +143,7 @@ UITableViewDelegate
             cell = [[ContentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%@%ld", contentCell, indexPath.row]];
             cell.row = _currentRow;
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.contentArr = _contentArr;
         return cell;
         
@@ -158,9 +165,11 @@ UITableViewDelegate
         }
         return cell;
     }
-    InfoBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:commentCell];
+    InfoBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]];
+    cell.commentArr = _commentArr;
+    cell.currentRow = indexPath.row;
     if (nil == cell) {
-        cell = [[InfoBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:commentCell];
+        cell = [[InfoBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

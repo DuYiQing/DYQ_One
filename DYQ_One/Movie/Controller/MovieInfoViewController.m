@@ -13,6 +13,10 @@
 #import "MJExtension.h"
 #import "MovieInfoModel.h"
 #import "MovieStoryModel.h"
+#import "CarouselView.h"
+#import "ScrollViewModel.h"
+#import "UIImageView+XLWebCache.h"
+
 
 static NSString *const movieCell = @"movieCell";
 
@@ -28,9 +32,17 @@ UITableViewDelegate
 @property (nonatomic, retain) NSMutableArray *movieStoryArr;
 @property (nonatomic, retain) NSArray *contentArr;
 
+
 @end
 
 @implementation MovieInfoViewController
+
+- (void)dealloc {
+    [_movieTableView release];
+    [_contentArr release];
+    [_movieStoryArr release];
+    [super dealloc];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,7 +51,7 @@ UITableViewDelegate
     self.view.backgroundColor = [UIColor whiteColor];
     self.tabBarController.tabBar.hidden = YES;
     self.movieStoryArr = [NSMutableArray array];
-    self.contentArr = [NSMutableArray array];
+    self.contentArr = [NSArray array];
     [self data];
 }
 
@@ -51,6 +63,9 @@ UITableViewDelegate
     if (0 == section) {
         return 2;
     }
+    if (1 == section) {
+        return _contentArr.count;
+    }
     if (2 == section) {
         return 1;
     }
@@ -61,9 +76,8 @@ UITableViewDelegate
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MovieStoryModel *movieStoryModel = _movieStoryArr[0];
-    if ((0 == indexPath.section) && (2 == indexPath.row)) {
-        NSString *info = movieStoryModel.content;
+    if (1 == indexPath.section) {
+        NSString *info = _contentArr[indexPath.row];
         CGSize infoSize = CGSizeMake(SCREEN_WIDTH, 1000);
         NSDictionary *dic = @{NSFontAttributeName : [UIFont systemFontOfSize:14.f]};
         CGRect infoRect = [info boundingRectWithSize:infoSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil];
@@ -76,13 +90,15 @@ UITableViewDelegate
     if (0 == section) {
         return @"电影故事";
     }
+    if (1 == section) {
+        return @"";
+    }
     if (2 == section) {
         return @"一个电影表";
     }
     if (3 == section) {
         return @"评论列表";
     }
-    if ()
     
     return @"以上是热门评论";
 }
@@ -108,16 +124,18 @@ UITableViewDelegate
             cell.textLabel.text = movieStoryModel.title;
             return cell;
         }
-        if (2 == indexPath.row) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contentCell"];
-            if (nil == cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"contentCell"];
-            }
-            MovieStoryModel *movieStoryModel = _movieStoryArr[0];
-            cell.textLabel.text = movieStoryModel.content;
-            return cell;
-
+    }
+    if (1 == indexPath.section) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"contentCell%ld", indexPath.row]];
+        if (nil == cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"contentCell%ld", indexPath.row]];
         }
+        cell.textLabel.text = _contentArr[indexPath.row];
+        cell.textLabel.font = [UIFont systemFontOfSize:14.f];
+        cell.textLabel.numberOfLines = 0;
+        [cell.textLabel sizeToFit];
+        
+        return cell;
     }
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:movieCell];
@@ -131,9 +149,17 @@ UITableViewDelegate
     self.movieTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
     _movieTableView.delegate = self;
     _movieTableView.dataSource = self;
-    _movieTableView.rowHeight = 80;
+    _movieTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_movieTableView];
     [_movieTableView release];
+    _movieTableView.contentOffset = CGPointMake(0, -SCREEN_HEIGHT / 4);
+    _movieTableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT / 4, 0, 0, 0);
+
+    UIImageView *topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -SCREEN_HEIGHT / 4, SCREEN_WIDTH, SCREEN_HEIGHT / 4)];
+    [topImageView xl_setImageWithURL:[NSURL URLWithString:_movieInfoModel.detailcover] placeholderImage:nil];
+    [_movieTableView addSubview:topImageView];
+    [topImageView release];
+    
 }
 
 - (void)data {
@@ -157,7 +183,7 @@ UITableViewDelegate
             MovieStoryModel *movieStoryModel = [MovieStoryModel mj_objectWithKeyValues:dataDic];
             [_movieStoryArr addObject:movieStoryModel];
             NSString *content = [dataDic objectForKey:@"content"];
-            _contentArr = [content componentsSeparatedByString:@"\r\n"];
+            self.contentArr = [content componentsSeparatedByString:@"\r\n"];
 
         }
         [self getView];

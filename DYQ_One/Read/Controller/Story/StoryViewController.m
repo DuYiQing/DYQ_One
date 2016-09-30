@@ -11,6 +11,9 @@
 #import "NovelModel.h"
 #import "MJExtension.h"
 #import "NovelCollectionViewCell.h"
+#import "MJExtension.h"
+#import "CommentModel.h"
+
 
 static NSString *const collectionViewCell = @"collectionViewCell";
 
@@ -24,10 +27,19 @@ UICollectionViewDataSource
 @property (nonatomic, retain) NSMutableArray *storyArr;
 @property (nonatomic, retain) NSArray *contentArr;
 @property (nonatomic, assign) long currentSection;
+@property (nonatomic, retain) NSMutableArray *commentArr;
 
 @end
 
 @implementation StoryViewController
+
+- (void)dealloc {
+    [_storyArr release];
+    [_contentArr release];
+    [_commentArr release];
+    [_novelCollectionView release];
+    [super dealloc];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,8 +47,7 @@ UICollectionViewDataSource
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.storyArr = [NSMutableArray array];
-    self.contentArr = [NSArray array];
-//    self.tabBarController.tabBar.hidden = YES;
+    self.commentArr = [NSMutableArray array];
     [self data];
 }
 
@@ -81,6 +92,7 @@ UICollectionViewDataSource
     self.currentSection = indexPath.section;
     cell.storyArr = _storyArr;
     cell.contentArr = _contentArr;
+    cell.commentArr = _commentArr;
 
     return cell;
 }
@@ -95,7 +107,7 @@ UICollectionViewDataSource
         NSString *content = [dataDic objectForKey:@"hp_content"];
         self.contentArr = [content componentsSeparatedByString:@"<br>"];
         
-        NovelModel *novelModel = [NovelModel modelWithDic:dataDic];
+        NovelModel *novelModel = [NovelModel mj_objectWithKeyValues:dataDic];
         [_storyArr addObject:novelModel];
 
         [_novelCollectionView reloadData];
@@ -104,6 +116,18 @@ UICollectionViewDataSource
     } failure:^(id error) {
         NSLog(@"error : %@", error);
     }];
+    
+    [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/essay/%@/0", _contentID] success:^(id result) {
+        NSDictionary *tempDic = [result objectForKey:@"data"];
+        NSArray *dataArr = [tempDic objectForKey:@"data"];
+        for (NSDictionary *dataDic in dataArr) {
+            CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
+            [_commentArr addObject:commentModel];            
+        }
+    } failure:^(id error) {
+        NSLog(@"error : %@", error);
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

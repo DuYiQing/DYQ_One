@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		408A8F661D9E09B5000E4761 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8F651D9E09B5000E4761 /* CommentModel.m */; };
 		4914B6081D98C3A800D3A53F /* BottonAuthorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4914B6071D98C3A800D3A53F /* BottonAuthorTableViewCell.m */; };
 		4914B60C1D98CC1400D3A53F /* NovelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4914B60B1D98CC1400D3A53F /* NovelModel.m */; };
 		496DD9621D93C8CC00D5781A /* ScrollViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 496DD9611D93C8CC00D5781A /* ScrollViewModel.m */; };
@@ -100,6 +101,8 @@
 /* Begin PBXFileReference section */
 		0F7ECDA7C8D9A9BDF5F0A587 /* Pods-DYQ_One.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DYQ_One.release.xcconfig"; path = "Pods/Target Support Files/Pods-DYQ_One/Pods-DYQ_One.release.xcconfig"; sourceTree = "<group>"; };
 		35AD2A44E3AF407ED8980F21 /* libPods-DYQ_One.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DYQ_One.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		408A8F641D9E09B5000E4761 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		408A8F651D9E09B5000E4761 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		4914B6061D98C3A800D3A53F /* BottonAuthorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottonAuthorTableViewCell.h; sourceTree = "<group>"; };
 		4914B6071D98C3A800D3A53F /* BottonAuthorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottonAuthorTableViewCell.m; sourceTree = "<group>"; };
 		4914B60A1D98CC1400D3A53F /* NovelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NovelModel.h; sourceTree = "<group>"; };
@@ -295,6 +298,8 @@
 				49B802F21D955758004D3D85 /* ColorfulViewModel */,
 				49B802F11D95570E004D3D85 /* ListModel */,
 				4914B6091D98CBA600D3A53F /* NovelModel */,
+				408A8F641D9E09B5000E4761 /* CommentModel.h */,
+				408A8F651D9E09B5000E4761 /* CommentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -812,6 +817,7 @@
 				TargetAttributes = {
 					49F6CA2D1D90C0DC002D3EF2 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = H983D5HYGB;
 					};
 				};
 			};
@@ -969,6 +975,7 @@
 				49F6CA9A1D90CBF2002D3EF2 /* MovieViewController.m in Sources */,
 				49F6CB8A1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+Categories.m in Sources */,
 				49F6CBA71D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageDetailCell.m in Sources */,
+				408A8F661D9E09B5000E4761 /* CommentModel.m in Sources */,
 				496DD9741D93FD0300D5781A /* SerialModel.m in Sources */,
 				49F6CB981D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/FileManagerUtils.m in Sources */,
 				49F6CBA81D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageView.m in Sources */,
@@ -1087,6 +1094,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DYQ_One/Supporting Files/DYQKit.pch";
 				INFOPLIST_FILE = DYQ_One/Info.plist;
@@ -1103,6 +1111,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DYQ_One/Supporting Files/DYQKit.pch";
 				INFOPLIST_FILE = DYQ_One/Info.plist;

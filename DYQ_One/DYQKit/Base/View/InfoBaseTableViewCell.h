@@ -13,5 +13,7 @@
 @interface InfoBaseTableViewCell : UITableViewCell
 
 @property (nonatomic, retain) SerialModel *serialModel;
+@property (nonatomic, retain) NSArray *commentArr;
+@property (nonatomic, assign) long currentRow;
 
 @end

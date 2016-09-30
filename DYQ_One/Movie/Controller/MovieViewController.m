@@ -27,12 +27,15 @@ UITableViewDelegate
 
 @implementation MovieViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.tabBarController.tabBar.hidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.navigationItem.title = @"电影";
-    
     self.movieArr = [NSMutableArray array];
     
     
