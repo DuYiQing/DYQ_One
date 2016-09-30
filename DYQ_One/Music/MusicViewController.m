@@ -7,22 +7,49 @@
 //
 
 #import "MusicViewController.h"
+#import "HttpClient.h"
 
 @interface MusicViewController ()
+
+@property (nonatomic, retain) NSArray *musicListArr;
 
 @end
 
 @implementation MusicViewController
+
+- (void)dealloc {
+    [_musicListArr release];
+    [super dealloc];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor orangeColor];
     self.navigationItem.title = @"音乐";
+    
 
+    [self data];
 
 }
 
+- (void)data {
+    [HttpClient GETWithURLString:@"http://v3.wufazhuce.com:8000/api/music/idlist/0" success:^(id result) {
+//        NSLog(@"%@", result);
+        self.musicListArr = [result objectForKey:@"data"];
+        NSMutableString *urlString = [@"http://v3.wufazhuce.com:8000/api/music/detail/" mutableCopy];
+        [urlString appendString:_musicListArr[0]];
+        [HttpClient GETWithURLString:urlString success:^(id result) {
+            NSLog(@"%@", result);
+        } failure:^(id error) {
+            NSLog(@"error : %@", error);
+        }];
+
+    } failure:^(id error) {
+        NSLog(@"error : %@", error);
+    }];
+    
+}
 
 
 - (void)didReceiveMemoryWarning {

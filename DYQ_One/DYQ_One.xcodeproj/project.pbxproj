@@ -8,6 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		408A8F661D9E09B5000E4761 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8F651D9E09B5000E4761 /* CommentModel.m */; };
+		408A8FE21D9E65D2000E4761 /* ReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CA931D90CBDD002D3EF2 /* ReadViewController.m */; };
+		408A900C1D9E65F3000E4761 /* NSArray+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FE61D9E65F3000E4761 /* NSArray+Categories.m */; };
+		408A900D1D9E65F3000E4761 /* NSDate+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FE81D9E65F3000E4761 /* NSDate+Categories.m */; };
+		408A900E1D9E65F3000E4761 /* NSDate+EasyExtend.mm in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FEA1D9E65F3000E4761 /* NSDate+EasyExtend.mm */; };
+		408A900F1D9E65F3000E4761 /* NSDictionary+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FEC1D9E65F3000E4761 /* NSDictionary+Categories.m */; };
+		408A90101D9E65F3000E4761 /* NSNumber+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FEE1D9E65F3000E4761 /* NSNumber+Extend.m */; };
+		408A90111D9E65F3000E4761 /* NSString+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FF01D9E65F3000E4761 /* NSString+Categories.m */; };
+		408A90121D9E65F3000E4761 /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FF21D9E65F3000E4761 /* NSString+Regex.m */; };
+		408A90131D9E65F3000E4761 /* NSUserDefaults+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FF41D9E65F3000E4761 /* NSUserDefaults+Categories.m */; };
+		408A90141D9E65F3000E4761 /* UIButton+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FF61D9E65F3000E4761 /* UIButton+Block.m */; };
+		408A90151D9E65F3000E4761 /* UIColor+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FF81D9E65F3000E4761 /* UIColor+Categories.m */; };
+		408A90161D9E65F3000E4761 /* UIImage+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FFA1D9E65F3000E4761 /* UIImage+Categories.m */; };
+		408A90171D9E65F3000E4761 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FFC1D9E65F3000E4761 /* UIView+Frame.m */; };
+		408A90181D9E65F3000E4761 /* DataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FFF1D9E65F3000E4761 /* DataBaseManager.m */; };
+		408A90191D9E65F3000E4761 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A90031D9E65F3000E4761 /* HttpClient.m */; };
+		408A901A1D9E65F3000E4761 /* AppStoreUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A90061D9E65F3000E4761 /* AppStoreUtils.m */; };
+		408A901B1D9E65F3000E4761 /* FileManagerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A90081D9E65F3000E4761 /* FileManagerUtils.m */; };
+		408A901C1D9E65F3000E4761 /* NSUserDefaultsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A900A1D9E65F3000E4761 /* NSUserDefaultsUtils.m */; };
+		408A90251D9E6608000E4761 /* UIImageView+XLWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A90201D9E6608000E4761 /* UIImageView+XLWebCache.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		408A90261D9E6608000E4761 /* XLImagePageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A90221D9E6608000E4761 /* XLImagePageDetailCell.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		408A90271D9E6608000E4761 /* XLImagePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A90241D9E6608000E4761 /* XLImagePageView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4914B6081D98C3A800D3A53F /* BottonAuthorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4914B6071D98C3A800D3A53F /* BottonAuthorTableViewCell.m */; };
 		4914B60C1D98CC1400D3A53F /* NovelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4914B60B1D98CC1400D3A53F /* NovelModel.m */; };
 		496DD9621D93C8CC00D5781A /* ScrollViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 496DD9611D93C8CC00D5781A /* ScrollViewModel.m */; };
@@ -50,7 +71,6 @@
 		49F6CA411D90C0DC002D3EF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49F6CA3F1D90C0DC002D3EF2 /* LaunchScreen.storyboard */; };
 		49F6CA4A1D90C0FD002D3EF2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CA491D90C0FD002D3EF2 /* RootViewController.m */; };
 		49F6CA541D90C3AE002D3EF2 /* RootModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CA531D90C3AE002D3EF2 /* RootModel.m */; };
-		49F6CA941D90CBDD002D3EF2 /* ReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CA931D90CBDD002D3EF2 /* ReadViewController.m */; };
 		49F6CA971D90CBEA002D3EF2 /* MusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CA961D90CBEA002D3EF2 /* MusicViewController.m */; };
 		49F6CA9A1D90CBF2002D3EF2 /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CA991D90CBF2002D3EF2 /* MovieViewController.m */; };
 		49F6CABA1D90DD98002D3EF2 /* ImageLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CAB91D90DD98002D3EF2 /* ImageLabelView.m */; };
@@ -75,26 +95,6 @@
 		49F6CAE21D90FE1C002D3EF2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CAE11D90FE1C002D3EF2 /* BaseViewController.m */; };
 		49F6CB591D9158F8002D3EF2 /* DYQBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB581D9158F8002D3EF2 /* DYQBaseModel.m */; };
 		49F6CB5D1D915AB6002D3EF2 /* DYQBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB5C1D915AB6002D3EF2 /* DYQBaseView.m */; };
-		49F6CB891D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSArray+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB611D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSArray+Categories.m */; };
-		49F6CB8A1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB631D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+Categories.m */; };
-		49F6CB8B1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+EasyExtend.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB651D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+EasyExtend.mm */; };
-		49F6CB8C1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDictionary+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB671D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDictionary+Categories.m */; };
-		49F6CB8D1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSNumber+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB691D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSNumber+Extend.m */; };
-		49F6CB8E1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB6B1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Categories.m */; };
-		49F6CB8F1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB6D1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Regex.m */; };
-		49F6CB901D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSUserDefaults+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB6F1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSUserDefaults+Categories.m */; };
-		49F6CB911D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIButton+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB711D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIButton+Block.m */; };
-		49F6CB921D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIColor+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB731D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIColor+Categories.m */; };
-		49F6CB931D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIImage+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB751D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIImage+Categories.m */; };
-		49F6CB941D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB771D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIView+Frame.m */; };
-		49F6CB951D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/DataBase/DataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB7A1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/DataBase/DataBaseManager.m */; };
-		49F6CB961D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/HttpClient/HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB7E1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/HttpClient/HttpClient.m */; };
-		49F6CB971D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/AppStoreUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB811D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/AppStoreUtils.m */; };
-		49F6CB981D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/FileManagerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB831D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/FileManagerUtils.m */; };
-		49F6CB991D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/NSUserDefaultsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CB851D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/NSUserDefaultsUtils.m */; };
-		49F6CBA61D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/UIImageView+XLWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CBA01D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/UIImageView+XLWebCache.m */; };
-		49F6CBA71D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CBA21D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageDetailCell.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		49F6CBA81D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CBA41D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		728BBEB5D28C50FFD4EAF6F5 /* libPods-DYQ_One.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AD2A44E3AF407ED8980F21 /* libPods-DYQ_One.a */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +103,48 @@
 		35AD2A44E3AF407ED8980F21 /* libPods-DYQ_One.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DYQ_One.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		408A8F641D9E09B5000E4761 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		408A8F651D9E09B5000E4761 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
+		408A8FE51D9E65F3000E4761 /* NSArray+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Categories.h"; sourceTree = "<group>"; };
+		408A8FE61D9E65F3000E4761 /* NSArray+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Categories.m"; sourceTree = "<group>"; };
+		408A8FE71D9E65F3000E4761 /* NSDate+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Categories.h"; sourceTree = "<group>"; };
+		408A8FE81D9E65F3000E4761 /* NSDate+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Categories.m"; sourceTree = "<group>"; };
+		408A8FE91D9E65F3000E4761 /* NSDate+EasyExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+EasyExtend.h"; sourceTree = "<group>"; };
+		408A8FEA1D9E65F3000E4761 /* NSDate+EasyExtend.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSDate+EasyExtend.mm"; sourceTree = "<group>"; };
+		408A8FEB1D9E65F3000E4761 /* NSDictionary+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Categories.h"; sourceTree = "<group>"; };
+		408A8FEC1D9E65F3000E4761 /* NSDictionary+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Categories.m"; sourceTree = "<group>"; };
+		408A8FED1D9E65F3000E4761 /* NSNumber+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Extend.h"; sourceTree = "<group>"; };
+		408A8FEE1D9E65F3000E4761 /* NSNumber+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Extend.m"; sourceTree = "<group>"; };
+		408A8FEF1D9E65F3000E4761 /* NSString+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Categories.h"; sourceTree = "<group>"; };
+		408A8FF01D9E65F3000E4761 /* NSString+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Categories.m"; sourceTree = "<group>"; };
+		408A8FF11D9E65F3000E4761 /* NSString+Regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Regex.h"; sourceTree = "<group>"; };
+		408A8FF21D9E65F3000E4761 /* NSString+Regex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Regex.m"; sourceTree = "<group>"; };
+		408A8FF31D9E65F3000E4761 /* NSUserDefaults+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Categories.h"; sourceTree = "<group>"; };
+		408A8FF41D9E65F3000E4761 /* NSUserDefaults+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Categories.m"; sourceTree = "<group>"; };
+		408A8FF51D9E65F3000E4761 /* UIButton+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Block.h"; sourceTree = "<group>"; };
+		408A8FF61D9E65F3000E4761 /* UIButton+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Block.m"; sourceTree = "<group>"; };
+		408A8FF71D9E65F3000E4761 /* UIColor+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Categories.h"; sourceTree = "<group>"; };
+		408A8FF81D9E65F3000E4761 /* UIColor+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Categories.m"; sourceTree = "<group>"; };
+		408A8FF91D9E65F3000E4761 /* UIImage+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Categories.h"; sourceTree = "<group>"; };
+		408A8FFA1D9E65F3000E4761 /* UIImage+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Categories.m"; sourceTree = "<group>"; };
+		408A8FFB1D9E65F3000E4761 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		408A8FFC1D9E65F3000E4761 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		408A8FFE1D9E65F3000E4761 /* DataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseManager.h; sourceTree = "<group>"; };
+		408A8FFF1D9E65F3000E4761 /* DataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseManager.m; sourceTree = "<group>"; };
+		408A90011D9E65F3000E4761 /* HttpAPIConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpAPIConst.h; sourceTree = "<group>"; };
+		408A90021D9E65F3000E4761 /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClient.h; sourceTree = "<group>"; };
+		408A90031D9E65F3000E4761 /* HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpClient.m; sourceTree = "<group>"; };
+		408A90051D9E65F3000E4761 /* AppStoreUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppStoreUtils.h; sourceTree = "<group>"; };
+		408A90061D9E65F3000E4761 /* AppStoreUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppStoreUtils.m; sourceTree = "<group>"; };
+		408A90071D9E65F3000E4761 /* FileManagerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerUtils.h; sourceTree = "<group>"; };
+		408A90081D9E65F3000E4761 /* FileManagerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerUtils.m; sourceTree = "<group>"; };
+		408A90091D9E65F3000E4761 /* NSUserDefaultsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUserDefaultsUtils.h; sourceTree = "<group>"; };
+		408A900A1D9E65F3000E4761 /* NSUserDefaultsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaultsUtils.m; sourceTree = "<group>"; };
+		408A900B1D9E65F3000E4761 /* SystemUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemUnit.h; sourceTree = "<group>"; };
+		408A901F1D9E6608000E4761 /* UIImageView+XLWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+XLWebCache.h"; sourceTree = "<group>"; };
+		408A90201D9E6608000E4761 /* UIImageView+XLWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+XLWebCache.m"; sourceTree = "<group>"; };
+		408A90211D9E6608000E4761 /* XLImagePageDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLImagePageDetailCell.h; sourceTree = "<group>"; };
+		408A90221D9E6608000E4761 /* XLImagePageDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLImagePageDetailCell.m; sourceTree = "<group>"; };
+		408A90231D9E6608000E4761 /* XLImagePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLImagePageView.h; sourceTree = "<group>"; };
+		408A90241D9E6608000E4761 /* XLImagePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLImagePageView.m; sourceTree = "<group>"; };
 		4914B6061D98C3A800D3A53F /* BottonAuthorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottonAuthorTableViewCell.h; sourceTree = "<group>"; };
 		4914B6071D98C3A800D3A53F /* BottonAuthorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottonAuthorTableViewCell.m; sourceTree = "<group>"; };
 		4914B60A1D98CC1400D3A53F /* NovelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NovelModel.h; sourceTree = "<group>"; };
@@ -213,50 +255,8 @@
 		49F6CB581D9158F8002D3EF2 /* DYQBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYQBaseModel.m; sourceTree = "<group>"; };
 		49F6CB5B1D915AB6002D3EF2 /* DYQBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYQBaseView.h; sourceTree = "<group>"; };
 		49F6CB5C1D915AB6002D3EF2 /* DYQBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYQBaseView.m; sourceTree = "<group>"; };
-		49F6CB601D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSArray+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSArray+Categories.h"; sourceTree = "<group>"; };
-		49F6CB611D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSArray+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSArray+Categories.m"; sourceTree = "<group>"; };
-		49F6CB621D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+Categories.h"; sourceTree = "<group>"; };
-		49F6CB631D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+Categories.m"; sourceTree = "<group>"; };
-		49F6CB641D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+EasyExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+EasyExtend.h"; sourceTree = "<group>"; };
-		49F6CB651D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+EasyExtend.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+EasyExtend.mm"; sourceTree = "<group>"; };
-		49F6CB661D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDictionary+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDictionary+Categories.h"; sourceTree = "<group>"; };
-		49F6CB671D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDictionary+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDictionary+Categories.m"; sourceTree = "<group>"; };
-		49F6CB681D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSNumber+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSNumber+Extend.h"; sourceTree = "<group>"; };
-		49F6CB691D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSNumber+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSNumber+Extend.m"; sourceTree = "<group>"; };
-		49F6CB6A1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Categories.h"; sourceTree = "<group>"; };
-		49F6CB6B1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Categories.m"; sourceTree = "<group>"; };
-		49F6CB6C1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Regex.h"; sourceTree = "<group>"; };
-		49F6CB6D1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Regex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Regex.m"; sourceTree = "<group>"; };
-		49F6CB6E1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSUserDefaults+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSUserDefaults+Categories.h"; sourceTree = "<group>"; };
-		49F6CB6F1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSUserDefaults+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSUserDefaults+Categories.m"; sourceTree = "<group>"; };
-		49F6CB701D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIButton+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIButton+Block.h"; sourceTree = "<group>"; };
-		49F6CB711D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIButton+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIButton+Block.m"; sourceTree = "<group>"; };
-		49F6CB721D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIColor+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIColor+Categories.h"; sourceTree = "<group>"; };
-		49F6CB731D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIColor+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIColor+Categories.m"; sourceTree = "<group>"; };
-		49F6CB741D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIImage+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIImage+Categories.h"; sourceTree = "<group>"; };
-		49F6CB751D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIImage+Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIImage+Categories.m"; sourceTree = "<group>"; };
-		49F6CB761D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIView+Frame.h"; sourceTree = "<group>"; };
-		49F6CB771D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIView+Frame.m"; sourceTree = "<group>"; };
-		49F6CB791D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/DataBase/DataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/DataBase/DataBaseManager.h"; sourceTree = "<group>"; };
-		49F6CB7A1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/DataBase/DataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/DataBase/DataBaseManager.m"; sourceTree = "<group>"; };
-		49F6CB7C1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/HttpClient/HttpAPIConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/HttpClient/HttpAPIConst.h"; sourceTree = "<group>"; };
-		49F6CB7D1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/HttpClient/HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/HttpClient/HttpClient.h"; sourceTree = "<group>"; };
-		49F6CB7E1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/HttpClient/HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/HttpClient/HttpClient.m"; sourceTree = "<group>"; };
-		49F6CB801D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/AppStoreUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/AppStoreUtils.h"; sourceTree = "<group>"; };
-		49F6CB811D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/AppStoreUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/AppStoreUtils.m"; sourceTree = "<group>"; };
-		49F6CB821D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/FileManagerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/FileManagerUtils.h"; sourceTree = "<group>"; };
-		49F6CB831D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/FileManagerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/FileManagerUtils.m"; sourceTree = "<group>"; };
-		49F6CB841D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/NSUserDefaultsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/NSUserDefaultsUtils.h"; sourceTree = "<group>"; };
-		49F6CB851D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/NSUserDefaultsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/NSUserDefaultsUtils.m"; sourceTree = "<group>"; };
-		49F6CB861D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/SystemUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/SystemUnit.h"; sourceTree = "<group>"; };
 		49F6CB9C1D915C19002D3EF2 /* DYQMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYQMacro.h; sourceTree = "<group>"; };
 		49F6CB9D1D9160BD002D3EF2 /* DYQKit.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DYQKit.pch; sourceTree = "<group>"; };
-		49F6CB9F1D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/UIImageView+XLWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/UIImageView+XLWebCache.h"; sourceTree = "<group>"; };
-		49F6CBA01D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/UIImageView+XLWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/UIImageView+XLWebCache.m"; sourceTree = "<group>"; };
-		49F6CBA11D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageDetailCell.h"; sourceTree = "<group>"; };
-		49F6CBA21D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageDetailCell.m"; sourceTree = "<group>"; };
-		49F6CBA31D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageView.h"; sourceTree = "<group>"; };
-		49F6CBA41D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageView.m"; sourceTree = "<group>"; };
 		49F6CBA91D916F7A002D3EF2 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		656023BF947BB2F7B7169497 /* Pods-DYQ_One.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DYQ_One.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DYQ_One/Pods-DYQ_One.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -280,6 +280,109 @@
 				0F7ECDA7C8D9A9BDF5F0A587 /* Pods-DYQ_One.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		408A8FA91D9E59B4000E4761 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		408A8FE31D9E65F3000E4761 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				408A8FE41D9E65F3000E4761 /* Categories */,
+				408A8FFD1D9E65F3000E4761 /* DataBase */,
+				408A90001D9E65F3000E4761 /* HttpClient */,
+				408A90041D9E65F3000E4761 /* Util */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		408A8FE41D9E65F3000E4761 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				408A8FE51D9E65F3000E4761 /* NSArray+Categories.h */,
+				408A8FE61D9E65F3000E4761 /* NSArray+Categories.m */,
+				408A8FE71D9E65F3000E4761 /* NSDate+Categories.h */,
+				408A8FE81D9E65F3000E4761 /* NSDate+Categories.m */,
+				408A8FE91D9E65F3000E4761 /* NSDate+EasyExtend.h */,
+				408A8FEA1D9E65F3000E4761 /* NSDate+EasyExtend.mm */,
+				408A8FEB1D9E65F3000E4761 /* NSDictionary+Categories.h */,
+				408A8FEC1D9E65F3000E4761 /* NSDictionary+Categories.m */,
+				408A8FED1D9E65F3000E4761 /* NSNumber+Extend.h */,
+				408A8FEE1D9E65F3000E4761 /* NSNumber+Extend.m */,
+				408A8FEF1D9E65F3000E4761 /* NSString+Categories.h */,
+				408A8FF01D9E65F3000E4761 /* NSString+Categories.m */,
+				408A8FF11D9E65F3000E4761 /* NSString+Regex.h */,
+				408A8FF21D9E65F3000E4761 /* NSString+Regex.m */,
+				408A8FF31D9E65F3000E4761 /* NSUserDefaults+Categories.h */,
+				408A8FF41D9E65F3000E4761 /* NSUserDefaults+Categories.m */,
+				408A8FF51D9E65F3000E4761 /* UIButton+Block.h */,
+				408A8FF61D9E65F3000E4761 /* UIButton+Block.m */,
+				408A8FF71D9E65F3000E4761 /* UIColor+Categories.h */,
+				408A8FF81D9E65F3000E4761 /* UIColor+Categories.m */,
+				408A8FF91D9E65F3000E4761 /* UIImage+Categories.h */,
+				408A8FFA1D9E65F3000E4761 /* UIImage+Categories.m */,
+				408A8FFB1D9E65F3000E4761 /* UIView+Frame.h */,
+				408A8FFC1D9E65F3000E4761 /* UIView+Frame.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		408A8FFD1D9E65F3000E4761 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				408A8FFE1D9E65F3000E4761 /* DataBaseManager.h */,
+				408A8FFF1D9E65F3000E4761 /* DataBaseManager.m */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		408A90001D9E65F3000E4761 /* HttpClient */ = {
+			isa = PBXGroup;
+			children = (
+				408A90011D9E65F3000E4761 /* HttpAPIConst.h */,
+				408A90021D9E65F3000E4761 /* HttpClient.h */,
+				408A90031D9E65F3000E4761 /* HttpClient.m */,
+			);
+			path = HttpClient;
+			sourceTree = "<group>";
+		};
+		408A90041D9E65F3000E4761 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				408A90051D9E65F3000E4761 /* AppStoreUtils.h */,
+				408A90061D9E65F3000E4761 /* AppStoreUtils.m */,
+				408A90071D9E65F3000E4761 /* FileManagerUtils.h */,
+				408A90081D9E65F3000E4761 /* FileManagerUtils.m */,
+				408A90091D9E65F3000E4761 /* NSUserDefaultsUtils.h */,
+				408A900A1D9E65F3000E4761 /* NSUserDefaultsUtils.m */,
+				408A900B1D9E65F3000E4761 /* SystemUnit.h */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		408A901D1D9E6608000E4761 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				408A901E1D9E6608000E4761 /* XLImagePageView */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		408A901E1D9E6608000E4761 /* XLImagePageView */ = {
+			isa = PBXGroup;
+			children = (
+				408A901F1D9E6608000E4761 /* UIImageView+XLWebCache.h */,
+				408A90201D9E6608000E4761 /* UIImageView+XLWebCache.m */,
+				408A90211D9E6608000E4761 /* XLImagePageDetailCell.h */,
+				408A90221D9E6608000E4761 /* XLImagePageDetailCell.m */,
+				408A90231D9E6608000E4761 /* XLImagePageView.h */,
+				408A90241D9E6608000E4761 /* XLImagePageView.m */,
+			);
+			path = XLImagePageView;
 			sourceTree = "<group>";
 		};
 		4914B6091D98CBA600D3A53F /* NovelModel */ = {
@@ -485,7 +588,6 @@
 				49F6CA4B1D90C23B002D3EF2 /* Movie */,
 				49F6CA4C1D90C23B002D3EF2 /* Music */,
 				1155146137AB0DAAA75FDB31 /* Pods */,
-				49F6CA2F1D90C0DC002D3EF2 /* Products */,
 				49F6CA4D1D90C23B002D3EF2 /* Read */,
 				49F6CA4E1D90C23B002D3EF2 /* Root */,
 				49F6CABB1D90FCB1002D3EF2 /* 素材 */,
@@ -498,6 +600,7 @@
 				49F6CA2E1D90C0DC002D3EF2 /* DYQ_One.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		49F6CA301D90C0DC002D3EF2 /* DYQ_One */ = {
@@ -525,6 +628,7 @@
 		49F6CA4B1D90C23B002D3EF2 /* Movie */ = {
 			isa = PBXGroup;
 			children = (
+				49F6CA2F1D90C0DC002D3EF2 /* Products */,
 				497AA65D1D9A5F140059A972 /* Controller */,
 				497AA65B1D9A5F050059A972 /* Model */,
 				497AA65C1D9A5F0E0059A972 /* View */,
@@ -535,6 +639,7 @@
 		49F6CA4C1D90C23B002D3EF2 /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				408A8FA91D9E59B4000E4761 /* Controller */,
 				49F6CA951D90CBEA002D3EF2 /* MusicViewController.h */,
 				49F6CA961D90CBEA002D3EF2 /* MusicViewController.m */,
 			);
@@ -623,10 +728,10 @@
 		49F6CB531D9153AE002D3EF2 /* DYQKit */ = {
 			isa = PBXGroup;
 			children = (
+				408A901D1D9E6608000E4761 /* Vendors */,
+				408A8FE31D9E65F3000E4761 /* Common */,
 				49F6CB541D915743002D3EF2 /* Base */,
-				49F6CB881D915BC2002D3EF2 /* Common */,
 				49F6CB9A1D915BE0002D3EF2 /* Macro */,
-				49F6CB9E1D916793002D3EF2 /* Vendors */,
 			);
 			path = DYQKit;
 			sourceTree = "<group>";
@@ -670,108 +775,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		49F6CB781D915BC2002D3EF2 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				49F6CB601D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSArray+Categories.h */,
-				49F6CB611D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSArray+Categories.m */,
-				49F6CB621D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+Categories.h */,
-				49F6CB631D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+Categories.m */,
-				49F6CB641D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+EasyExtend.h */,
-				49F6CB651D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+EasyExtend.mm */,
-				49F6CB661D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDictionary+Categories.h */,
-				49F6CB671D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDictionary+Categories.m */,
-				49F6CB681D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSNumber+Extend.h */,
-				49F6CB691D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSNumber+Extend.m */,
-				49F6CB6A1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Categories.h */,
-				49F6CB6B1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Categories.m */,
-				49F6CB6C1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Regex.h */,
-				49F6CB6D1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Regex.m */,
-				49F6CB6E1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSUserDefaults+Categories.h */,
-				49F6CB6F1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSUserDefaults+Categories.m */,
-				49F6CB701D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIButton+Block.h */,
-				49F6CB711D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIButton+Block.m */,
-				49F6CB721D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIColor+Categories.h */,
-				49F6CB731D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIColor+Categories.m */,
-				49F6CB741D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIImage+Categories.h */,
-				49F6CB751D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIImage+Categories.m */,
-				49F6CB761D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIView+Frame.h */,
-				49F6CB771D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIView+Frame.m */,
-			);
-			path = Categories;
-			sourceTree = "<group>";
-		};
-		49F6CB7B1D915BC2002D3EF2 /* DataBase */ = {
-			isa = PBXGroup;
-			children = (
-				49F6CB791D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/DataBase/DataBaseManager.h */,
-				49F6CB7A1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/DataBase/DataBaseManager.m */,
-			);
-			path = DataBase;
-			sourceTree = "<group>";
-		};
-		49F6CB7F1D915BC2002D3EF2 /* HttpClient */ = {
-			isa = PBXGroup;
-			children = (
-				49F6CB7C1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/HttpClient/HttpAPIConst.h */,
-				49F6CB7D1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/HttpClient/HttpClient.h */,
-				49F6CB7E1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/HttpClient/HttpClient.m */,
-			);
-			path = HttpClient;
-			sourceTree = "<group>";
-		};
-		49F6CB871D915BC2002D3EF2 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				49F6CB801D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/AppStoreUtils.h */,
-				49F6CB811D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/AppStoreUtils.m */,
-				49F6CB821D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/FileManagerUtils.h */,
-				49F6CB831D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/FileManagerUtils.m */,
-				49F6CB841D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/NSUserDefaultsUtils.h */,
-				49F6CB851D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/NSUserDefaultsUtils.m */,
-				49F6CB861D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/SystemUnit.h */,
-			);
-			path = Util;
-			sourceTree = "<group>";
-		};
-		49F6CB881D915BC2002D3EF2 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				49F6CB781D915BC2002D3EF2 /* Categories */,
-				49F6CB7B1D915BC2002D3EF2 /* DataBase */,
-				49F6CB7F1D915BC2002D3EF2 /* HttpClient */,
-				49F6CB871D915BC2002D3EF2 /* Util */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		49F6CB9A1D915BE0002D3EF2 /* Macro */ = {
 			isa = PBXGroup;
 			children = (
 				49F6CB9C1D915C19002D3EF2 /* DYQMacro.h */,
 			);
 			path = Macro;
-			sourceTree = "<group>";
-		};
-		49F6CB9E1D916793002D3EF2 /* Vendors */ = {
-			isa = PBXGroup;
-			children = (
-				49F6CBA51D9167AA002D3EF2 /* XLImagePageView */,
-			);
-			path = Vendors;
-			sourceTree = "<group>";
-		};
-		49F6CBA51D9167AA002D3EF2 /* XLImagePageView */ = {
-			isa = PBXGroup;
-			children = (
-				49F6CB9F1D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/UIImageView+XLWebCache.h */,
-				49F6CBA01D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/UIImageView+XLWebCache.m */,
-				49F6CBA11D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageDetailCell.h */,
-				49F6CBA21D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageDetailCell.m */,
-				49F6CBA31D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageView.h */,
-				49F6CBA41D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageView.m */,
-			);
-			path = XLImagePageView;
 			sourceTree = "<group>";
 		};
 		C28E1DCE2DB178AE86974825 /* Frameworks */ = {
@@ -817,7 +826,6 @@
 				TargetAttributes = {
 					49F6CA2D1D90C0DC002D3EF2 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = H983D5HYGB;
 					};
 				};
 			};
@@ -927,69 +935,69 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				408A8FE21D9E65D2000E4761 /* ReadViewController.m in Sources */,
+				408A901C1D9E65F3000E4761 /* NSUserDefaultsUtils.m in Sources */,
 				49987BFB1D966EA600E8F9ED /* NovelCollectionViewCell.m in Sources */,
-				49F6CB8E1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Categories.m in Sources */,
-				49F6CBA61D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/UIImageView+XLWebCache.m in Sources */,
 				497AA6601D9A5F390059A972 /* MovieModel.m in Sources */,
-				49F6CB991D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/NSUserDefaultsUtils.m in Sources */,
 				4914B60C1D98CC1400D3A53F /* NovelModel.m in Sources */,
+				408A90181D9E65F3000E4761 /* DataBaseManager.m in Sources */,
+				408A900F1D9E65F3000E4761 /* NSDictionary+Categories.m in Sources */,
 				496DD9621D93C8CC00D5781A /* ScrollViewModel.m in Sources */,
-				49F6CB941D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIView+Frame.m in Sources */,
 				49987C041D967E4E00E8F9ED /* QuestionViewController.m in Sources */,
-				49F6CB961D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/HttpClient/HttpClient.m in Sources */,
+				408A900D1D9E65F3000E4761 /* NSDate+Categories.m in Sources */,
+				408A90191D9E65F3000E4761 /* HttpClient.m in Sources */,
 				49B802F51D9557E3004D3D85 /* ColorfulViewModel.m in Sources */,
+				408A90161D9E65F3000E4761 /* UIImage+Categories.m in Sources */,
+				408A90101D9E65F3000E4761 /* NSNumber+Extend.m in Sources */,
 				49CC55991D9288C5000C8C40 /* LikeView.m in Sources */,
 				496DD9771D93FD0D00D5781A /* QuestionModel.m in Sources */,
-				49F6CB8B1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+EasyExtend.mm in Sources */,
 				499EE55F1D9CAF5D005C0029 /* UserModel.m in Sources */,
 				49B802F81D955C4F004D3D85 /* ThreeLabelView.m in Sources */,
-				49F6CB891D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSArray+Categories.m in Sources */,
 				499EE5591D9C9A2E005C0029 /* MovieInfoModel.m in Sources */,
-				49F6CB901D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSUserDefaults+Categories.m in Sources */,
-				49F6CA941D90CBDD002D3EF2 /* ReadViewController.m in Sources */,
+				408A90121D9E65F3000E4761 /* NSString+Regex.m in Sources */,
 				49F6CAE21D90FE1C002D3EF2 /* BaseViewController.m in Sources */,
 				49F6CB5D1D915AB6002D3EF2 /* DYQBaseView.m in Sources */,
 				496DD9711D93FCF700D5781A /* EssayModel.m in Sources */,
+				408A90141D9E65F3000E4761 /* UIButton+Block.m in Sources */,
+				408A901B1D9E65F3000E4761 /* FileManagerUtils.m in Sources */,
 				49987C111D96ACEB00E8F9ED /* ContentTableViewCell.m in Sources */,
+				408A900C1D9E65F3000E4761 /* NSArray+Categories.m in Sources */,
 				49F6CABA1D90DD98002D3EF2 /* ImageLabelView.m in Sources */,
-				49F6CB8F1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSString+Regex.m in Sources */,
 				49F6CB591D9158F8002D3EF2 /* DYQBaseModel.m in Sources */,
 				496DD9651D93D45F00D5781A /* CarouselView.m in Sources */,
+				408A90131D9E65F3000E4761 /* NSUserDefaults+Categories.m in Sources */,
 				49D187F41D9BE3E800F55888 /* MovieInfoTableViewCell.m in Sources */,
 				49F6CA361D90C0DC002D3EF2 /* AppDelegate.m in Sources */,
+				408A90111D9E65F3000E4761 /* NSString+Categories.m in Sources */,
 				496DD97A1D93FEA100D5781A /* AuthorInfoModel.m in Sources */,
-				49F6CB911D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIButton+Block.m in Sources */,
+				408A90151D9E65F3000E4761 /* UIColor+Categories.m in Sources */,
 				49F6CA331D90C0DC002D3EF2 /* main.m in Sources */,
 				49D187C71D9B74F000F55888 /* SerialCollectionViewCell.m in Sources */,
 				496DD96B1D93DEC800D5781A /* ColorfulViewController.m in Sources */,
-				49F6CB8D1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSNumber+Extend.m in Sources */,
 				49F6CA4A1D90C0FD002D3EF2 /* RootViewController.m in Sources */,
 				49B802EF1D951A5C004D3D85 /* ListCollectionViewCell.m in Sources */,
 				496DD97D1D9410C900D5781A /* ReadTableViewCell.m in Sources */,
+				408A900E1D9E65F3000E4761 /* NSDate+EasyExtend.mm in Sources */,
+				408A90261D9E6608000E4761 /* XLImagePageDetailCell.m in Sources */,
 				49987BFE1D9676A400E8F9ED /* StoryViewController.m in Sources */,
 				49D187F01D9BDB4100F55888 /* MovieInfoViewController.m in Sources */,
 				49F6CA541D90C3AE002D3EF2 /* RootModel.m in Sources */,
 				4914B6081D98C3A800D3A53F /* BottonAuthorTableViewCell.m in Sources */,
-				49F6CB8C1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDictionary+Categories.m in Sources */,
+				408A90271D9E6608000E4761 /* XLImagePageView.m in Sources */,
+				408A90171D9E65F3000E4761 /* UIView+Frame.m in Sources */,
 				499EE55C1D9CA64E005C0029 /* MovieStoryModel.m in Sources */,
 				49F6CA9A1D90CBF2002D3EF2 /* MovieViewController.m in Sources */,
-				49F6CB8A1D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/NSDate+Categories.m in Sources */,
-				49F6CBA71D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageDetailCell.m in Sources */,
+				408A90251D9E6608000E4761 /* UIImageView+XLWebCache.m in Sources */,
 				408A8F661D9E09B5000E4761 /* CommentModel.m in Sources */,
 				496DD9741D93FD0300D5781A /* SerialModel.m in Sources */,
-				49F6CB981D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/FileManagerUtils.m in Sources */,
-				49F6CBA81D9167AA002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Vendors/XLImagePageView/XLImagePageView.m in Sources */,
-				49F6CB951D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/DataBase/DataBaseManager.m in Sources */,
-				49F6CB931D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIImage+Categories.m in Sources */,
 				49987C0A1D969DDF00E8F9ED /* InfoBaseTableViewCell.m in Sources */,
 				49987C011D9676B600E8F9ED /* SerialViewController.m in Sources */,
 				496DD9681D93D56600D5781A /* ZoomScrollView.m in Sources */,
+				408A901A1D9E65F3000E4761 /* AppStoreUtils.m in Sources */,
 				497AA6631D9A66880059A972 /* MovieTableViewCell.m in Sources */,
 				49F6CA971D90CBEA002D3EF2 /* MusicViewController.m in Sources */,
 				49B802FB1D9563CD004D3D85 /* ColorfulTableViewCell.m in Sources */,
-				49F6CB921D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Categories/UIColor+Categories.m in Sources */,
 				49987C071D969D2200E8F9ED /* TopAuthorTableViewCell.m in Sources */,
-				49F6CB971D915BC2002D3EF2 /* ../../../../../A段项目资料/基础架构示例/EAKit/EAKit/Common/Util/AppStoreUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
