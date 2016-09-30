@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) NovelModel *novelModel;
 @property (nonatomic, retain) SerialModel *serialModel;
-@property (nonatomic, retain) NSArray *commentArr;
+//@property (nonatomic, retain) NSArray *commentArr;
 @property (nonatomic, assign) long currentRow;
 @property (nonatomic, retain) CommentModel *commentModel;
 

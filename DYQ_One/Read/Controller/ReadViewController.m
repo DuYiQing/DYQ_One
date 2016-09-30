@@ -93,7 +93,7 @@ ListCollectionViewCellDelegate
     flowLayout.scrollDirection
     = UICollectionViewScrollDirectionHorizontal;
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _carouselView.frame.origin.y + _carouselView.bounds.size.height, SCREEN_WIDTH, 600) collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 4, SCREEN_WIDTH, 600) collectionViewLayout:flowLayout];
     _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.contentSize = CGSizeMake(SCREEN_WIDTH * 10, _collectionView.bounds.size.height);
     _collectionView.pagingEnabled = YES;

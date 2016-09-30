@@ -30,7 +30,6 @@
     [_nameLabel release];
     [_descLabel release];
     [_weiboLabel release];
-    [_commentArr release];
     [super dealloc];
 }
 
@@ -62,6 +61,7 @@
 //        _weiboLabel.backgroundColor = [UIColor cyanColor];
         _weiboLabel.textColor = [UIColor lightGrayColor];
         _weiboLabel.font = kFONT_SIZE_13;
+        _weiboLabel.numberOfLines = 3;
         [self.contentView addSubview:_weiboLabel];
         [_weiboLabel release];
     }
@@ -71,10 +71,10 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _headImageView.frame = CGRectMake(25, 30, 60, 60);
+    _headImageView.frame = CGRectMake(25, 10, 60, 60);
     _headImageView.layer.cornerRadius = _headImageView.bounds.size.width / 2;
     _headImageView .clipsToBounds = YES;
-    _nameLabel.frame = CGRectMake(100, 35, 200, 40);
+    _nameLabel.frame = CGRectMake(100, 15, 200, 40);
     [_nameLabel sizeToFit];
     _descLabel.frame = CGRectMake(_nameLabel.frame.origin.x, _nameLabel.frame.origin.y + _nameLabel.bounds.size.height + 5, SCREEN_WIDTH - 120, 40);
     [_descLabel sizeToFit];
@@ -99,6 +99,7 @@
         [_serialModel release];
         _serialModel = [serialModel retain];
         
+        [_headImageView xl_setImageWithURL:[NSURL URLWithString:serialModel.author.web_url] placeholderImage:nil];
         _nameLabel.text = serialModel.author.user_name;
         _descLabel.text = serialModel.author.desc;
     }
