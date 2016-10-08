@@ -13,6 +13,7 @@
 #import "NovelCollectionViewCell.h"
 #import "MJExtension.h"
 #import "CommentModel.h"
+#import "EssayModel.h"
 
 
 static NSString *const collectionViewCell = @"collectionViewCell";
@@ -25,7 +26,7 @@ UICollectionViewDataSource
 >
 @property (nonatomic, retain) UICollectionView *novelCollectionView;
 @property (nonatomic, retain) NSMutableArray *storyArr;
-@property (nonatomic, retain) NSArray *contentArr;
+@property (nonatomic, retain) NSMutableArray *contentArr;
 @property (nonatomic, assign) long currentSection;
 @property (nonatomic, retain) NSMutableArray *commentArr;
 
@@ -72,12 +73,14 @@ UICollectionViewDataSource
     
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    NSLog(@"%ld", _currentSection);
-//    _contentID = _storyArr[_currentSection];
-    NSLog(@"id : %@", _contentID);
-    
-}
+
+//
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    EssayModel *essayModel = _essayArr[_currentSection];
+//    _contentID = essayModel.content_id;
+//    _contentID = @"1533";
+//    [self data];
+//}
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 10;
@@ -93,7 +96,6 @@ UICollectionViewDataSource
     cell.storyArr = _storyArr;
     cell.contentArr = _contentArr;
     cell.commentArr = _commentArr;
-
     return cell;
 }
 
@@ -106,7 +108,17 @@ UICollectionViewDataSource
         NSDictionary *dataDic = [result objectForKey:@"data"];
         NSString *content = [dataDic objectForKey:@"hp_content"];
         self.contentArr = [content componentsSeparatedByString:@"<br>"];
-        
+        for (int i = 0; i < _contentArr.count; i++) {
+            if ([_contentArr[i] isEqualToString:@"\n"]) {
+                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
+                [_contentArr removeObjectAtIndex:index];
+            }
+            if ([_contentArr[i] isEqualToString:@"\r\n"]) {
+                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
+                [_contentArr removeObjectAtIndex:index];
+            }
+        }
+//        NSLog(@"%@", _contentArr);
         NovelModel *novelModel = [NovelModel mj_objectWithKeyValues:dataDic];
         [_storyArr addObject:novelModel];
 

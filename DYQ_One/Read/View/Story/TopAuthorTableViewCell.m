@@ -11,6 +11,9 @@
 #import "NovelModel.h"
 #import "UIImageView+XLWebCache.h"
 #import "SerialModel.h"
+#import "BH_AVPlayerView.h"
+#import <AVFoundation/AVFoundation.h>
+#import "UIButton+Block.h"
 
 @interface TopAuthorTableViewCell ()
 
@@ -19,6 +22,9 @@
 @property (nonatomic, retain) UILabel *dateLabel;
 @property (nonatomic, retain) UIButton *playButton;
 @property (nonatomic, retain) UILabel *playLabel;
+@property (nonatomic, retain) AVPlayer *player;
+@property (nonatomic, assign) BOOL isPlaying;
+
 
 @end
 
@@ -33,6 +39,8 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
+        self.isPlaying = NO;
         
         self.headImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _headImageView.backgroundColor = [UIColor colorWithRed:93.2 / 255.f green:182.1 / 255.f blue:223.6 / 255.f alpha:1.0];
@@ -53,10 +61,11 @@
         [self.contentView addSubview:_dateLabel];
         [_dateLabel release];
 
-        
+       
         self.playButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
         [self.contentView addSubview:_playButton];
+
         
         self.playLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _playLabel.text = @"收听";
@@ -67,6 +76,7 @@
     }
     return self;
 }
+
 
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -91,6 +101,30 @@
         [_headImageView xl_setImageWithURL:[NSURL URLWithString:authorInfoModel.web_url] placeholderImage:nil];
         _nameLabel.text = novelModel.hp_author;
         _dateLabel.text = novelModel.hp_makettime;
+        [_playButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
+            [_playButton setImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
+            // 路径
+            NSURL *url = [NSURL URLWithString:novelModel.audio];
+            // 通过URL创建视频内容对象
+            AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
+            // 创建视频播放器对象, 需要AVPlayerItem进行初始化
+            self.player = [[[AVPlayer alloc] initWithPlayerItem:playerItem] autorelease];
+            // 播放
+            [_player play];
+            _isPlaying = YES;
+            
+            if (_isPlaying) {
+                [_playButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
+                    [_playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+                    [_player pause];
+                    _isPlaying = NO;
+                    
+                }];
+            }
+
+            
+        }];
+        
     }
 
 }
@@ -103,6 +137,8 @@
         [_headImageView xl_setImageWithURL:[NSURL URLWithString:serialModel.author.web_url] placeholderImage:nil];
         _nameLabel.text = serialModel.author.user_name;
         _dateLabel.text = serialModel.maketime;
+        [_playButton removeFromSuperview];
+        [_playLabel removeFromSuperview];
     }
 }
 

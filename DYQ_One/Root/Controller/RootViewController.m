@@ -13,6 +13,7 @@
 #import "RootModel.h"
 #import "ImageLabelView.h"
 #import "LikeView.h"
+#import "LoginViewController.h"
 
 static NSString *const rootCell = @"rootCell";
 
@@ -37,10 +38,14 @@ UIScrollViewDelegate
     [_rootDataArr release];
     [super dealloc];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.alpha = 1;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.view.backgroundColor = [UIColor greenColor];
+    
     self.navigationItem.title = @"ONE";
     self.rootDataArr = [NSMutableArray array];
     self.scrollViewArr = [NSMutableArray array];
@@ -60,7 +65,7 @@ UIScrollViewDelegate
    
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:rootCell];
         if (nil == cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rootCell];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rootCell] autorelease];
         }
     
         
@@ -76,10 +81,15 @@ UIScrollViewDelegate
 
     UILabel *noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(noteImageView.frame.origin.x + noteImageView.bounds.size.width + 5, noteImageView.frame.origin.y, 30, 20)];
     noteLabel.text = @"小记";
+    noteLabel.userInteractionEnabled = YES;
     noteLabel.textColor = [UIColor lightGrayColor];
     noteLabel.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:noteLabel];
     [noteLabel release];
+    
+    UITapGestureRecognizer *noteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
+    [noteLabel addGestureRecognizer:noteTap];
+    [noteTap release];
     
     RootModel *rootModel = _rootDataArr[0];
     LikeView *likeView = [[LikeView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 2, noteImageView.frame.origin.y, 100, 40)];
@@ -92,6 +102,11 @@ UIScrollViewDelegate
     [shareButton setImage:[UIImage imageNamed:@"Unknown-13.png"] forState:UIControlStateNormal];
     [self.view addSubview:shareButton];
     
+}
+- (void)tapAction {
+    LoginViewController *loginVC = [[LoginViewController alloc]init];
+    [self presentViewController:loginVC animated:YES completion:nil];
+    [loginVC release];
 }
 
 - (void)setView {

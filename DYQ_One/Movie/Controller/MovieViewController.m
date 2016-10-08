@@ -69,7 +69,7 @@ UITableViewDelegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:movieCell];
     if (nil == cell) {
-        cell = [[MovieTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:movieCell];
+        cell = [[[MovieTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:movieCell] autorelease];
     }
     MovieModel *movieModel = _movieArr[indexPath.row];
     cell.movieModel = movieModel;

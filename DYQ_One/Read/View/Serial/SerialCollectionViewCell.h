@@ -13,5 +13,6 @@
 
 @property (nonatomic, retain) NSArray *contentArr;
 @property (nonatomic, retain) SerialModel *serialModel;
+@property (nonatomic, retain) NSArray *commentArr;
 
 @end

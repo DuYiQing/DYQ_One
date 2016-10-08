@@ -16,6 +16,8 @@
 #import "CarouselView.h"
 #import "ScrollViewModel.h"
 #import "UIImageView+XLWebCache.h"
+#import "BottonAuthorTableViewCell.h"
+#import "CommentModel.h"
 
 
 static NSString *const movieCell = @"movieCell";
@@ -31,6 +33,7 @@ UITableViewDelegate
 @property (nonatomic, retain) MovieInfoModel *movieInfoModel;
 @property (nonatomic, retain) NSMutableArray *movieStoryArr;
 @property (nonatomic, retain) NSArray *contentArr;
+@property (nonatomic, retain) NSMutableArray *commentArr;
 
 
 @end
@@ -41,6 +44,7 @@ UITableViewDelegate
     [_movieTableView release];
     [_contentArr release];
     [_movieStoryArr release];
+    [_commentArr release];
     [super dealloc];
 }
 
@@ -52,6 +56,7 @@ UITableViewDelegate
     self.tabBarController.tabBar.hidden = YES;
     self.movieStoryArr = [NSMutableArray array];
     self.contentArr = [NSArray array];
+    self.commentArr = [NSMutableArray array];
     [self data];
 }
 
@@ -70,12 +75,32 @@ UITableViewDelegate
         return 1;
     }
     if (3 == section) {
-        return 8;
+        return _commentArr.count;
     }
     return 10;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (0 == section) {
+        return 20;
+    }
+    if (2 == section) {
+        return 20;
+    }
+    if (3 == section) {
+        return 20;
+    }
+    return 0.1f;
+}
 
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (0 == indexPath.section) {
+        if (0 == indexPath.row) {
+            return 80;
+        }
+        if (1 == indexPath.row) {
+            return 40;
+        }
+    }
     if (1 == indexPath.section) {
         NSString *info = _contentArr[indexPath.row];
         CGSize infoSize = CGSizeMake(SCREEN_WIDTH, 1000);
@@ -83,15 +108,19 @@ UITableViewDelegate
         CGRect infoRect = [info boundingRectWithSize:infoSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil];
         return ceil(infoRect.size.height);
     }
-    return 80;
+    return 130;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (4 == section) {
+        return @"                                       以上是热门评论";
+    }
+    return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (0 == section) {
         return @"电影故事";
-    }
-    if (1 == section) {
-        return @"";
     }
     if (2 == section) {
         return @"一个电影表";
@@ -100,7 +129,7 @@ UITableViewDelegate
         return @"评论列表";
     }
     
-    return @"以上是热门评论";
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -109,7 +138,7 @@ UITableViewDelegate
         if (0 == indexPath.row) {
             MovieInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell"];
             if (nil == cell) {
-                cell = [[MovieInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"infoCell"];
+                cell = [[[MovieInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"infoCell"] autorelease];
                 cell.movieStoryArr = _movieStoryArr;
             }
             cell.movieInfoModel = _movieInfoModel;
@@ -118,7 +147,7 @@ UITableViewDelegate
         if (1 == indexPath.row) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"titleCell"];
             if (nil == cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"titleCell"];
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"titleCell"] autorelease];
             }
             MovieStoryModel *movieStoryModel = _movieStoryArr[0];
             cell.textLabel.text = movieStoryModel.title;
@@ -128,7 +157,7 @@ UITableViewDelegate
     if (1 == indexPath.section) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"contentCell%ld", indexPath.row]];
         if (nil == cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"contentCell%ld", indexPath.row]];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"contentCell%ld", indexPath.row]] autorelease];
         }
         cell.textLabel.text = _contentArr[indexPath.row];
         cell.textLabel.font = [UIFont systemFontOfSize:14.f];
@@ -137,11 +166,25 @@ UITableViewDelegate
         
         return cell;
     }
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:movieCell];
-    if (nil == cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:movieCell];
+    if (2 == indexPath.section) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"target"];
+        if (nil == cell) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"target"] autorelease];
+        }
+        cell.textLabel.text = _movieInfoModel.info;
+        cell.textLabel.font = kFONT_SIZE_12_BOLD;
+        cell.textLabel.numberOfLines = 0;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
+
+    BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%@%ld", movieCell, indexPath.row]];
+    if (nil == cell) {
+        cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%@%ld", movieCell, indexPath.row]] autorelease];
+    }
+    CommentModel *commentModel = _commentArr[indexPath.row];
+    cell.commentModel = commentModel;
+
     return cell;
 }
 
@@ -190,6 +233,18 @@ UITableViewDelegate
     } failure:^(id error) {
         NSLog(@"error : %@", error);
     }];
+    
+    [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/movie/%@/0", _movieModel.movieID] success:^(id result) {
+        NSDictionary *tempDic = [result objectForKey:@"data"];
+        NSArray *dataArr = [tempDic objectForKey:@"data"];
+        for (NSDictionary *dataDic in dataArr) {
+            CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
+            [_commentArr addObject:commentModel];
+        }
+    } failure:^(id error) {
+        NSLog(@"error : %@", error);
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {

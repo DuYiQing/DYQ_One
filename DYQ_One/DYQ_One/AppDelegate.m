@@ -12,6 +12,7 @@
 #import "ReadViewController.h"
 #import "MusicViewController.h"
 #import "MovieViewController.h"
+#import "GuideViewController.h"
 
 @interface AppDelegate ()
 <
@@ -120,6 +121,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     
     self.window.rootViewController = rootTabBarController;
+//    self.window.rootViewController = [[GuideViewController alloc] init];
     [rootVC release];
     [rootNavigationController release];
     [readVC release];

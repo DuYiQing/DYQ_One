@@ -12,5 +12,6 @@
 @interface StoryViewController : UIViewController
 
 @property (nonatomic, copy) NSString *contentID;
+@property (nonatomic, retain) NSArray *essayArr;
 
 @end

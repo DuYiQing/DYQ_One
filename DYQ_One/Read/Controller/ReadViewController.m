@@ -130,6 +130,7 @@ ListCollectionViewCellDelegate
 //        NSLog(@"%ld", _currentIndex);
         StoryViewController *storyVC = [[StoryViewController alloc] init];
         storyVC.contentID = essayModel.content_id;
+//        storyVC.essayArr = _essayArr;
         [self.navigationController pushViewController:storyVC animated:YES];
         [storyVC release];
     } else if (1 == index) {
@@ -140,7 +141,9 @@ ListCollectionViewCellDelegate
         [self.navigationController pushViewController:serialVC animated:YES];
         [serialVC release];
     } else {
+        QuestionModel *questionModel = _questionArr[_currentIndex];
         QuestionViewController *questionVC = [[QuestionViewController alloc] init];
+        questionVC.contentID = questionModel.question_id;
         [self.navigationController pushViewController:questionVC animated:YES];
         [questionVC release];
     }

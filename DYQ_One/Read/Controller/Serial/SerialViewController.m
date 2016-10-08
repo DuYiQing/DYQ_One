@@ -12,6 +12,7 @@
 #import "MJExtension.h"
 #import "NovelCollectionViewCell.h"
 #import "SerialCollectionViewCell.h"
+#import "CommentModel.h"
 
 static NSString *const serialCollectionViewCell = @"serialCollectionViewCell";
 
@@ -24,13 +25,21 @@ UICollectionViewDelegate
 >
 
 @property (nonatomic, retain) UICollectionView *serialCollectionView;
-@property (nonatomic, retain) NSArray *contentArr;
+@property (nonatomic, retain) NSMutableArray *contentArr;
 @property (nonatomic, retain) NSMutableArray *serialArr;
 @property (nonatomic, retain) SerialModel *serialModel;
+@property (nonatomic, retain) NSMutableArray *commentArr;
 
 @end
 
 @implementation SerialViewController
+
+- (void)dealloc {
+    [_contentArr release];
+    [_serialModel release];
+    [_commentArr release];
+    [super dealloc];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,7 +48,7 @@ UICollectionViewDelegate
 //    self.tabBarController.tabBar.hidden = YES;
     
     self.serialArr = [NSMutableArray array];
-    
+    self.commentArr = [NSMutableArray array];
     [self data];
     
 }
@@ -76,6 +85,7 @@ UICollectionViewDelegate
     SerialCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:serialCollectionViewCell forIndexPath:indexPath];
     cell.serialModel = _serialModel;
     cell.contentArr = _contentArr;
+    cell.commentArr = _commentArr;
     return cell;
     
 }
@@ -88,11 +98,31 @@ UICollectionViewDelegate
     [HttpClient GETWithURLString:urlString success:^(id result) {
         NSDictionary *dataDic = [result objectForKey:@"data"];
         NSString *content = [dataDic objectForKey:@"content"];
-        self.contentArr = [content componentsSeparatedByString:@"<br>\n"];
-        self.serialModel = [SerialModel mj_objectWithKeyValues:dataDic];
+        self.contentArr = [content componentsSeparatedByString:@"<br>"];
+        for (int i = 0; i < _contentArr.count; i++) {
+            if ([_contentArr[i] isEqualToString:@"\n"]) {
+                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
+                [_contentArr removeObjectAtIndex:index];
+            }
+            if ([_contentArr[i] isEqualToString:@"\r\n"]) {
+                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
+                [_contentArr removeObjectAtIndex:index];
+            }
+        }
 
-        [self getView];
-        
+        self.serialModel = [SerialModel mj_objectWithKeyValues:dataDic];
+        [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/serial/%@/0", _contentID] success:^(id result) {
+//            NSLog(@"%@", result);
+            NSDictionary *dataDic = [result objectForKey:@"data"];
+            NSArray *dataArr = [dataDic objectForKey:@"data"];
+            for (NSDictionary *commentDic in dataArr) {
+                CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:commentDic];
+                [_commentArr addObject:commentModel];
+            }
+            [self getView];
+        } failure:^(id error) {
+            NSLog(@"error : %@", error);
+        }];
     } failure:^(id error) {
         NSLog(@"%@", error);
     }];

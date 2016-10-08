@@ -13,6 +13,7 @@
 #import "UIImageView+XLWebCache.h"
 #import "SerialModel.h"
 #import "CommentModel.h"
+#import "MusicModel.h"
 
 @interface BottonAuthorTableViewCell ()
 
@@ -71,10 +72,10 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _headImageView.frame = CGRectMake(25, 10, 60, 60);
+    _headImageView.frame = CGRectMake(25, 30, 60, 60);
     _headImageView.layer.cornerRadius = _headImageView.bounds.size.width / 2;
     _headImageView .clipsToBounds = YES;
-    _nameLabel.frame = CGRectMake(100, 15, 200, 40);
+    _nameLabel.frame = CGRectMake(100, _headImageView.frame.origin.y + 5, 200, 40);
     [_nameLabel sizeToFit];
     _descLabel.frame = CGRectMake(_nameLabel.frame.origin.x, _nameLabel.frame.origin.y + _nameLabel.bounds.size.height + 5, SCREEN_WIDTH - 120, 40);
     [_descLabel sizeToFit];
@@ -115,5 +116,6 @@
         _weiboLabel.text = commentModel.content;
     }
 }
+
 
 @end

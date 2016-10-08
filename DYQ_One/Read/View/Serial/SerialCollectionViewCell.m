@@ -84,7 +84,7 @@ UITableViewDelegate
     if (0 == indexPath.section) {
         TopAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:topAuthorCell];
         if (nil == cell) {
-            cell = [[TopAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:topAuthorCell];
+            cell = [[[TopAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:topAuthorCell] autorelease];
         }
         cell.serialModel = _serialModel;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -94,7 +94,7 @@ UITableViewDelegate
     if (1 == indexPath.section) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:titleCell];
         if (nil == cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:titleCell];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:titleCell] autorelease];
         }
         cell.textLabel.text = _serialModel.title;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -104,7 +104,7 @@ UITableViewDelegate
         ContentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"cell%ld", indexPath.row]];
         self.currentRow = indexPath.row;
         if (nil == cell) {
-            cell = [[ContentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"cell%ld", indexPath.row]];
+            cell = [[[ContentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"cell%ld", indexPath.row]] autorelease];
             cell.row = _currentRow;
         }
         cell.contentArr = _contentArr;
@@ -114,7 +114,7 @@ UITableViewDelegate
     if (3 == indexPath.section) {
         BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:bottomAuthorCell];
         if (nil == cell) {
-            cell = [[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:bottomAuthorCell];
+            cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:bottomAuthorCell] autorelease];
         }
         cell.serialModel = _serialModel;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -122,9 +122,10 @@ UITableViewDelegate
     }
     BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]];
     if (nil == cell) {
-        cell = [[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]];
+        cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]] autorelease];
     }
-//    cell.commentModel = ;
+    CommentModel *commentModel = _commentArr[indexPath.row];
+    cell.commentModel = commentModel;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
@@ -136,20 +137,6 @@ UITableViewDelegate
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

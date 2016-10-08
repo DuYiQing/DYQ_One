@@ -10,4 +10,6 @@
 
 @interface QuestionViewController : UIViewController
 
+@property (nonatomic, copy) NSString *contentID;
+
 @end

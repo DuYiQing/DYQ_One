@@ -29,7 +29,7 @@
     if (self) {
         self.contentLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _contentLabel.numberOfLines = 0;
-        _contentLabel.font = [UIFont systemFontOfSize:17];
+        _contentLabel.font = [UIFont systemFontOfSize:14.f];
         [self.contentView addSubview:_contentLabel];
         [_contentLabel release];
     }
