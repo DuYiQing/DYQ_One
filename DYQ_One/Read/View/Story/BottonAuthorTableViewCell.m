@@ -114,6 +114,7 @@
         _nameLabel.text = commentModel.user.user_name;
         _descLabel.text = commentModel.input_date;
         _weiboLabel.text = commentModel.content;
+        
     }
 }
 

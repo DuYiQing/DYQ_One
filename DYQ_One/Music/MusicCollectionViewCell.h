@@ -16,6 +16,6 @@
 @property (nonatomic, retain) MusicModel *musicModel;
 @property (nonatomic, retain) NSArray *storyArr;
 @property (nonatomic, retain) CommentModel *commentModel;
-@property (nonatomic, retain) NSArray *commentArr;
+@property (nonatomic, retain) NSMutableArray *commentArr;
 
 @end

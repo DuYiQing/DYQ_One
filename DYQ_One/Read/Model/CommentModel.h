@@ -12,6 +12,7 @@
 
 @interface CommentModel : DYQBaseModel
 
+@property (nonatomic, copy) NSString *ID;
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, retain) NSNumber *praisenum;
 @property (nonatomic, copy) NSString *input_date;

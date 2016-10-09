@@ -48,11 +48,24 @@ ListCollectionViewCellDelegate
 @property (nonatomic, retain) UITableView *listTableView;
 
 @property (nonatomic, retain) UICollectionView *collectionView;
+@property (nonatomic, retain) NSMutableArray *serialIDArr;
+@property (nonatomic, retain) NSMutableArray *essayIDArr;
 
 
 @end
 
 @implementation ReadViewController
+
+- (void)dealloc {
+    [_scrollViewArr release];
+    [_imageURLArr release];
+    [_essayArr release];
+    [_serialArr release];
+    [_questionArr release];
+    [_serialIDArr release];
+    [_essayIDArr release];
+    [super dealloc];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -64,6 +77,8 @@ ListCollectionViewCellDelegate
     self.essayArr = [NSMutableArray array];
     self.serialArr = [NSMutableArray array];
     self.questionArr = [NSMutableArray array];
+    self.serialIDArr = [NSMutableArray array];
+    self.essayIDArr = [NSMutableArray array];
     [self data];
     
     
@@ -131,6 +146,7 @@ ListCollectionViewCellDelegate
         StoryViewController *storyVC = [[StoryViewController alloc] init];
         storyVC.contentID = essayModel.content_id;
 //        storyVC.essayArr = _essayArr;
+        storyVC.essayIDArr = _essayIDArr;
         [self.navigationController pushViewController:storyVC animated:YES];
         [storyVC release];
     } else if (1 == index) {
@@ -138,6 +154,7 @@ ListCollectionViewCellDelegate
         
         SerialViewController *serialVC = [[SerialViewController alloc] init];
         serialVC.contentID = serialModel.contentID;
+        serialVC.serialIDArr = _serialIDArr;
         [self.navigationController pushViewController:serialVC animated:YES];
         [serialVC release];
     } else {
@@ -171,11 +188,13 @@ ListCollectionViewCellDelegate
         for (NSDictionary *essayDic in essayArr) {
             EssayModel *essayModel = [EssayModel mj_objectWithKeyValues:essayDic];
             [_essayArr addObject:essayModel];
+            [_essayIDArr addObject:essayModel.content_id];
         }
 
         for (NSDictionary *serialDic in serialArr) {
             SerialModel *serialModel = [SerialModel mj_objectWithKeyValues:serialDic];
             [_serialArr addObject:serialModel];
+            [_serialIDArr addObject:serialModel.contentID];
         }
         for (NSDictionary *questionDic in questionArr) {
             QuestionModel *questionModel = [QuestionModel mj_objectWithKeyValues:questionDic];

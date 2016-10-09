@@ -100,7 +100,8 @@
         AuthorInfoModel *authorInfoModel = novelModel.author[0];
         [_headImageView xl_setImageWithURL:[NSURL URLWithString:authorInfoModel.web_url] placeholderImage:nil];
         _nameLabel.text = novelModel.hp_author;
-        _dateLabel.text = novelModel.hp_makettime;
+        NSString *maketime = [novelModel.hp_makettime substringToIndex:11];
+        _dateLabel.text = maketime;
         [_playButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
             [_playButton setImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
             // 路径

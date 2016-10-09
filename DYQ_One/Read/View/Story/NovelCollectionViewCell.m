@@ -12,6 +12,10 @@
 #import "BottonAuthorTableViewCell.h"
 #import "NovelModel.h"
 #import "ColorfulTableViewCell.h"
+#import "MJRefresh.h"
+#import "HttpClient.h"
+#import "MJExtension.h"
+#import "CommentModel.h"
 
 
 static NSString *const novelCVCell = @"novelCVCell";
@@ -31,6 +35,7 @@ UITableViewDelegate
 @property (nonatomic, retain) UITableView *novelTableView;
 @property (nonatomic, assign) CGFloat cellHeight;
 @property (nonatomic, assign) long currentRow;
+@property (nonatomic, copy) NSString *commentNumber;
 
 @end
 
@@ -38,6 +43,8 @@ UITableViewDelegate
 
 - (void)dealloc {
     [_novelTableView release];
+    [_commentArr release];
+    [_commentNumber release];
     [super dealloc];
 }
 
@@ -45,7 +52,7 @@ UITableViewDelegate
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+    
         self.novelTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
         _novelTableView.dataSource = self;
         _novelTableView.delegate = self;
@@ -53,9 +60,36 @@ UITableViewDelegate
         [self.contentView addSubview:_novelTableView];
         [_novelTableView release];
         
+        _novelTableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(Loading)];
+        
         [_novelTableView reloadData];
     }
     return self;
+}
+
+- (void)Loading {
+    
+    [self commentData];
+    [_novelTableView reloadData];
+    [_novelTableView.mj_footer endRefreshing];
+}
+
+- (void)commentData {
+    
+    CommentModel *commentModel = [_commentArr lastObject];
+    self.commentNumber = commentModel.ID;
+//    NSLog(@"commentNumber : %@", _commentNumber);
+    
+    [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/essay/%@/%@", _novelModel.content_id, _commentNumber] success:^(id result) {
+        NSDictionary *tempDic = [result objectForKey:@"data"];
+        NSArray *dataArr = [tempDic objectForKey:@"data"];
+        for (NSDictionary *dataDic in dataArr) {
+            CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
+            [_commentArr addObject:commentModel];
+        }
+    } failure:^(id error) {
+        NSLog(@"error : %@", error);
+    }];
 }
 
 - (void)setContentArr:(NSArray *)contentArr {
@@ -66,15 +100,23 @@ UITableViewDelegate
     [_novelTableView reloadData];
 }
 
-- (void)setStoryArr:(NSArray *)storyArr {
-    if (_storyArr != storyArr) {
-        [_storyArr release];
-        _storyArr = [storyArr retain];
+//- (void)setStoryArr:(NSArray *)storyArr {
+//    if (_storyArr != storyArr) {
+//        [_storyArr release];
+//        _storyArr = [storyArr retain];
+//    }
+//    [_novelTableView reloadData];
+//}
+
+- (void)setNovelModel:(NovelModel *)novelModel {
+    if (_novelModel != novelModel) {
+        [_novelModel release];
+        _novelModel = [novelModel retain];
     }
     [_novelTableView reloadData];
 }
 
-- (void)setCommentArr:(NSArray *)commentArr {
+- (void)setCommentArr:(NSMutableArray *)commentArr {
     if (_commentArr != commentArr) {
         [_commentArr release];
         _commentArr = [commentArr retain];
@@ -89,11 +131,12 @@ UITableViewDelegate
     if (2 == section) {
         return _contentArr.count;
     }
-//    else if (4 == section) {
-//        return 3;
-//    }
-    else if (4 == section) {
+    if (4 == section) {
         return 8;
+    }
+    if (5 == section) {
+//        NSLog(@"comment : %ld", _commentArr.count);
+        return _commentArr.count - 8;
     }
     return 1;
 
@@ -142,10 +185,9 @@ UITableViewDelegate
         if (nil == cell) {
             cell = [[[TopAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:novelCVCell] autorelease];
         }
-        NovelModel *novelModel = _storyArr[0];
-        cell.novelModel = novelModel;
+//        NovelModel *novelModel = _storyArr[0];
+        cell.novelModel = _novelModel;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        [tableView reloadData];
         return cell;
     }
     if (1 == indexPath.section) {
@@ -153,8 +195,8 @@ UITableViewDelegate
         if (nil == cell) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commomcell"] autorelease];
         }
-        NovelModel *novelModel = _storyArr[0];
-        cell.textLabel.text = novelModel.hp_title;
+//        NovelModel *novelModel = _storyArr[0];
+        cell.textLabel.text = _novelModel.hp_title;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
             
@@ -176,29 +218,36 @@ UITableViewDelegate
         if (nil == cell) {
             cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:bottomAuthorCell] autorelease];
         }
-        NovelModel *novelModel = _storyArr[0];
-        cell.novelModel = novelModel;
+//        NovelModel *novelModel = _storyArr[0];
+        cell.novelModel = _novelModel;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return  cell;
     }
-//    if (4 == indexPath.section) {
-//        ColorfulTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:recommendCell];
-//        if (nil == cell) {
-//            cell = [[[ColorfulTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:recommendCell] autorelease];
-//        }
-//        return cell;
-//    }
+    if (4 == indexPath.section) {
+        BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%@%ld", recommendCell, indexPath.row]];
+        
+        cell.currentRow = indexPath.row;
+        if (nil == cell) {
+            cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%@%ld", recommendCell, indexPath.row]] autorelease];
+        }
+        CommentModel *commentModel = _commentArr[indexPath.row];
+        cell.commentModel = commentModel;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+
+    }
     BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]];
 
     cell.currentRow = indexPath.row;
     if (nil == cell) {
         cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]] autorelease];
     }
-    CommentModel *commentModel = _commentArr[indexPath.row];
+    CommentModel *commentModel = _commentArr[indexPath.row + 8];
     cell.commentModel = commentModel;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
+
 
 @end

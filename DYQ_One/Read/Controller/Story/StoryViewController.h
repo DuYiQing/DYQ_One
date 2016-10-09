@@ -13,5 +13,6 @@
 
 @property (nonatomic, copy) NSString *contentID;
 @property (nonatomic, retain) NSArray *essayArr;
+@property (nonatomic, retain) NSArray *essayIDArr;
 
 @end

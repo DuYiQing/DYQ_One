@@ -46,8 +46,8 @@
 		40F9999D1DA3EF6D00E9B4D3 /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 40F999991DA3EF6D00E9B4D3 /* 2.gif */; };
 		40F9999E1DA3EF6D00E9B4D3 /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 40F9999A1DA3EF6D00E9B4D3 /* 1.gif */; };
 		40F999A21DA3FB9900E9B4D3 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F999A11DA3FB9900E9B4D3 /* GuideViewController.m */; };
-		40F999D41DA5E80900E9B4D3 /* BH_AVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F999C51DA5E80900E9B4D3 /* BH_AVPlayerView.m */; };
-		40F999D51DA5E80900E9B4D3 /* BH_PlayProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F999C71DA5E80900E9B4D3 /* BH_PlayProgressView.m */; };
+		40F999D41DA5E80900E9B4D3 /* BH_AVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F999C51DA5E80900E9B4D3 /* BH_AVPlayerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		40F999D51DA5E80900E9B4D3 /* BH_PlayProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F999C71DA5E80900E9B4D3 /* BH_PlayProgressView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		40F999D61DA5E80900E9B4D3 /* icon_full@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40F999C81DA5E80900E9B4D3 /* icon_full@2x.png */; };
 		40F999D71DA5E80900E9B4D3 /* icon_full@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40F999C91DA5E80900E9B4D3 /* icon_full@3x.png */; };
 		40F999D81DA5E80900E9B4D3 /* icon_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40F999CA1DA5E80900E9B4D3 /* icon_pause@2x.png */; };
@@ -64,6 +64,7 @@
 		40F999E71DA6062500E9B4D3 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F999E61DA6062500E9B4D3 /* UserViewController.m */; };
 		40F999E91DA606C700E9B4D3 /* usertop.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 40F999E81DA606C700E9B4D3 /* usertop.jpeg */; };
 		40F999EB1DA6370C00E9B4D3 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 40F999EA1DA6370C00E9B4D3 /* back.png */; };
+		40F99A721DA8A64B00E9B4D3 /* robot.png in Resources */ = {isa = PBXBuildFile; fileRef = 40F99A711DA8A64B00E9B4D3 /* robot.png */; };
 		4914B6081D98C3A800D3A53F /* BottonAuthorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4914B6071D98C3A800D3A53F /* BottonAuthorTableViewCell.m */; };
 		4914B60C1D98CC1400D3A53F /* NovelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4914B60B1D98CC1400D3A53F /* NovelModel.m */; };
 		496DD9621D93C8CC00D5781A /* ScrollViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 496DD9611D93C8CC00D5781A /* ScrollViewModel.m */; };
@@ -221,10 +222,11 @@
 		40F999D31DA5E80900E9B4D3 /* icon_repeat_video@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_repeat_video@3x.png"; sourceTree = "<group>"; };
 		40F999E21DA5FD1A00E9B4D3 /* TargetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetTableViewCell.h; sourceTree = "<group>"; };
 		40F999E31DA5FD1A00E9B4D3 /* TargetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetTableViewCell.m; sourceTree = "<group>"; };
-		40F999E51DA6062500E9B4D3 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
-		40F999E61DA6062500E9B4D3 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		40F999E51DA6062500E9B4D3 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = DYQKit/Base/Controller/UserViewController.h; sourceTree = "<group>"; };
+		40F999E61DA6062500E9B4D3 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = DYQKit/Base/Controller/UserViewController.m; sourceTree = "<group>"; };
 		40F999E81DA606C700E9B4D3 /* usertop.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = usertop.jpeg; sourceTree = "<group>"; };
 		40F999EA1DA6370C00E9B4D3 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		40F99A711DA8A64B00E9B4D3 /* robot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = robot.png; sourceTree = "<group>"; };
 		4914B6061D98C3A800D3A53F /* BottonAuthorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottonAuthorTableViewCell.h; sourceTree = "<group>"; };
 		4914B6071D98C3A800D3A53F /* BottonAuthorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottonAuthorTableViewCell.m; sourceTree = "<group>"; };
 		4914B60A1D98CC1400D3A53F /* NovelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NovelModel.h; sourceTree = "<group>"; };
@@ -506,6 +508,8 @@
 		40F999871DA3D24500E9B4D3 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				40F999E51DA6062500E9B4D3 /* UserViewController.h */,
+				40F999E61DA6062500E9B4D3 /* UserViewController.m */,
 				40F999881DA3D26F00E9B4D3 /* LoginViewController.h */,
 				40F999891DA3D26F00E9B4D3 /* LoginViewController.m */,
 			);
@@ -862,6 +866,7 @@
 		49F6CABB1D90FCB1002D3EF2 /* 素材 */ = {
 			isa = PBXGroup;
 			children = (
+				40F99A711DA8A64B00E9B4D3 /* robot.png */,
 				40F999971DA3EF6D00E9B4D3 /* 3.gif */,
 				40F999EA1DA6370C00E9B4D3 /* back.png */,
 				40F999981DA3EF6D00E9B4D3 /* 4.gif */,
@@ -929,8 +934,6 @@
 			children = (
 				49F6CAE01D90FE1C002D3EF2 /* BaseViewController.h */,
 				49F6CAE11D90FE1C002D3EF2 /* BaseViewController.m */,
-				40F999E51DA6062500E9B4D3 /* UserViewController.h */,
-				40F999E61DA6062500E9B4D3 /* UserViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1032,6 +1035,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40F99A721DA8A64B00E9B4D3 /* robot.png in Resources */,
 				40F9999B1DA3EF6D00E9B4D3 /* 3.gif in Resources */,
 				49CC55961D925023000C8C40 /* 28B58PICxtD_1024.png in Resources */,
 				40F999DD1DA5E80900E9B4D3 /* icon_play_hl@3x.png in Resources */,

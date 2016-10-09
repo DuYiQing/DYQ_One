@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NovelModel.h"
 
 @interface NovelCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, retain) NSArray *storyArr;
+//@property (nonatomic, retain) NSArray *storyArr;
+@property (nonatomic, retain) NovelModel *novelModel;
 @property (nonatomic, retain) NSArray *contentArr;
-@property (nonatomic, retain) NSArray *commentArr;
+@property (nonatomic, retain) NSMutableArray *commentArr;
 
 @end

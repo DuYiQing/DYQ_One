@@ -7,28 +7,48 @@
 //
 
 #import "UserViewController.h"
+#import "LoginViewController.h"
 
 @interface UserViewController ()
 
 <
-UINavigationControllerDelegate
+UINavigationControllerDelegate,
+UITableViewDataSource,
+UITableViewDelegate
 >
-
+@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, retain) UIImageView *topImageView;
 @end
 
 @implementation UserViewController
-
+- (void)dealloc {
+    [_tableView release];
+    [super dealloc];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationController.navigationBar.alpha = 0.00;
     
-    UIImageView *topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 3)];
-    topImageView.image = [UIImage imageNamed:@"usertop.jpeg"];
-    [self.view addSubview:topImageView];
-    [topImageView release];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT / 3, 0, 0, 0);
+    _tableView.contentOffset = CGPointMake(-SCREEN_HEIGHT / 3, 0);
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_tableView];
+    [_tableView release];
+    
+    self.topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -SCREEN_HEIGHT / 3, SCREEN_WIDTH, SCREEN_HEIGHT / 3)];
+    _topImageView.image = [UIImage imageNamed:@"usertop.jpeg"];
+    [_tableView addSubview:_topImageView];
+    [_topImageView release];
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(20, 30, 20, 20);
@@ -38,6 +58,57 @@ UINavigationControllerDelegate
         [self.navigationController popViewControllerAnimated:YES];
     }];
     
+    UIImageView *headImageView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 60) / 2, -SCREEN_HEIGHT / 5, 60, 60)];
+    headImageView.image = [UIImage imageNamed:@"robot.png"];
+    headImageView.backgroundColor = [UIColor colorWithRed:0.0938 green:0.2447 blue:0.5 alpha:0.89];
+    headImageView.layer.cornerRadius = headImageView.bounds.size.width / 2;
+    headImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    headImageView.layer.borderWidth = 1.0f;
+    headImageView.userInteractionEnabled = YES;
+    [_tableView addSubview:headImageView];
+    [headImageView release];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    [headImageView addGestureRecognizer:tap];
+    [tap release];
+    
+    UILabel *loginLabel = [[UILabel alloc] initWithFrame:CGRectMake(headImageView.frame.origin.x, headImageView.frame.origin.y +headImageView.bounds.size.height + 5, headImageView.bounds.size.width, 40)];
+    loginLabel.text = @"请登录";
+    loginLabel.textColor = [UIColor whiteColor];
+    loginLabel.textAlignment = NSTextAlignmentCenter;
+    loginLabel.font = kFONT_SIZE_15_BOLD;
+    [_tableView addSubview:loginLabel];
+    [loginLabel release];
+    
+}
+- (void)tapAction:(UITapGestureRecognizer *)tap {
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    [self presentViewController:loginVC animated:YES completion:nil];
+    [loginVC release];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    CGFloat contentY = scrollView.contentOffset.y;
+    
+    if (contentY < -245) {
+        _topImageView.frame = CGRectMake(0, -(SCREEN_HEIGHT / 3 - scrollView.contentOffset.y), SCREEN_WIDTH, (SCREEN_HEIGHT / 3 - scrollView.contentOffset.y));
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"设置";
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (nil == cell) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
+    }
+    return cell;
 }
 
 

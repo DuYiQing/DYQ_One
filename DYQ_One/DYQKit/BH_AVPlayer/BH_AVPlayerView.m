@@ -310,7 +310,7 @@
         NSTimeInterval timeInterval = [self availableDuration];
         self.timeInterval = timeInterval;
         self.progressView.timeIntervalProgress.progress = self.timeInterval / self.totalDuration;
-        NSLog(@"Time Interval:%f",timeInterval);
+//        NSLog(@"Time Interval:%f",timeInterval);
     }
 }
 
@@ -320,15 +320,15 @@
         self.currentPlayTime = 0.0;
     }
     if (self.avPlayer.rate != 0) {
-        [self.progressView.playBtn setImage:[UIImage imageNamed:@"icon_play"] forState:UIControlStateNormal];
-    }else{
         [self.progressView.playBtn setImage:[UIImage imageNamed:@"icon_pause"] forState:UIControlStateNormal];
+    }else{
+        [self.progressView.playBtn setImage:[UIImage imageNamed:@"icon_play"] forState:UIControlStateNormal];
     }
     if (!_isDragSlider) {
         self.progressView.progressSlider.value = self.currentPlayTime;
         self.progressView.currentTimeLabel.text = [self convertTimeToString:self.currentPlayTime];
     }
-    NSLog(@"current playTime:%f－－status:%ld",self.currentPlayTime,self.playerItem.status);
+//    NSLog(@"current playTime:%f－－status:%ld",self.currentPlayTime,self.playerItem.status);
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(currentTLCPlayerTime) object:nil];
     [self performSelector:@selector(currentTLCPlayerTime) withObject:nil afterDelay:0.5];
 }

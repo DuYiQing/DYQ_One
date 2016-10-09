@@ -14,6 +14,6 @@
 
 @property (nonatomic, retain) QuestionInfoModel *questionInfoModel;
 @property (nonatomic, retain) NSArray *contentArr;
-@property (nonatomic, retain) NSArray *commentArr;
+@property (nonatomic, retain) NSMutableArray *commentArr;
 
 @end

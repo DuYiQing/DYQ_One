@@ -13,6 +13,8 @@
 #import "CommentModel.h"
 #import <AVFoundation/AVFoundation.h>
 #import "BH_AVPlayerView.h"
+#import "MJRefresh.h"
+#import "HttpClient.h"
 
 @interface MusicCollectionViewCell ()
 
@@ -31,6 +33,7 @@ UITableViewDelegate
 @property (nonatomic, retain) UILabel *dateLabel;
 @property (nonatomic, retain) AVPlayer *player;
 @property (nonatomic, assign) BOOL isPlaying;
+@property (nonatomic, copy) NSString *commentNumber;
 
 
 @end
@@ -44,6 +47,7 @@ UITableViewDelegate
     [_typeLabel release];
     [_songNameLabel release];
     [_dateLabel release];
+    [_commentNumber release];
     [super dealloc];
 }
 
@@ -78,7 +82,7 @@ UITableViewDelegate
         [_songImageView release];
         
         self.songAuthorLabel  = [[UILabel alloc] init];
-//        _songAuthorLabel.backgroundColor = [UIColor blueColor];
+        _songAuthorLabel.backgroundColor = [UIColor whiteColor];
         _songAuthorLabel.textColor = [UIColor colorWithRed:93.2 / 255.f green:182.1 / 255.f blue:223.6 / 255.f alpha:1.0];
         _songAuthorLabel.font = kFONT_SIZE_12_BOLD;
         [_songView addSubview:_songAuthorLabel];
@@ -92,7 +96,7 @@ UITableViewDelegate
         [_typeLabel release];
         
         self.songNameLabel = [[UILabel alloc] init];
-//        _songNameLabel.backgroundColor = [UIColor orangeColor];
+        _songNameLabel.backgroundColor = [UIColor whiteColor];
         _songAuthorLabel.font = kFONT_SIZE_18_BOLD;
         [_songView addSubview:_songNameLabel];
         [_songNameLabel release];
@@ -109,10 +113,35 @@ UITableViewDelegate
         [_songView addSubview:_dateLabel];
         [_dateLabel release];
         
+        _musicTableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(Loading)];
         
     }
     return self;
 }
+- (void)Loading {
+    [self commentData];
+    [_musicTableView reloadData];
+    [_musicTableView.mj_footer endRefreshing];
+    
+}
+
+- (void)commentData {
+    CommentModel *commentModel = [_commentArr lastObject];
+    self.commentNumber = commentModel.ID;
+    
+    [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/music/%@/%@", _musicModel.ID, _commentNumber] success:^(id result) {
+        NSDictionary *dataDic = [result objectForKey:@"data"];
+        NSArray *dataArr = [dataDic objectForKey:@"data"];
+        for (NSDictionary *commentDic in dataArr) {
+            CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:commentDic];
+            [_commentArr addObject:commentModel];
+        }
+        [_musicTableView reloadData];
+    } failure:^(id error) {
+        NSLog(@"error : %@", error);
+    }];
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     _musicTableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -123,14 +152,14 @@ UITableViewDelegate
     _songImageView.layer.cornerRadius = _songImageView.bounds.size.width / 2;
     _songImageView.clipsToBounds = YES;
     
-    _songAuthorLabel.frame = CGRectMake(_songImageView.frame.origin.x + _songImageView.bounds.size.width + 10, _songImageView.frame.origin.y + 5, 100, 20);
-    [_songNameLabel sizeToFit];
+    _songAuthorLabel.frame = CGRectMake(_songImageView.frame.origin.x + _songImageView.bounds.size.width + 10, _songImageView.frame.origin.y + 5, 200, 20);
+//    [_songAuthorLabel sizeToFit];
     
     _typeLabel.frame = CGRectMake(_songAuthorLabel.frame.origin.x, _songAuthorLabel.frame.origin.y + _songAuthorLabel.bounds.size.height + 3, 100, 20);
-    [_typeLabel sizeToFit];
+//    [_typeLabel sizeToFit];
     
-    _songNameLabel.frame = CGRectMake(_songImageView.frame.origin.x, _songImageView.frame.origin.y + _songImageView.bounds.size.height + 10, 130, 30);
-    [_songNameLabel sizeToFit];
+    _songNameLabel.frame = CGRectMake(_songImageView.frame.origin.x, _songImageView.frame.origin.y + _songImageView.bounds.size.height + 10, 200, 30);
+//    [_songNameLabel sizeToFit];
     
     _playButton.frame = CGRectMake(_songView.bounds.size.width / 7 * 6, _songView.bounds.size.height / 3, _songView.bounds.size.height / 3, _songView.bounds.size.height / 3);
     _dateLabel.frame = CGRectMake(_songView.bounds.size.width / 4 * 3 + 10, _playButton.frame.origin.y + _playButton.bounds.size.height + 8, 83, 20);
@@ -181,6 +210,9 @@ UITableViewDelegate
     if (1 == section) {
         return 8;
     }
+    if (2 == section) {
+        return _commentArr.count - 8;
+    }
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -221,11 +253,21 @@ UITableViewDelegate
         [cell.textLabel sizeToFit];
         return  cell;
     }
+    if (1 == indexPath.section) {
+        BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"hotCell%ld", indexPath.row]];
+        if (nil == cell) {
+            cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"hotCell%ld", indexPath.row]] autorelease];
+        }
+        CommentModel *commentModel = _commentArr[indexPath.row];
+        cell.commentModel = commentModel;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return  cell;
+    }
     BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"cell%ld", indexPath.row]];
     if (nil == cell) {
         cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"cell%ld", indexPath.row]] autorelease];
     }
-    CommentModel *commentModel = _commentArr[indexPath.row];
+    CommentModel *commentModel = _commentArr[indexPath.row + 8];
     cell.commentModel = commentModel;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return  cell;
@@ -243,7 +285,7 @@ UITableViewDelegate
         _songNameLabel.text = musicModel.title;
         NSString *maketime = [musicModel.maketime substringToIndex:11];
         _dateLabel.text = maketime;
-        
+        [_musicTableView reloadData];
     }
 }
 

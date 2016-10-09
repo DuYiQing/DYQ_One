@@ -12,6 +12,9 @@
 #import "ContentTableViewCell.h"
 #import "BottonAuthorTableViewCell.h"
 #import "InfoBaseTableViewCell.h"
+#import "MJRefresh.h"
+#import "CommentModel.h"
+#import "HttpClient.h"
 
 static NSString *const titleCell = @"titleCell";
 static NSString *const bottomAuthorCell = @"bottomCell";
@@ -25,6 +28,7 @@ UITableViewDelegate
 >
 @property (nonatomic, retain) UITableView *serialTableView;
 @property (nonatomic, assign) long currentRow;
+@property (nonatomic, copy) NSString *commentNumber;
 
 @end
 
@@ -32,6 +36,7 @@ UITableViewDelegate
 
 - (void)dealloc {
     [_serialTableView release];
+    [_commentNumber release];
     [super dealloc];
 }
 
@@ -39,14 +44,40 @@ UITableViewDelegate
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.serialTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+        self.serialTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
         _serialTableView.delegate = self;
         _serialTableView.dataSource = self;
         _serialTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.contentView addSubview:_serialTableView];
         [_serialTableView release];
+        
+        _serialTableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(Loading)];
+       
     }
     return self;
+}
+
+- (void)Loading {
+    [self commentData];
+    [_serialTableView reloadData];
+    [_serialTableView.mj_footer endRefreshing];
+}
+
+- (void)commentData {
+    CommentModel *commentModel = [_commentArr lastObject];
+    self.commentNumber = commentModel.ID;
+    
+    [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/serial/%@/%@", _serialModel.contentID, _commentNumber] success:^(id result) {
+        NSDictionary *dataDic = [result objectForKey:@"data"];
+        NSArray *dataArr = [dataDic objectForKey:@"data"];
+        for (NSDictionary *commentDic in dataArr) {
+            CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:commentDic];
+            [_commentArr addObject:commentModel];
+        }
+    } failure:^(id error) {
+        NSLog(@"error : %@", error);
+    }];
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -66,9 +97,19 @@ UITableViewDelegate
     if (1 == indexPath.section) {
         return 50;
     }
-    return 120;
+    return 130;
 
 }
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (4 == section) {
+        return @"评论列表";
+    }
+    if (5 == section) {
+        return @"                                       以上是热门评论";
+    }
+    return 0;
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (2 == section) {
@@ -76,7 +117,7 @@ UITableViewDelegate
     } else if (4 == section) {
         return 8;
     } else if (5 == section) {
-        return 10;
+        return _commentArr.count - 8;
     }
     return 1;
 }
@@ -120,24 +161,37 @@ UITableViewDelegate
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
+    if (4 == indexPath.section) {
+        BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"hotComment%ld", indexPath.row]];
+        if (nil == cell) {
+            cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"hotComment%ld", indexPath.row]] autorelease];
+        }
+        CommentModel *commentModel = _commentArr[indexPath.row];
+        cell.commentModel = commentModel;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
     BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]];
     if (nil == cell) {
         cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%@%ld", commentCell, indexPath.row]] autorelease];
     }
-    CommentModel *commentModel = _commentArr[indexPath.row];
+    CommentModel *commentModel = _commentArr[indexPath.row + 8];
     cell.commentModel = commentModel;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
-    
-    
-    
-    
-    
-    
+  
     
 }
 
+- (void)setCommentArr:(NSMutableArray *)commentArr {
+    if (_commentArr != commentArr) {
+        [_commentArr release];
+        _commentArr = [commentArr retain];
+        
+    }
+    [_serialTableView reloadData];
+}
 
 
 @end

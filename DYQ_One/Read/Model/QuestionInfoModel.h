@@ -10,6 +10,7 @@
 
 @interface QuestionInfoModel : NSObject
 
+@property (nonatomic, copy) NSString *ID;
 @property (nonatomic, copy) NSString *question_title;
 @property (nonatomic, copy) NSString *question_content;
 @property (nonatomic, copy) NSString *answer_title;

@@ -18,7 +18,9 @@
 #import "UIImageView+XLWebCache.h"
 #import "BottonAuthorTableViewCell.h"
 #import "CommentModel.h"
-
+#import "MJRefresh.h"
+#import <AVFoundation/AVFoundation.h>
+#import "BH_AVPlayerView.h"
 
 static NSString *const movieCell = @"movieCell";
 
@@ -34,6 +36,8 @@ UITableViewDelegate
 @property (nonatomic, retain) NSMutableArray *movieStoryArr;
 @property (nonatomic, retain) NSArray *contentArr;
 @property (nonatomic, retain) NSMutableArray *commentArr;
+@property (nonatomic, copy) NSString *commentNumber;
+@property (nonatomic, retain) BH_AVPlayerView *playerView;
 
 
 @end
@@ -45,6 +49,8 @@ UITableViewDelegate
     [_contentArr release];
     [_movieStoryArr release];
     [_commentArr release];
+    [_commentNumber release];
+    [_playerView release];
     [super dealloc];
 }
 
@@ -75,18 +81,24 @@ UITableViewDelegate
         return 1;
     }
     if (3 == section) {
-        return _commentArr.count;
+        return 8;
     }
-    return 10;
+    if (4 == section) {
+        return _commentArr.count - 8;
+    }
+    return 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (0 == section) {
-        return 20;
+        return 30;
     }
     if (2 == section) {
         return 20;
     }
     if (3 == section) {
+        return 20;
+    }
+    if (4 == section) {
         return 20;
     }
     return 0.1f;
@@ -111,13 +123,6 @@ UITableViewDelegate
     return 130;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    if (4 == section) {
-        return @"                                       以上是热门评论";
-    }
-    return 0;
-}
-
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (0 == section) {
         return @"电影故事";
@@ -127,6 +132,9 @@ UITableViewDelegate
     }
     if (3 == section) {
         return @"评论列表";
+    }
+    if (4 == section) {
+        return @"                                       以上是热门评论";
     }
     
     return 0;
@@ -142,6 +150,7 @@ UITableViewDelegate
                 cell.movieStoryArr = _movieStoryArr;
             }
             cell.movieInfoModel = _movieInfoModel;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         if (1 == indexPath.row) {
@@ -151,6 +160,7 @@ UITableViewDelegate
             }
             MovieStoryModel *movieStoryModel = _movieStoryArr[0];
             cell.textLabel.text = movieStoryModel.title;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
     }
@@ -163,7 +173,7 @@ UITableViewDelegate
         cell.textLabel.font = [UIFont systemFontOfSize:14.f];
         cell.textLabel.numberOfLines = 0;
         [cell.textLabel sizeToFit];
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     if (2 == indexPath.section) {
@@ -177,14 +187,24 @@ UITableViewDelegate
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
+    if (3 == indexPath.section) {
+        BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"hot%@%ld", movieCell, indexPath.row]];
+        if (nil == cell) {
+            cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"hot%@%ld", movieCell, indexPath.row]] autorelease];
+        }
+        CommentModel *commentModel = _commentArr[indexPath.row];
+        cell.commentModel = commentModel;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
 
     BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%@%ld", movieCell, indexPath.row]];
     if (nil == cell) {
         cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"%@%ld", movieCell, indexPath.row]] autorelease];
     }
-    CommentModel *commentModel = _commentArr[indexPath.row];
+    CommentModel *commentModel = _commentArr[indexPath.row + 8];
     cell.commentModel = commentModel;
-
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -199,10 +219,61 @@ UITableViewDelegate
     _movieTableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT / 4, 0, 0, 0);
 
     UIImageView *topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -SCREEN_HEIGHT / 4, SCREEN_WIDTH, SCREEN_HEIGHT / 4)];
+    topImageView.userInteractionEnabled = YES;
     [topImageView xl_setImageWithURL:[NSURL URLWithString:_movieInfoModel.detailcover] placeholderImage:nil];
     [_movieTableView addSubview:topImageView];
     [topImageView release];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
+    [topImageView addGestureRecognizer:tap];
+    [tap release];
     
+    _movieTableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(Loading)];
+    
+}
+- (void)tapAction {
+    // 创建已经封装好的BH_AVPlayerView类
+    self.playerView = [[BH_AVPlayerView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.3)];
+    [self.view addSubview:_playerView];
+    // 路径
+    _playerView.playerUrl = [NSURL URLWithString:_movieInfoModel.video];
+    // 播放
+    [_playerView play];
+    
+    // 注册一个监听屏幕切换的通知中心
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(statuesBarChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+}
+// 监听事件
+- (void)statuesBarChanged:(NSNotification *)sender{
+    // 切换屏幕方向
+    UIInterfaceOrientation statues = [UIApplication sharedApplication].statusBarOrientation;
+    // 如果Home键向下(默认情况)或者是向上
+    if (statues == UIInterfaceOrientationPortrait || statues == UIInterfaceOrientationPortraitUpsideDown) {
+        _playerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.3);
+        // 如果Home键靠左或者靠右
+    }else if (statues == UIInterfaceOrientationLandscapeLeft || statues == UIInterfaceOrientationLandscapeRight){
+        _playerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    }
+}
+
+- (void)Loading {
+    [self commentData];
+    [_movieTableView reloadData];
+    [_movieTableView.mj_footer endRefreshing];
+}
+
+- (void)commentData {
+    CommentModel *commentModel = [_commentArr lastObject];
+    self.commentNumber = commentModel.ID;
+    [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/movie/%@/%@", _movieModel.movieID, _commentNumber] success:^(id result) {
+        NSDictionary *tempDic = [result objectForKey:@"data"];
+        NSArray *dataArr = [tempDic objectForKey:@"data"];
+        for (NSDictionary *dataDic in dataArr) {
+            CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
+            [_commentArr addObject:commentModel];
+        }
+    } failure:^(id error) {
+        NSLog(@"error : %@", error);
+    }];
 }
 
 - (void)data {

@@ -14,6 +14,7 @@
 #import "MJExtension.h"
 #import "CommentModel.h"
 #import "EssayModel.h"
+#import "MJRefresh.h"
 
 
 static NSString *const collectionViewCell = @"collectionViewCell";
@@ -29,6 +30,7 @@ UICollectionViewDataSource
 @property (nonatomic, retain) NSMutableArray *contentArr;
 @property (nonatomic, assign) long currentSection;
 @property (nonatomic, retain) NSMutableArray *commentArr;
+@property (nonatomic, retain) NovelModel *novelModel;
 
 @end
 
@@ -50,6 +52,8 @@ UICollectionViewDataSource
     self.storyArr = [NSMutableArray array];
     self.commentArr = [NSMutableArray array];
     [self data];
+    
+    
 }
 
 - (void)getView {
@@ -73,14 +77,39 @@ UICollectionViewDataSource
     
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    _contentID = _essayIDArr[_currentSection];
+    NSLog(@"contentID : %@", _contentID);
+    NSMutableString *urlString = [@"http://v3.wufazhuce.com:8000/api/essay/" mutableCopy];
+    [urlString appendString:_contentID];
+    [HttpClient GETWithURLString:urlString success:^(id result) {
+        
+        NSDictionary *dataDic = [result objectForKey:@"data"];
+        NSString *content = [dataDic objectForKey:@"hp_content"];
+        self.contentArr = [content componentsSeparatedByString:@"<br>"];
+        for (int i = 0; i < _contentArr.count; i++) {
+            if ([_contentArr[i] isEqualToString:@"\n"]) {
+                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
+                [_contentArr removeObjectAtIndex:index];
+            }
+            if ([_contentArr[i] isEqualToString:@"\r\n"]) {
+                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
+                [_contentArr removeObjectAtIndex:index];
+            }
+        }
+        
+        NovelModel *novelModel = [NovelModel mj_objectWithKeyValues:dataDic];
+        [_storyArr addObject:novelModel];
+        
+        [_novelCollectionView reloadData];
+        
+    } failure:^(id error) {
+        NSLog(@"error : %@", error);
+    }];
 
-//
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    EssayModel *essayModel = _essayArr[_currentSection];
-//    _contentID = essayModel.content_id;
-//    _contentID = @"1533";
-//    [self data];
-//}
+    
+}
+
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 10;
@@ -93,7 +122,8 @@ UICollectionViewDataSource
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     NovelCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionViewCell forIndexPath:indexPath];
     self.currentSection = indexPath.section;
-    cell.storyArr = _storyArr;
+//    cell.storyArr = _storyArr;
+    cell.novelModel = _novelModel;
     cell.contentArr = _contentArr;
     cell.commentArr = _commentArr;
     return cell;
@@ -118,9 +148,9 @@ UICollectionViewDataSource
                 [_contentArr removeObjectAtIndex:index];
             }
         }
-//        NSLog(@"%@", _contentArr);
-        NovelModel *novelModel = [NovelModel mj_objectWithKeyValues:dataDic];
-        [_storyArr addObject:novelModel];
+
+        self.novelModel = [NovelModel mj_objectWithKeyValues:dataDic];
+        [_storyArr addObject:_novelModel];
 
         [_novelCollectionView reloadData];
         [self getView];

@@ -27,6 +27,8 @@ UICollectionViewDelegate
 @property (nonatomic, retain) NSArray *storyArr;
 @property (nonatomic, retain) NSString *musicID;
 @property (nonatomic, retain) NSMutableArray *commentArr;
+@property (nonatomic, assign) NSInteger currentItem;
+@property (nonatomic, assign) CGFloat contentOffsetX;
 
 @end
 
@@ -72,6 +74,33 @@ UICollectionViewDelegate
     [_collectionView registerClass:[MusicCollectionViewCell class] forCellWithReuseIdentifier:musicCVCell];
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    
+    NSMutableString *urlString = [@"http://v3.wufazhuce.com:8000/api/music/detail/" mutableCopy];
+    NSLog(@"%ld", _currentItem);
+    [urlString appendString:_musicListArr[_currentItem + 1]];
+    [HttpClient GETWithURLString:urlString success:^(id result) {
+
+        NSDictionary *dataDic = [result objectForKey:@"data"];
+        self.musicModel = [MusicModel mj_objectWithKeyValues:dataDic];
+        self.musicID = [dataDic objectForKey:@"id"];
+        self.storyArr = [_musicModel.story componentsSeparatedByString:@"<br>\r\n"];
+        [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/music/%@/0", _musicID] success:^(id result) {
+            NSDictionary *dataDic = [result objectForKey:@"data"];
+            NSArray *dataArr = [dataDic objectForKey:@"data"];
+            for (NSDictionary *commentDic in dataArr) {
+                CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:commentDic];
+                [_commentArr addObject:commentModel];
+            }
+            [_collectionView reloadData];
+        } failure:^(id error) {
+            NSLog(@"error : %@", error);
+        }];
+    } failure:^(id error) {
+        NSLog(@"%@", error);
+    }];
+
+}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _musicListArr.count;
@@ -79,10 +108,11 @@ UICollectionViewDelegate
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MusicCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:musicCVCell forIndexPath:indexPath];
-    
     cell.musicModel = _musicModel;
     cell.storyArr = _storyArr;
     cell.commentArr = _commentArr;
+    self.currentItem = indexPath.item;
+//    NSLog(@"%ld", _currentItem);
     return cell;
 }
 

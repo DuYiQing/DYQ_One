@@ -9,6 +9,9 @@
 #import "QuestionCollectionViewCell.h"
 #import "QuestionInfoModel.h"
 #import "BottonAuthorTableViewCell.h"
+#import "MJRefresh.h"
+#import "CommentModel.h"
+#import "HttpClient.h"
 
 @interface QuestionCollectionViewCell ()
 <
@@ -16,7 +19,8 @@ UITableViewDataSource,
 UITableViewDelegate
 >
 @property (nonatomic, retain) UITableView *questionTableView;
-
+@property (nonatomic, copy) NSString *commentNumber;
+@property (nonatomic, retain) CommentModel *commentModel;
 
 @end
 
@@ -24,6 +28,8 @@ UITableViewDelegate
 
 - (void)dealloc {
     [_questionTableView release];
+    [_commentModel release];
+    [_commentNumber release];
     [super dealloc];
 }
 
@@ -37,8 +43,35 @@ UITableViewDelegate
         _questionTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.contentView addSubview:_questionTableView];
         [_questionTableView release];
+        
+        _questionTableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(Loading)];
+      
+        
     }
     return self;
+}
+- (void)Loading {
+    [self commentData];
+    [_questionTableView reloadData];
+    [_questionTableView.mj_footer endRefreshing];
+}
+
+- (void)commentData {
+    CommentModel *commentModel = [_commentArr lastObject];
+    self.commentNumber = commentModel.ID;
+    
+    [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/question/%@/%@", _questionInfoModel.ID, _commentNumber] success:^(id result) {
+        NSDictionary *tempDic = [result objectForKey:@"data"];
+        NSArray *dataArr = [tempDic objectForKey:@"data"];
+        for (NSDictionary *dataDic in dataArr) {
+            self.commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
+            [_commentArr addObject:_commentModel];
+            
+        }
+    } failure:^(id error) {
+        NSLog(@"error : %@", error);
+    }];
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -54,8 +87,30 @@ UITableViewDelegate
     if (2 == section) {
         return 8;
     }
+    if (3 == section) {
+        return _commentArr.count - 8;
+    }
     return 0;
 }
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (2 == section) {
+        return @"评论列表";
+    }
+    if (3 == section) {
+        return @"                                       以上是热门评论";
+    }
+    return 0;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (2 == section) {
+        return 30;
+    }
+    if (3 == section) {
+        return 30;
+    }
+    return 0.1f;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (0 == indexPath.section) {
         if (0 == indexPath.row) {
@@ -94,6 +149,7 @@ UITableViewDelegate
             }
             cell.textLabel.text = _questionInfoModel.question_title;
             cell.textLabel.font = kFONT_SIZE_18_BOLD;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         if (1 == indexPath.row) {
@@ -106,6 +162,7 @@ UITableViewDelegate
             cell.textLabel.textColor = [UIColor grayColor];
             cell.textLabel.numberOfLines = 0;
             [cell.textLabel sizeToFit];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
     }
@@ -117,6 +174,7 @@ UITableViewDelegate
             }
             cell.textLabel.text = _questionInfoModel.answer_title;
             cell.textLabel.font = kFONT_SIZE_18_BOLD;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"answerContent%ld", indexPath.row]];
@@ -128,15 +186,27 @@ UITableViewDelegate
         cell.textLabel.textColor = [UIColor grayColor];
         cell.textLabel.numberOfLines = 0;
         [cell.textLabel sizeToFit];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
 
+    }
+    if (2 == indexPath.section) {
+        BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"hotCell%ld", indexPath.row]];
+        if (nil == cell) {
+            cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"hotCell%ld", indexPath.row]] autorelease];
+        }
+        CommentModel *commentModel = _commentArr[indexPath.row];
+        cell.commentModel = commentModel;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
     BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"cell%ld", indexPath.row]];
     if (nil == cell) {
         cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"cell%ld", indexPath.row]] autorelease];
     }
-    CommentModel *commentModel = _commentArr[indexPath.row];
+    CommentModel *commentModel = _commentArr[indexPath.row + 8];
     cell.commentModel = commentModel;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

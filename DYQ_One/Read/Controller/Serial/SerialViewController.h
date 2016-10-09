@@ -11,5 +11,6 @@
 @interface SerialViewController : UIViewController
 
 @property (nonatomic, copy) NSString *contentID;
+@property (nonatomic, retain) NSArray *serialIDArr;
 
 @end

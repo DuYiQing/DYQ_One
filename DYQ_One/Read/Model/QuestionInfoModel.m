@@ -10,4 +10,8 @@
 
 @implementation QuestionInfoModel
 
++ (NSDictionary *)replacedKeyFromPropertyName {
+    return @{@"ID" : @"id"};
+}
+
 @end

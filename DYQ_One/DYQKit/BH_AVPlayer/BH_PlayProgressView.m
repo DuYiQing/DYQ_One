@@ -50,7 +50,7 @@
     _playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _playBtn.backgroundColor = [UIColor clearColor];
     [self addSubview:_playBtn];
-    [_playBtn setImage:[UIImage imageNamed:@"icon_pause"] forState:UIControlStateNormal];
+    [_playBtn setImage:[UIImage imageNamed:@"icon_play"] forState:UIControlStateNormal];
     
     _currentTimeLabel = [[UILabel alloc]init];
     _currentTimeLabel.backgroundColor = [UIColor clearColor];

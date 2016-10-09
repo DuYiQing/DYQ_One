@@ -118,7 +118,8 @@
         _volLabel.text = rootModel.hp_title;
         _authorLabel.text = rootModel.hp_author;
         _contentLabel.text = rootModel.hp_content;
-        _dateLabel.text = rootModel.hp_makettime;
+        NSString *maketime = [rootModel.hp_makettime substringToIndex:11];
+        _dateLabel.text = maketime;
     }
 }
 
