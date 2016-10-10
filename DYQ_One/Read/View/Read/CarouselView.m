@@ -28,6 +28,7 @@ UIScrollViewDelegate
     [_currentImageArr release];
     [_scrollView release];
     [_pageControl release];
+    [_timer release];
     [super dealloc];
 }
 

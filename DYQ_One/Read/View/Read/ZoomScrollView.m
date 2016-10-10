@@ -18,6 +18,11 @@
 
 @implementation ZoomScrollView
 
+- (void)dealloc {
+    [_imageView release];
+    [super dealloc];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

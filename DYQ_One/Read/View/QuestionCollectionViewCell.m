@@ -85,6 +85,9 @@ UITableViewDelegate
         return _contentArr.count + 1;
     }
     if (2 == section) {
+        if (_commentArr.count < 8) {
+            return _commentArr.count;
+        }
         return 8;
     }
     if (3 == section) {
@@ -101,12 +104,13 @@ UITableViewDelegate
     }
     return 0;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (2 == section) {
-        return 30;
+        return 20;
     }
     if (3 == section) {
-        return 30;
+        return 20;
     }
     return 0.1f;
 }
@@ -114,7 +118,13 @@ UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (0 == indexPath.section) {
         if (0 == indexPath.row) {
-            return 50;
+            NSString *info = _questionInfoModel.question_title;
+            CGSize infoSize = CGSizeMake(tableView.frame.size.width - 40, 1000);
+            NSDictionary *dic = @{NSFontAttributeName : [UIFont systemFontOfSize:19.f]};
+            
+            CGRect infoRect = [info boundingRectWithSize:infoSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil];
+            
+            return 40 + ceil(infoRect.size.height);
         }
         if (1 == indexPath.row) {
             NSString *info = _questionInfoModel.question_content;
@@ -128,7 +138,13 @@ UITableViewDelegate
     }
     if (1 == indexPath.section) {
         if (0 == indexPath.row) {
-            return 40;
+            NSString *info = _questionInfoModel.answer_title;
+            CGSize infoSize = CGSizeMake(tableView.frame.size.width - 40, 1000);
+            NSDictionary *dic = @{NSFontAttributeName : [UIFont systemFontOfSize:19.f]};
+            
+            CGRect infoRect = [info boundingRectWithSize:infoSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil];
+            
+            return 40 + ceil(infoRect.size.height);
         }
         NSString *info = _contentArr[indexPath.row -1];
         CGSize infoSize = CGSizeMake(tableView.frame.size.width - 40, 1000);
@@ -149,6 +165,8 @@ UITableViewDelegate
             }
             cell.textLabel.text = _questionInfoModel.question_title;
             cell.textLabel.font = kFONT_SIZE_18_BOLD;
+            cell.textLabel.numberOfLines = 0;
+            [cell.textLabel sizeToFit];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }

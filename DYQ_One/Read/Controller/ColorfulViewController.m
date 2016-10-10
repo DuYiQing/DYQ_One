@@ -12,6 +12,7 @@
 #import "ColorfulTableViewCell.h"
 #import "UIImageView+XLWebCache.h"
 #import "UIImage+Categories.h"
+#import "UIColor+Categories.h"
 
 static NSString *const tableViewCell = @"cell";
 
@@ -26,6 +27,7 @@ UITableViewDelegate
 @property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, retain) UIButton *backButton;
 @property (nonatomic, retain) UIImageView *footerImageView;
+@property (nonatomic, retain) UIColor *bgColor;
 
 @end
 
@@ -33,6 +35,10 @@ UITableViewDelegate
 
 - (void)dealloc {
     [_colorfulArr release];
+    [_tableView release];
+    [_backButton release];
+    [_footerImageView release];
+    [_bgColor release];
     [super dealloc];
 }
 
@@ -40,35 +46,31 @@ UITableViewDelegate
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor purpleColor];
     
     self.colorfulArr = [NSMutableArray array];
-    
-    
-    
-    
+
     [self data];
+    self.bgColor = [UIColor colorWithHexString:_backgroundColor andAlpha:1.0f];
+    self.view.backgroundColor = _bgColor;
 }
 
 - (void)getView {
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
     _tableView.showsVerticalScrollIndicator = NO;
-    NSLog(@"%lf", _tableView.bounds.size.height);
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.backgroundColor = [UIColor purpleColor];
+    _tableView.backgroundColor = _bgColor;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0);
+    _tableView.contentInset = UIEdgeInsetsMake(30, 0, 20, 0);
     _tableView.rowHeight = 130;
     [self.view addSubview:_tableView];
     [_tableView release];
-    
-//    [_tableView registerClass:[ColorfulTableViewCell class] forCellReuseIdentifier:tableViewCell];
+
     
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backButton.frame = CGRectMake(15, 0, 15, 15);
+    _backButton.frame = CGRectMake(15, 30, 15, 15);
     [_backButton setImage:[UIImage imageNamed:@"X.png"] forState:UIControlStateNormal];
-    [_tableView addSubview:_backButton];
+    [self.view addSubview:_backButton];
     [_backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 
     
@@ -85,7 +87,7 @@ UITableViewDelegate
     
     
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tableView.bounds.size.width, SCREEN_HEIGHT)];
-    footerView.backgroundColor = [UIColor purpleColor];
+    footerView.backgroundColor = _bgColor;
     
     UILabel *footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, SCREEN_HEIGHT / 3, SCREEN_WIDTH - 60, 40)];
 //    footerLabel.backgroundColor = [UIColor redColor];
@@ -116,6 +118,17 @@ UITableViewDelegate
     
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat height = scrollView.contentSize.height - SCREEN_HEIGHT + 20;
+
+    CGFloat imageHeight = SCREEN_HEIGHT / 4 + (scrollView.contentOffset.y - height);
+    CGFloat scale = (SCREEN_HEIGHT / 4) / SCREEN_WIDTH;
+    
+    if (scrollView.contentOffset.y >= height) {
+        _footerImageView.frame = CGRectMake(-((imageHeight / scale) - SCREEN_WIDTH) / 2, SCREEN_HEIGHT / 4 * 3, imageHeight / scale, imageHeight);
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _colorfulArr.count;
 }
@@ -127,7 +140,7 @@ UITableViewDelegate
         cell.colorfulModel = _colorfulArr[indexPath.row];
     }
 
-    cell.backgroundColor = [UIColor purpleColor];
+    cell.backgroundColor = _bgColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

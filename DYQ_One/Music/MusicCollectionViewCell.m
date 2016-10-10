@@ -208,6 +208,9 @@ UITableViewDelegate
         return _storyArr.count + 2;
     }
     if (1 == section) {
+        if (_commentArr.count < 8) {
+            return _commentArr.count;
+        }
         return 8;
     }
     if (2 == section) {

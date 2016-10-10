@@ -220,8 +220,7 @@ ListCollectionViewCellDelegate
     colorfulVC.top_text = scrollViewModel.title;
     colorfulVC.bottom_text = scrollViewModel.bottom_text;
     colorfulVC.imageURLString = scrollViewModel.cover;
-    NSLog(@"text : %@", colorfulVC.bottom_text);
-    NSLog(@"%@", colorfulVC.imageId);
+    colorfulVC.backgroundColor = scrollViewModel.bgcolor;
     [self presentViewController:colorfulVC animated:YES completion:nil];
     [colorfulVC release];
 }

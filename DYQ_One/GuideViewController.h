@@ -10,4 +10,5 @@
 
 @interface GuideViewController : UIViewController
 
+//@property (nonatomic, retain) UITabBarController *rootTabBarController;
 @end

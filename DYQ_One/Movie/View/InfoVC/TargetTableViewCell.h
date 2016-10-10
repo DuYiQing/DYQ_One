@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+FOUNDATION_EXTERN NSString *const ActorMode;
+FOUNDATION_EXTERN NSString *const TargetMode;
+
 @interface TargetTableViewCell : UITableViewCell
+
+@property (nonatomic, retain) UILabel *actorInfoLabel;
+
+@property (nonatomic, retain) NSArray *targetArr;
+
+- (void)displayWithMode:(NSString *)modeName;
 
 @end

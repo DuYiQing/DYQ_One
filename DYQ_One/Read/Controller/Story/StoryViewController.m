@@ -79,7 +79,7 @@ UICollectionViewDataSource
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     _contentID = _essayIDArr[_currentSection];
-    NSLog(@"contentID : %@", _contentID);
+
     NSMutableString *urlString = [@"http://v3.wufazhuce.com:8000/api/essay/" mutableCopy];
     [urlString appendString:_contentID];
     [HttpClient GETWithURLString:urlString success:^(id result) {

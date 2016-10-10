@@ -21,6 +21,8 @@
 #import "MJRefresh.h"
 #import <AVFoundation/AVFoundation.h>
 #import "BH_AVPlayerView.h"
+#import "TargetTableViewCell.h"
+#import "MovieTargetSectionHeaderView.h"
 
 static NSString *const movieCell = @"movieCell";
 
@@ -28,7 +30,8 @@ static NSString *const movieCell = @"movieCell";
 
 <
 UITableViewDataSource,
-UITableViewDelegate
+UITableViewDelegate,
+MovieTargetSectionHeaderViewDelegate
 >
 
 @property (nonatomic, retain) UITableView *movieTableView;
@@ -38,6 +41,11 @@ UITableViewDelegate
 @property (nonatomic, retain) NSMutableArray *commentArr;
 @property (nonatomic, copy) NSString *commentNumber;
 @property (nonatomic, retain) BH_AVPlayerView *playerView;
+@property (nonatomic, retain) NSArray *targetArr;
+@property (nonatomic, assign) NSInteger buttonTag;
+@property (nonatomic, retain) UIButton *backButton;
+@property (nonatomic, retain) TargetTableViewCell *targetCell;
+@property (nonatomic, retain) UITableViewCell *actorsCell;
 
 
 @end
@@ -51,6 +59,10 @@ UITableViewDelegate
     [_commentArr release];
     [_commentNumber release];
     [_playerView release];
+    [_targetArr release];
+    [_targetCell release];
+    [_actorsCell release];
+    [_backButton release];
     [super dealloc];
 }
 
@@ -63,6 +75,7 @@ UITableViewDelegate
     self.movieStoryArr = [NSMutableArray array];
     self.contentArr = [NSArray array];
     self.commentArr = [NSMutableArray array];
+
     [self data];
 }
 
@@ -81,7 +94,10 @@ UITableViewDelegate
         return 1;
     }
     if (3 == section) {
-        return 8;
+        if (_commentArr.count >= 8) {
+            return 8;
+        }
+        return _commentArr.count;
     }
     if (4 == section) {
         return _commentArr.count - 8;
@@ -123,13 +139,28 @@ UITableViewDelegate
     return 130;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (2 == section) {
+        MovieTargetSectionHeaderView *view = [[[MovieTargetSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)] autorelease];
+        view.delegate = self;
+        return view;
+    }
+    return 0;
+}
+
+- (void)getButtonTag:(NSInteger)tag {
+    self.buttonTag = tag;
+
+    [_movieTableView reloadData];
+    
+    NSLog(@"buttonTag : %ld", _buttonTag);
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (0 == section) {
         return @"电影故事";
     }
-    if (2 == section) {
-        return @"一个电影表";
-    }
+
     if (3 == section) {
         return @"评论列表";
     }
@@ -177,15 +208,19 @@ UITableViewDelegate
         return cell;
     }
     if (2 == indexPath.section) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"target"];
-        if (nil == cell) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"target"] autorelease];
+        
+        TargetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"target"];
+        if (nil == _targetCell) {
+            cell = [[[TargetTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"target"] autorelease];
         }
-        cell.textLabel.text = _movieInfoModel.info;
-        cell.textLabel.font = kFONT_SIZE_12_BOLD;
-        cell.textLabel.numberOfLines = 0;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        NSString *modeName = _buttonTag == 1012 ? ActorMode : TargetMode;
+            cell.actorInfoLabel.text = _movieInfoModel.info;
+            cell.targetArr = _targetArr;
+        [cell displayWithMode:modeName];
+        
         return cell;
+        
     }
     if (3 == indexPath.section) {
         BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"hot%@%ld", movieCell, indexPath.row]];
@@ -241,6 +276,16 @@ UITableViewDelegate
     
     // 注册一个监听屏幕切换的通知中心
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(statuesBarChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+    
+    self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backButton.frame = CGRectMake(SCREEN_WIDTH - 25, 5, 20, 20);
+    [_backButton setImage:[UIImage imageNamed:@"X.png"] forState:UIControlStateNormal];
+    [_playerView addSubview:_backButton];
+    [_backButton addTarget:self action:@selector(backButtonAction) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)backButtonAction {
+    [_playerView pause];
+    [_playerView removeFromSuperview];
 }
 // 监听事件
 - (void)statuesBarChanged:(NSNotification *)sender{
@@ -249,9 +294,15 @@ UITableViewDelegate
     // 如果Home键向下(默认情况)或者是向上
     if (statues == UIInterfaceOrientationPortrait || statues == UIInterfaceOrientationPortraitUpsideDown) {
         _playerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.3);
-        // 如果Home键靠左或者靠右
+        
+        _backButton.frame = CGRectMake(SCREEN_WIDTH - 25, 5, 20, 20);
+        [_backButton setImage:[UIImage imageNamed:@"X.png"] forState:UIControlStateNormal];
+        [_playerView addSubview:_backButton];
+        [_backButton addTarget:self action:@selector(backButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    // 如果Home键靠左或者靠右
     }else if (statues == UIInterfaceOrientationLandscapeLeft || statues == UIInterfaceOrientationLandscapeRight){
         _playerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        [_backButton removeFromSuperview];
     }
 }
 
@@ -283,7 +334,8 @@ UITableViewDelegate
     [HttpClient GETWithURLString:urlString success:^(id result) {
         NSDictionary *dataDic = [result objectForKey:@"data"];
         self.movieInfoModel = [MovieInfoModel mj_objectWithKeyValues:dataDic];
-
+        self.targetArr = [_movieInfoModel.keywords componentsSeparatedByString:@";"];
+//        NSLog(@"%@", _targetArr);
     } failure:^(id error) {
         NSLog(@"error : %@", error);
     }];

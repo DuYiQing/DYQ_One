@@ -63,7 +63,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
+
+
     // 首页
     RootViewController *rootVC = [[RootViewController alloc] init];
     UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:rootVC];
@@ -73,7 +74,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     UIImage *rootSelectedImage = [UIImage imageNamed:@"Unknown-3.png"];
     rootSelectedImage = [rootSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     rootNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:rootImage selectedImage:rootSelectedImage];
-
+    
     
     // 阅读
     ReadViewController *readVC = [[ReadViewController alloc] init];
@@ -84,7 +85,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     UIImage *readSelectedImage = [UIImage imageNamed:@"Unknown-5.png"];
     readSelectedImage = [readSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     readNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"阅读" image:readImage selectedImage:readSelectedImage];
-
+    
     
     
     // 音乐
@@ -96,7 +97,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     UIImage *musicSelectedImage = [UIImage imageNamed:@"Unknown-7.png"];
     musicSelectedImage = [musicSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     musicNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"音乐" image:musicImage selectedImage:musicSelectedImage];
-
+    
     
     
     //电影
@@ -108,8 +109,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     UIImage *movieSelectedImage = [UIImage imageNamed:@"Unknown-9.png"];
     movieSelectedImage = [movieSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     movieNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"电影" image:movieImage selectedImage:movieSelectedImage];
-
-   
+    
+    
     
     // 标签视图控制器
     UITabBarController *rootTabBarController = [[UITabBarController alloc] init];
@@ -120,8 +121,20 @@ void uncaughtExceptionHandler(NSException *exception) {
     rootTabBarController.tabBar.translucent = NO;
     
     
-    self.window.rootViewController = rootTabBarController;
-//    self.window.rootViewController = [[GuideViewController alloc] init];
+////     使用NSUserDefaults 读取用户数据
+//    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+////     判断是否第一次进入应用
+//    if (![userDef boolForKey:@"notFirst"]) {
+////         如果是第一次,进入引导页
+//        GuideViewController *guideViewController = [[GuideViewController alloc] init];
+//        self.window.rootViewController = guideViewController;
+//        [guideViewController release];
+    
+//    } else {
+//        // 否则直接进入应用
+        self.window.rootViewController = rootTabBarController;
+//
+//    }
     [rootVC release];
     [rootNavigationController release];
     [readVC release];
@@ -130,7 +143,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     [musicNavigationController release];
     [movieVC release];
     [movieNavigationController release];
+    
     [rootTabBarController release];
+
     [_window release];
     
     

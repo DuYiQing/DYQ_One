@@ -14,5 +14,6 @@
 @property (nonatomic, copy) NSString *top_text;
 @property (nonatomic, copy) NSString *bottom_text;
 @property (nonatomic, copy) NSString *imageURLString;
+@property (nonatomic, copy) NSString *backgroundColor;
 
 @end

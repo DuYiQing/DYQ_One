@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		400454C61DAA60DB00669FA7 /* MovieTargetSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 400454C51DAA60DB00669FA7 /* MovieTargetSectionHeaderView.m */; };
+		400454C81DAA63AE00669FA7 /* keywords.png in Resources */ = {isa = PBXBuildFile; fileRef = 400454C71DAA63AE00669FA7 /* keywords.png */; };
+		400454CA1DAA63B200669FA7 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = 400454C91DAA63B200669FA7 /* picture.png */; };
+		400454CC1DAA63B600669FA7 /* actors.png in Resources */ = {isa = PBXBuildFile; fileRef = 400454CB1DAA63B600669FA7 /* actors.png */; };
 		408A8F661D9E09B5000E4761 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8F651D9E09B5000E4761 /* CommentModel.m */; };
 		408A8FE21D9E65D2000E4761 /* ReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CA931D90CBDD002D3EF2 /* ReadViewController.m */; };
 		408A900C1D9E65F3000E4761 /* NSArray+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FE61D9E65F3000E4761 /* NSArray+Categories.m */; };
@@ -137,6 +141,11 @@
 /* Begin PBXFileReference section */
 		0F7ECDA7C8D9A9BDF5F0A587 /* Pods-DYQ_One.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DYQ_One.release.xcconfig"; path = "Pods/Target Support Files/Pods-DYQ_One/Pods-DYQ_One.release.xcconfig"; sourceTree = "<group>"; };
 		35AD2A44E3AF407ED8980F21 /* libPods-DYQ_One.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DYQ_One.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		400454C41DAA60DB00669FA7 /* MovieTargetSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTargetSectionHeaderView.h; sourceTree = "<group>"; };
+		400454C51DAA60DB00669FA7 /* MovieTargetSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTargetSectionHeaderView.m; sourceTree = "<group>"; };
+		400454C71DAA63AE00669FA7 /* keywords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keywords.png; sourceTree = "<group>"; };
+		400454C91DAA63B200669FA7 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
+		400454CB1DAA63B600669FA7 /* actors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = actors.png; sourceTree = "<group>"; };
 		408A8F641D9E09B5000E4761 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		408A8F651D9E09B5000E4761 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		408A8FE51D9E65F3000E4761 /* NSArray+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Categories.h"; sourceTree = "<group>"; };
@@ -742,6 +751,8 @@
 				49D187F31D9BE3E800F55888 /* MovieInfoTableViewCell.m */,
 				40F999E21DA5FD1A00E9B4D3 /* TargetTableViewCell.h */,
 				40F999E31DA5FD1A00E9B4D3 /* TargetTableViewCell.m */,
+				400454C41DAA60DB00669FA7 /* MovieTargetSectionHeaderView.h */,
+				400454C51DAA60DB00669FA7 /* MovieTargetSectionHeaderView.m */,
 			);
 			path = InfoVC;
 			sourceTree = "<group>";
@@ -866,6 +877,9 @@
 		49F6CABB1D90FCB1002D3EF2 /* 素材 */ = {
 			isa = PBXGroup;
 			children = (
+				400454C91DAA63B200669FA7 /* picture.png */,
+				400454CB1DAA63B600669FA7 /* actors.png */,
+				400454C71DAA63AE00669FA7 /* keywords.png */,
 				40F99A711DA8A64B00E9B4D3 /* robot.png */,
 				40F999971DA3EF6D00E9B4D3 /* 3.gif */,
 				40F999EA1DA6370C00E9B4D3 /* back.png */,
@@ -1050,10 +1064,13 @@
 				49F6CA3E1D90C0DC002D3EF2 /* Assets.xcassets in Resources */,
 				40F999941DA3DD3900E9B4D3 /* QQ.png in Resources */,
 				49F6CAD61D90FCB1002D3EF2 /* Unknown-17.png in Resources */,
+				400454C81DAA63AE00669FA7 /* keywords.png in Resources */,
 				40F84D471DA0B2A400D6A8E7 /* musicPlay.png in Resources */,
+				400454CC1DAA63B600669FA7 /* actors.png in Resources */,
 				49F6CAD21D90FCB1002D3EF2 /* Unknown-13.png in Resources */,
 				49F6CAD01D90FCB1002D3EF2 /* Unknown-11.png in Resources */,
 				40F999D91DA5E80900E9B4D3 /* icon_pause@3x.png in Resources */,
+				400454CA1DAA63B200669FA7 /* picture.png in Resources */,
 				49F6CADD1D90FCB1002D3EF2 /* Unknown-8.png in Resources */,
 				49F6CACE1D90FCB1002D3EF2 /* Unknown-1.png in Resources */,
 				40F999DE1DA5E80900E9B4D3 /* icon_progress@2x.png in Resources */,
@@ -1175,6 +1192,7 @@
 				496DD9711D93FCF700D5781A /* EssayModel.m in Sources */,
 				408A90141D9E65F3000E4761 /* UIButton+Block.m in Sources */,
 				408A901B1D9E65F3000E4761 /* FileManagerUtils.m in Sources */,
+				400454C61DAA60DB00669FA7 /* MovieTargetSectionHeaderView.m in Sources */,
 				49987C111D96ACEB00E8F9ED /* ContentTableViewCell.m in Sources */,
 				408A900C1D9E65F3000E4761 /* NSArray+Categories.m in Sources */,
 				49F6CABA1D90DD98002D3EF2 /* ImageLabelView.m in Sources */,

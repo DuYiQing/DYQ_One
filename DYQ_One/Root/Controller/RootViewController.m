@@ -36,6 +36,9 @@ UIScrollViewDelegate
 
 - (void)dealloc {
     [_rootDataArr release];
+    [_scrollViewArr release];
+    [_tableView release];
+    [_rootScrollView release];
     [super dealloc];
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -97,12 +100,27 @@ UIScrollViewDelegate
     [self.view addSubview:likeView];
     [likeView release];
     
+    UITapGestureRecognizer *likeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
+    [likeView addGestureRecognizer:likeTap];
+    [likeTap release];
+    
     UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
     shareButton.frame = CGRectMake(SCREEN_WIDTH  - 50, noteImageView.frame.origin.y - 5, 20, 30);
     [shareButton setImage:[UIImage imageNamed:@"Unknown-13.png"] forState:UIControlStateNormal];
     [self.view addSubview:shareButton];
+    [shareButton addTarget:self action:@selector(shareButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
 }
+
+- (void)shareButtonAction {
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[@"share"] applicationActivities:nil];
+    activityVC.excludedActivityTypes = @[UIActivityTypeMail, UIActivityTypeMessage, UIActivityTypeSaveToCameraRoll, UIActivityTypePrint];
+    [self presentViewController:activityVC animated:YES completion:nil];
+    [activityVC release];
+}
+
+
 - (void)tapAction {
     LoginViewController *loginVC = [[LoginViewController alloc]init];
     [self presentViewController:loginVC animated:YES completion:nil];

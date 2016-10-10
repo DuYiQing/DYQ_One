@@ -53,6 +53,7 @@ UITableViewDelegate
         _listTableView.dataSource = self;
         _listTableView.delegate = self;
         _listTableView.rowHeight = 150;
+        _listTableView.showsVerticalScrollIndicator = NO;
         _listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.contentView addSubview:_listTableView];
         [_listTableView release];

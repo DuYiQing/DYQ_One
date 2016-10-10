@@ -110,11 +110,23 @@ UITableViewDelegate
     return 0;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (4 == section) {
+        return 20;
+    }
+    if (5 == section) {
+        return 20;
+    }
+    return 0.1f;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (2 == section) {
         return _contentArr.count;
     } else if (4 == section) {
+        if (_commentArr.count < 8) {
+            return _commentArr.count;
+        }
         return 8;
     } else if (5 == section) {
         return _commentArr.count - 8;

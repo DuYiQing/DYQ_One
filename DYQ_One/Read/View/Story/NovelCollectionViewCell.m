@@ -132,10 +132,12 @@ UITableViewDelegate
         return _contentArr.count;
     }
     if (4 == section) {
+        if (_commentArr.count < 8) {
+            return _commentArr.count;
+        }
         return 8;
     }
     if (5 == section) {
-//        NSLog(@"comment : %ld", _commentArr.count);
         return _commentArr.count - 8;
     }
     return 1;

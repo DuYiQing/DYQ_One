@@ -12,6 +12,7 @@
 #import "MJExtension.h"
 #import "MovieTableViewCell.h"
 #import "MovieInfoViewController.h"
+#import "MJRefresh.h"
 
 static NSString *const movieCell = @"movieCell";
 
@@ -22,10 +23,18 @@ UITableViewDelegate
 >
 @property (nonatomic, retain) NSMutableArray *movieArr;
 @property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, copy) NSString *movieID;
 
 @end
 
 @implementation MovieViewController
+
+- (void)dealloc {
+    [_movieArr release];
+    [_movieID release];
+    [_tableView release];
+    [super dealloc];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = NO;
@@ -37,9 +46,31 @@ UITableViewDelegate
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.navigationItem.title = @"电影";
     self.movieArr = [NSMutableArray array];
-    
-    
+    self.movieID = 0;
     [self data];
+
+}
+
+- (void)Loading {
+    MovieModel *movieModel = [_movieArr lastObject];
+    _movieID = movieModel.movieID;
+    [self refreshMovieList];
+    [_tableView reloadData];
+    [_tableView.mj_footer endRefreshing];
+}
+
+- (void)refreshMovieList {
+
+    [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/movie/list/%@", _movieID] success:^(id result) {
+        
+        NSArray *dataArr = [result objectForKey:@"data"];
+        for (NSDictionary *dataDic in dataArr) {
+            MovieModel *movieModel = [MovieModel mj_objectWithKeyValues:dataDic];
+            [_movieArr addObject:movieModel];
+        }
+    } failure:^(id error) {
+        NSLog(@"error : %@", error);
+    }];
 
 }
 
@@ -50,6 +81,8 @@ UITableViewDelegate
     _tableView.rowHeight = SCREEN_HEIGHT / 4;
     [self.view addSubview:_tableView];
     [_tableView release];
+    
+    _tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(Loading)];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -78,7 +111,7 @@ UITableViewDelegate
     
 }
 - (void)data {
-    [HttpClient GETWithURLString:@"http://v3.wufazhuce.com:8000/api/movie/list/0" success:^(id result) {
+    [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/movie/list/%@", _movieID] success:^(id result) {
 
         NSArray *dataArr = [result objectForKey:@"data"];
         for (NSDictionary *dataDic in dataArr) {
@@ -96,14 +129,5 @@ UITableViewDelegate
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

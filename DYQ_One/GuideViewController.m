@@ -8,74 +8,86 @@
 
 #import "GuideViewController.h"
 #import "RootViewController.h"
+#import "UIImage+GIF.h"
+#import "RootViewController.h"
+#import "ReadViewController.h"
+#import "MusicViewController.h"
+#import "MovieViewController.h"
 
 @interface GuideViewController ()
 <
-UIScrollViewDelegate
+UIScrollViewDelegate,
+UITabBarControllerDelegate
 >
 @property (nonatomic, retain) UIPageControl *pageControl;
+@property (nonatomic, assign) BOOL flag;
+
 
 @end
 
 @implementation GuideViewController
+- (void)dealloc {
+    [_pageControl release];
+//    [_rootTabBarController release];
+    [super dealloc];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIScrollView *guideScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    for (int i = 1; i <= 4; i++) {
+        self.view.backgroundColor = [UIColor colorWithRed:0.9765 green:0.9843 blue:1.0 alpha:1.0];
         
-         NSData *gif = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%d", i] ofType:@"gif"]];
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH  * (i - 1), 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        webView.userInteractionEnabled = NO;
-        [webView loadData:gif MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
-//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * (i - 1), 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//        imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d.gif",i]];
-        if (4 == i) {
-//            imageView.userInteractionEnabled = YES;
+        UIScrollView *guideScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+        for (int i = 1; i < 5; i++) {
+            NSString  *name = [NSString stringWithFormat:@"%d.gif", i];
+            NSString  *filePath = [[NSBundle bundleWithPath:[[NSBundle mainBundle] bundlePath]] pathForResource:name ofType:nil];
+            NSData  *imageData = [NSData dataWithContentsOfFile:filePath];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * (i - 1), SCREEN_HEIGHT / 6, SCREEN_WIDTH, SCREEN_HEIGHT / 3 * 2)];
+            imageView.image = [UIImage sd_animatedGIFWithData:imageData];
             
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-            button.frame = CGRectMake(SCREEN_WIDTH / 3, SCREEN_HEIGHT * 7 / 8, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 16);
-            [button setTitle:@"点击进入" forState:UIControlStateNormal];
-            
-            // 设置圆角
-            button.layer.borderWidth = 2;
-            button.layer.cornerRadius = 5;
-            button.clipsToBounds = YES;
-            // 设置边框颜色
-            button.layer.borderColor = [UIColor cyanColor].CGColor;
-            [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-            [webView addSubview:button];
+            if (4 == i) {
+                imageView.userInteractionEnabled = YES;
+                
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+                button.frame = CGRectMake(SCREEN_WIDTH / 3, imageView.bounds.size.height / 8 * 7, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 16);
+                [button setTitle:@"进入 ONE 3.0" forState:UIControlStateNormal];
+                
+                // 设置圆角
+                button.layer.borderWidth = 1;
+                button.layer.cornerRadius = 5;
+                button.clipsToBounds = YES;
+                // 设置边框颜色
+                button.layer.borderColor = [UIColor lightGrayColor].CGColor;
+                [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+                [imageView addSubview:button];
+            }
+            [guideScrollView addSubview:imageView];
         }
-        [guideScrollView addSubview:webView];
-    }
-    guideScrollView.pagingEnabled = YES;
-    // 关闭回弹效果
-    guideScrollView.bounces = NO;
-    
-    guideScrollView.showsHorizontalScrollIndicator = NO;
-    guideScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 3, SCREEN_HEIGHT);
-    guideScrollView.delegate = self;
-    [self.view addSubview:guideScrollView];
-    
-    _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 16 * 15, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 16)];
-    _pageControl.numberOfPages = 4;
-    _pageControl.pageIndicatorTintColor = [UIColor colorWithRed:0.2377 green:0.7966 blue:0.9988 alpha:0.59];
-    _pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0.6365 green:0.8182 blue:1.0 alpha:1.0];
-    [self.view addSubview:_pageControl];
+        guideScrollView.pagingEnabled = YES;
+        // 关闭回弹效果
+        guideScrollView.bounces = NO;
+        
+        guideScrollView.showsHorizontalScrollIndicator = NO;
+        guideScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 4, SCREEN_HEIGHT);
+        guideScrollView.delegate = self;
+        [self.view addSubview:guideScrollView];
+        
+        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 16 * 15, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 16)];
+        _pageControl.numberOfPages = 4;
+        _pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0.3596 green:0.4874 blue:0.6305 alpha:1.0];
+        _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+        [self.view addSubview:_pageControl];
     
 }
 
 - (void)buttonAction:(UIButton *)button {
     
-//    flag = YES;
+//    self.flag = YES;
 //    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-//    [userDef setBool:flag forKey:@"notFirst"];
+//    [userDef setBool:_flag forKey:@"notFirst"];
 //    [userDef synchronize];
-    
-    self.view.window.rootViewController = [[RootViewController alloc] init];
-    
+
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -83,7 +95,6 @@ UIScrollViewDelegate
     _pageControl.currentPage = (NSInteger)(scrollView.contentOffset.x) / [UIScreen mainScreen].bounds.size.width;
     
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
