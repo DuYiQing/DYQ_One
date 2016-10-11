@@ -29,6 +29,8 @@ UICollectionViewDelegate
 @property (nonatomic, retain) NSMutableArray *serialArr;
 @property (nonatomic, retain) SerialModel *serialModel;
 @property (nonatomic, retain) NSMutableArray *commentArr;
+@property (nonatomic, assign) CGFloat contentOffsetX;
+@property (nonatomic, assign) NSInteger index;
 
 @end
 
@@ -49,6 +51,7 @@ UICollectionViewDelegate
     
     self.serialArr = [NSMutableArray array];
     self.commentArr = [NSMutableArray array];
+    self.index = 0;
     [self data];
     
 }
@@ -70,6 +73,55 @@ UICollectionViewDelegate
     [_serialCollectionView release];
     
     [_serialCollectionView registerClass:[SerialCollectionViewCell class] forCellWithReuseIdentifier:serialCollectionViewCell];
+
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.contentOffsetX = scrollView.contentOffset.x;
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if ((scrollView.contentOffset.x >= _contentOffsetX) && (_index <= 8) && (_index >= 0)) {
+        _index++;
+    }
+    if ((scrollView.contentOffset.x < _contentOffsetX) && (_index >= 1) && (_index <= 9)) {
+        _index--;
+    }
+    _contentID = _serialIDArr[_index];
+    NSMutableString *urlString = [@"http://v3.wufazhuce.com:8000/api/serialcontent/" mutableCopy];
+    [urlString appendString:_contentID];
+    
+    [HttpClient GETWithURLString:urlString success:^(id result) {
+        NSDictionary *dataDic = [result objectForKey:@"data"];
+        NSString *content = [dataDic objectForKey:@"content"];
+        self.contentArr = [content componentsSeparatedByString:@"<br>"];
+        for (int i = 0; i < _contentArr.count; i++) {
+            if ([_contentArr[i] isEqualToString:@"\n"]) {
+                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
+                [_contentArr removeObjectAtIndex:index];
+            }
+            if ([_contentArr[i] isEqualToString:@"\r\n"]) {
+                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
+                [_contentArr removeObjectAtIndex:index];
+            }
+        }
+        
+        self.serialModel = [SerialModel mj_objectWithKeyValues:dataDic];
+        [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/serial/%@/0", _contentID] success:^(id result) {
+
+            NSDictionary *dataDic = [result objectForKey:@"data"];
+            NSArray *dataArr = [dataDic objectForKey:@"data"];
+            for (NSDictionary *commentDic in dataArr) {
+                CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:commentDic];
+                [_commentArr addObject:commentModel];
+            }
+            [_serialCollectionView reloadData];
+//            [self getView];
+        } failure:^(id error) {
+            NSLog(@"error : %@", error);
+        }];
+        [_serialCollectionView reloadData];
+    } failure:^(id error) {
+        NSLog(@"%@", error);
+    }];
 
 }
 

@@ -23,6 +23,7 @@
 #import "BH_AVPlayerView.h"
 #import "TargetTableViewCell.h"
 #import "MovieTargetSectionHeaderView.h"
+#import "TopAuthorTableViewCell.h"
 
 static NSString *const movieCell = @"movieCell";
 
@@ -266,6 +267,7 @@ MovieTargetSectionHeaderViewDelegate
     
 }
 - (void)tapAction {
+    
     // 创建已经封装好的BH_AVPlayerView类
     self.playerView = [[BH_AVPlayerView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.3)];
     [self.view addSubview:_playerView];

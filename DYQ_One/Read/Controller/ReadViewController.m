@@ -50,6 +50,7 @@ ListCollectionViewCellDelegate
 @property (nonatomic, retain) UICollectionView *collectionView;
 @property (nonatomic, retain) NSMutableArray *serialIDArr;
 @property (nonatomic, retain) NSMutableArray *essayIDArr;
+@property (nonatomic, retain) NSMutableArray *questionIDArr;
 
 
 @end
@@ -64,6 +65,7 @@ ListCollectionViewCellDelegate
     [_questionArr release];
     [_serialIDArr release];
     [_essayIDArr release];
+    [_questionIDArr release];
     [super dealloc];
 }
 
@@ -79,6 +81,7 @@ ListCollectionViewCellDelegate
     self.questionArr = [NSMutableArray array];
     self.serialIDArr = [NSMutableArray array];
     self.essayIDArr = [NSMutableArray array];
+    self.questionIDArr = [NSMutableArray array];
     [self data];
     
     
@@ -161,6 +164,7 @@ ListCollectionViewCellDelegate
         QuestionModel *questionModel = _questionArr[_currentIndex];
         QuestionViewController *questionVC = [[QuestionViewController alloc] init];
         questionVC.contentID = questionModel.question_id;
+        questionVC.questionIDArr = _questionIDArr;
         [self.navigationController pushViewController:questionVC animated:YES];
         [questionVC release];
     }
@@ -199,6 +203,7 @@ ListCollectionViewCellDelegate
         for (NSDictionary *questionDic in questionArr) {
             QuestionModel *questionModel = [QuestionModel mj_objectWithKeyValues:questionDic];
             [_questionArr addObject:questionModel];
+            [_questionIDArr addObject:questionModel.question_id];
         }
 
         [_collectionView reloadData];

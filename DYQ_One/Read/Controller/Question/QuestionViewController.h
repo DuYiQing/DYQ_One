@@ -11,5 +11,6 @@
 @interface QuestionViewController : UIViewController
 
 @property (nonatomic, copy) NSString *contentID;
+@property (nonatomic, retain) NSArray *questionIDArr;
 
 @end

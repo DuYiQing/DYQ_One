@@ -25,6 +25,8 @@ UICollectionViewDelegate
 @property (nonatomic, retain) NSArray *contentArr;
 @property (nonatomic, retain) NSMutableArray *commentArr;
 @property (nonatomic, retain) CommentModel *commentModel;
+@property (nonatomic, assign) CGFloat contentOffsetX;
+@property (nonatomic, assign) NSInteger index;
 
 
 @end
@@ -45,6 +47,7 @@ UICollectionViewDelegate
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.commentArr = [NSMutableArray array];
+    self.index = 0;
     [self data];
 }
 
@@ -68,6 +71,38 @@ UICollectionViewDelegate
     [_questionCV registerClass:[QuestionCollectionViewCell class] forCellWithReuseIdentifier:collectionViewCell];
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.contentOffsetX = scrollView.contentOffset.x;
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if ((scrollView.contentOffset.x >= _contentOffsetX) && (_index <= 8) && (_index >= 0)) {
+        _index++;
+    }
+    if ((scrollView.contentOffset.x < _contentOffsetX) && (_index >= 1) && (_index <= 9)) {
+        _index--;
+    }
+    _contentID = _questionIDArr[_index];
+    [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/question/%@", _contentID] success:^(id result) {
+        NSDictionary *dataDic = [result objectForKey:@"data"];
+        self.questionInfoModel = [QuestionInfoModel mj_objectWithKeyValues:dataDic];
+        self.contentArr = [_questionInfoModel.answer_content componentsSeparatedByString:@"<br>\n"];
+        [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/question/%@/0", _contentID] success:^(id result) {
+            NSDictionary *tempDic = [result objectForKey:@"data"];
+            NSArray *dataArr = [tempDic objectForKey:@"data"];
+            for (NSDictionary *dataDic in dataArr) {
+                self.commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
+                [_commentArr addObject:_commentModel];
+            }
+        } failure:^(id error) {
+            NSLog(@"error : %@", error);
+        }];
+        [_questionCV reloadData];
+    } failure:^(id error) {
+        NSLog(@"error : %@", error);
+    }];
+
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 10;
 }
@@ -76,6 +111,7 @@ UICollectionViewDelegate
     cell.questionInfoModel = _questionInfoModel;
     cell.contentArr = _contentArr;
     cell.commentArr = _commentArr;
+
     return cell;
 }
 

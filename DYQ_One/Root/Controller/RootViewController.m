@@ -15,6 +15,7 @@
 #import "LikeView.h"
 #import "LoginViewController.h"
 #import "MJRefresh.h"
+#import "UIImage+Categories.h"
 
 static NSString *const rootCell = @"rootCell";
 
@@ -55,10 +56,6 @@ UIScrollViewDelegate
     self.scrollViewArr = [NSMutableArray array];
 
     [self data];
-    
-    
-    
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -143,12 +140,12 @@ UIScrollViewDelegate
     [_tableView addSubview:_rootScrollView];
     [_rootScrollView release];
     
-    
     _tableView.rowHeight = _rootScrollView.bounds.size.height;
     
     for (int i = 0; i < _rootDataArr.count; i++) {
         ImageLabelView *imageLabelView = [[ImageLabelView alloc] initWithFrame:CGRectMake(i * SCREEN_WIDTH + 10 , 10, SCREEN_WIDTH - 20, 400)];
         imageLabelView.rootModel = _rootDataArr[i];
+        imageLabelView.userInteractionEnabled = YES;
         [_rootScrollView addSubview:imageLabelView];
         [imageLabelView release];
     }

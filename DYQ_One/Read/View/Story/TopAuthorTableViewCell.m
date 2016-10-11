@@ -23,7 +23,8 @@
 @property (nonatomic, retain) UIButton *playButton;
 @property (nonatomic, retain) UILabel *playLabel;
 @property (nonatomic, retain) AVPlayer *player;
-@property (nonatomic, assign) BOOL isPlaying;
+
+@property (nonatomic, copy) NSString *audioString;
 
 
 @end
@@ -32,7 +33,12 @@
 @implementation TopAuthorTableViewCell
 - (void)dealloc {
     [_playButton release];
+    [_headImageView release];
+    [_nameLabel release];
+    [_dateLabel release];
+    [_player release];
     [_playLabel release];
+    [_audioString release];
     [super dealloc];
 }
 
@@ -65,6 +71,13 @@
         self.playButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
         [self.contentView addSubview:_playButton];
+        [_playButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
+            if (!_isPlaying) {
+                [self playNovel:_audioString];
+            } else {
+                [self stopPlayingNovel];
+            }
+        }];
 
         
         self.playLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -102,32 +115,8 @@
         _nameLabel.text = novelModel.hp_author;
         NSString *maketime = [novelModel.hp_makettime substringToIndex:11];
         _dateLabel.text = maketime;
-        [_playButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
-            [_playButton setImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
-            // 路径
-            NSURL *url = [NSURL URLWithString:novelModel.audio];
-            // 通过URL创建视频内容对象
-            AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
-            // 创建视频播放器对象, 需要AVPlayerItem进行初始化
-            self.player = [[[AVPlayer alloc] initWithPlayerItem:playerItem] autorelease];
-            // 播放
-            [_player play];
-            _isPlaying = YES;
-            
-            if (_isPlaying) {
-                [_playButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
-                    [_playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
-                    [_player pause];
-                    _isPlaying = NO;
-                    
-                }];
-            }
-
-            
-        }];
-        
+        self.audioString = novelModel.audio;
     }
-
 }
 
 - (void)setSerialModel:(SerialModel *)serialModel {
@@ -143,6 +132,24 @@
     }
 }
 
+- (void)playNovel:(NSString *)audio {
+    [_playButton setImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
+    // 路径
+    NSURL *url = [NSURL URLWithString:audio];
+    // 通过URL创建视频内容对象
+    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
+    // 创建视频播放器对象, 需要AVPlayerItem进行初始化
+    self.player = [[[AVPlayer alloc] initWithPlayerItem:playerItem] autorelease];
+    // 播放
+    [_player play];
+    _isPlaying = YES;
+}
+
+- (void)stopPlayingNovel {
+    [_playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+    [_player pause];
+    _isPlaying = NO;
+}
 
 - (void)awakeFromNib {
     // Initialization code

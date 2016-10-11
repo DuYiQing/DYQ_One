@@ -82,12 +82,8 @@ UICollectionViewDataSource
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     self.contentOffsetX = scrollView.contentOffset.x;
-    NSLog(@"contentOffsetY : %lf", _contentOffsetX);
-    
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    
-    
     if ((scrollView.contentOffset.x >= _contentOffsetX) && (_index <= 8) && (_index >= 0)) {
         _index++;
     }
@@ -130,8 +126,8 @@ UICollectionViewDataSource
         for (NSDictionary *dataDic in dataArr) {
             CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
             [_commentArr addObject:commentModel];
-            [_novelCollectionView reloadData];
         }
+        [_novelCollectionView reloadData];
     } failure:^(id error) {
         NSLog(@"error : %@", error);
     }];
