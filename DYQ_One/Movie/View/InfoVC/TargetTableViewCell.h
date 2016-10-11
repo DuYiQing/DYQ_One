@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MovieInfoModel.h"
 
 FOUNDATION_EXTERN NSString *const ActorMode;
 FOUNDATION_EXTERN NSString *const TargetMode;
+FOUNDATION_EXTERN NSString *const PictureMode;
 
 @interface TargetTableViewCell : UITableViewCell
 
 @property (nonatomic, retain) UILabel *actorInfoLabel;
-
+@property (nonatomic, retain) NSArray *pictureArr;
 @property (nonatomic, retain) NSArray *targetArr;
+
 
 - (void)displayWithMode:(NSString *)modeName;
 

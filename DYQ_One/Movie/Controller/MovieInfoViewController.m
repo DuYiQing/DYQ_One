@@ -152,10 +152,7 @@ TopAuthorTableViewCellDelegate
 
 - (void)getButtonTag:(NSInteger)tag {
     self.buttonTag = tag;
-
     [_movieTableView reloadData];
-    
-    NSLog(@"buttonTag : %ld", _buttonTag);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -210,16 +207,21 @@ TopAuthorTableViewCellDelegate
         return cell;
     }
     if (2 == indexPath.section) {
-        
         TargetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"target"];
         if (nil == _targetCell) {
             cell = [[[TargetTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"target"] autorelease];
         }
         
-        NSString *modeName = _buttonTag == 1012 ? ActorMode : TargetMode;
-            cell.actorInfoLabel.text = _movieInfoModel.info;
+        if (1010 == _buttonTag) {
             cell.targetArr = _targetArr;
-        [cell displayWithMode:modeName];
+            [cell displayWithMode:TargetMode];
+        } else if (1011 == _buttonTag) {
+            cell.pictureArr = _movieInfoModel.photo;
+            [cell displayWithMode:PictureMode];
+        } else {
+            cell.actorInfoLabel.text = _movieInfoModel.info;
+            [cell displayWithMode:ActorMode];
+        }
         
         return cell;
         
