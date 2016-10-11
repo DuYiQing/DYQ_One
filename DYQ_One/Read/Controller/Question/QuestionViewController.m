@@ -89,6 +89,7 @@ UICollectionViewDelegate
         [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/question/%@/0", _contentID] success:^(id result) {
             NSDictionary *tempDic = [result objectForKey:@"data"];
             NSArray *dataArr = [tempDic objectForKey:@"data"];
+            [self.commentArr removeAllObjects];
             for (NSDictionary *dataDic in dataArr) {
                 self.commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
                 [_commentArr addObject:_commentModel];

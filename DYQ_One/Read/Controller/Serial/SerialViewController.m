@@ -109,12 +109,13 @@ UICollectionViewDelegate
 
             NSDictionary *dataDic = [result objectForKey:@"data"];
             NSArray *dataArr = [dataDic objectForKey:@"data"];
+            [self.commentArr removeAllObjects];
             for (NSDictionary *commentDic in dataArr) {
                 CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:commentDic];
                 [_commentArr addObject:commentModel];
             }
             [_serialCollectionView reloadData];
-//            [self getView];
+
         } failure:^(id error) {
             NSLog(@"error : %@", error);
         }];

@@ -23,7 +23,7 @@
 @property (nonatomic, retain) UIButton *playButton;
 @property (nonatomic, retain) UILabel *playLabel;
 @property (nonatomic, retain) AVPlayer *player;
-
+@property (nonatomic, assign) BOOL isPlaying;
 @property (nonatomic, copy) NSString *audioString;
 
 
@@ -108,6 +108,7 @@
 - (void)setNovelModel:(NovelModel *)novelModel {
     if (_novelModel != novelModel) {
         [_novelModel release];
+        [self stopPlayingNovel];
         _novelModel = [novelModel retain];
         
         AuthorInfoModel *authorInfoModel = novelModel.author[0];

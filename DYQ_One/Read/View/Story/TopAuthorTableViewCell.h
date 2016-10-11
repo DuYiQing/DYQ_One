@@ -11,11 +11,14 @@
 @class NovelModel;
 @class SerialModel;
 
+@protocol TopAuthorTableViewCellDelegate <NSObject>
+
+@end
 
 @interface TopAuthorTableViewCell : UITableViewCell
 
 @property (nonatomic, retain) NovelModel *novelModel;
 @property (nonatomic, retain) SerialModel *serialModel;
-@property (nonatomic, assign) BOOL isPlaying;
+
 
 @end

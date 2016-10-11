@@ -32,7 +32,8 @@ static NSString *const movieCell = @"movieCell";
 <
 UITableViewDataSource,
 UITableViewDelegate,
-MovieTargetSectionHeaderViewDelegate
+MovieTargetSectionHeaderViewDelegate,
+TopAuthorTableViewCellDelegate
 >
 
 @property (nonatomic, retain) UITableView *movieTableView;
@@ -267,7 +268,7 @@ MovieTargetSectionHeaderViewDelegate
     
 }
 - (void)tapAction {
-    
+
     // 创建已经封装好的BH_AVPlayerView类
     self.playerView = [[BH_AVPlayerView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.3)];
     [self.view addSubview:_playerView];

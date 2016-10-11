@@ -33,6 +33,7 @@ UICollectionViewDataSource
 @property (nonatomic, retain) NovelModel *novelModel;
 @property (nonatomic, assign) CGFloat contentOffsetX;
 @property (nonatomic, assign) NSInteger index;
+@property (nonatomic, retain) CommentModel *commentModel;
 
 @end
 
@@ -43,6 +44,7 @@ UICollectionViewDataSource
     [_contentArr release];
     [_commentArr release];
     [_novelCollectionView release];
+    [_commentModel release];
     [super dealloc];
 }
 
@@ -84,6 +86,7 @@ UICollectionViewDataSource
     self.contentOffsetX = scrollView.contentOffset.x;
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
     if ((scrollView.contentOffset.x >= _contentOffsetX) && (_index <= 8) && (_index >= 0)) {
         _index++;
     }
@@ -111,8 +114,8 @@ UICollectionViewDataSource
             }
         }
         
-        NovelModel *novelModel = [NovelModel mj_objectWithKeyValues:dataDic];
-        [_storyArr addObject:novelModel];
+        self.novelModel = [NovelModel mj_objectWithKeyValues:dataDic];
+//        [_storyArr addObject:_novelModel];
         
         [_novelCollectionView reloadData];
         
@@ -123,9 +126,10 @@ UICollectionViewDataSource
     [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/essay/%@/0", _contentID] success:^(id result) {
         NSDictionary *tempDic = [result objectForKey:@"data"];
         NSArray *dataArr = [tempDic objectForKey:@"data"];
+        [self.commentArr removeAllObjects];
         for (NSDictionary *dataDic in dataArr) {
-            CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
-            [_commentArr addObject:commentModel];
+            self.commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
+            [_commentArr addObject:_commentModel];
         }
         [_novelCollectionView reloadData];
     } failure:^(id error) {
@@ -173,7 +177,7 @@ UICollectionViewDataSource
         }
 
         self.novelModel = [NovelModel mj_objectWithKeyValues:dataDic];
-        [_storyArr addObject:_novelModel];
+//        [_storyArr addObject:_novelModel];
 
         [_novelCollectionView reloadData];
         [self getView];
@@ -186,8 +190,8 @@ UICollectionViewDataSource
         NSDictionary *tempDic = [result objectForKey:@"data"];
         NSArray *dataArr = [tempDic objectForKey:@"data"];
         for (NSDictionary *dataDic in dataArr) {
-            CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
-            [_commentArr addObject:commentModel];            
+            self.commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
+            [_commentArr addObject:_commentModel];
         }
     } failure:^(id error) {
         NSLog(@"error : %@", error);
