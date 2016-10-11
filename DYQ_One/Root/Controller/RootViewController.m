@@ -14,6 +14,7 @@
 #import "ImageLabelView.h"
 #import "LikeView.h"
 #import "LoginViewController.h"
+#import "MJRefresh.h"
 
 static NSString *const rootCell = @"rootCell";
 
@@ -70,8 +71,6 @@ UIScrollViewDelegate
         if (nil == cell) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:rootCell] autorelease];
         }
-    
-        
         return cell;
     
 }
@@ -143,6 +142,7 @@ UIScrollViewDelegate
     _rootScrollView.showsHorizontalScrollIndicator = NO;
     [_tableView addSubview:_rootScrollView];
     [_rootScrollView release];
+    
     
     _tableView.rowHeight = _rootScrollView.bounds.size.height;
     

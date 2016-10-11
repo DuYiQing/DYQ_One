@@ -31,6 +31,8 @@ UICollectionViewDataSource
 @property (nonatomic, assign) long currentSection;
 @property (nonatomic, retain) NSMutableArray *commentArr;
 @property (nonatomic, retain) NovelModel *novelModel;
+@property (nonatomic, assign) CGFloat contentOffsetX;
+@property (nonatomic, assign) NSInteger index;
 
 @end
 
@@ -51,6 +53,7 @@ UICollectionViewDataSource
     self.view.backgroundColor = [UIColor whiteColor];
     self.storyArr = [NSMutableArray array];
     self.commentArr = [NSMutableArray array];
+    self.index = 0;
     [self data];
     
     
@@ -78,8 +81,22 @@ UICollectionViewDataSource
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    _contentID = _essayIDArr[_currentSection];
-
+    self.contentOffsetX = scrollView.contentOffset.x;
+    NSLog(@"contentOffsetY : %lf", _contentOffsetX);
+    
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
+    
+    if ((scrollView.contentOffset.x >= _contentOffsetX) && (_index <= 8) && (_index >= 0)) {
+        _index++;
+    }
+    if ((scrollView.contentOffset.x < _contentOffsetX) && (_index >= 1) && (_index <= 9)) {
+        _index--;
+    }
+    
+    _contentID = _essayIDArr[_index];
+    
     NSMutableString *urlString = [@"http://v3.wufazhuce.com:8000/api/essay/" mutableCopy];
     [urlString appendString:_contentID];
     [HttpClient GETWithURLString:urlString success:^(id result) {
@@ -92,7 +109,7 @@ UICollectionViewDataSource
                 NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
                 [_contentArr removeObjectAtIndex:index];
             }
-            if ([_contentArr[i] isEqualToString:@"\r\n"]) {
+            else if ([_contentArr[i] isEqualToString:@"\r\n"]) {
                 NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
                 [_contentArr removeObjectAtIndex:index];
             }
@@ -107,9 +124,19 @@ UICollectionViewDataSource
         NSLog(@"error : %@", error);
     }];
 
+    [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/essay/%@/0", _contentID] success:^(id result) {
+        NSDictionary *tempDic = [result objectForKey:@"data"];
+        NSArray *dataArr = [tempDic objectForKey:@"data"];
+        for (NSDictionary *dataDic in dataArr) {
+            CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
+            [_commentArr addObject:commentModel];
+            [_novelCollectionView reloadData];
+        }
+    } failure:^(id error) {
+        NSLog(@"error : %@", error);
+    }];
     
 }
-
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 10;
