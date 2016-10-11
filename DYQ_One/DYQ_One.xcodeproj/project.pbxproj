@@ -11,6 +11,7 @@
 		400454C81DAA63AE00669FA7 /* keywords.png in Resources */ = {isa = PBXBuildFile; fileRef = 400454C71DAA63AE00669FA7 /* keywords.png */; };
 		400454CA1DAA63B200669FA7 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = 400454C91DAA63B200669FA7 /* picture.png */; };
 		400454CC1DAA63B600669FA7 /* actors.png in Resources */ = {isa = PBXBuildFile; fileRef = 400454CB1DAA63B600669FA7 /* actors.png */; };
+		400455EA1DACE1CC00669FA7 /* RootTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400455E91DACE1CC00669FA7 /* RootTabBarViewController.m */; };
 		408A8F661D9E09B5000E4761 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8F651D9E09B5000E4761 /* CommentModel.m */; };
 		408A8FE21D9E65D2000E4761 /* ReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CA931D90CBDD002D3EF2 /* ReadViewController.m */; };
 		408A900C1D9E65F3000E4761 /* NSArray+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FE61D9E65F3000E4761 /* NSArray+Categories.m */; };
@@ -146,6 +147,8 @@
 		400454C71DAA63AE00669FA7 /* keywords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keywords.png; sourceTree = "<group>"; };
 		400454C91DAA63B200669FA7 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
 		400454CB1DAA63B600669FA7 /* actors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = actors.png; sourceTree = "<group>"; };
+		400455E81DACE1CC00669FA7 /* RootTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarViewController.h; sourceTree = "<group>"; };
+		400455E91DACE1CC00669FA7 /* RootTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarViewController.m; sourceTree = "<group>"; };
 		408A8F641D9E09B5000E4761 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		408A8F651D9E09B5000E4761 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		408A8FE51D9E65F3000E4761 /* NSArray+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Categories.h"; sourceTree = "<group>"; };
@@ -530,6 +533,8 @@
 			children = (
 				40F999A01DA3FB9900E9B4D3 /* GuideViewController.h */,
 				40F999A11DA3FB9900E9B4D3 /* GuideViewController.m */,
+				400455E81DACE1CC00669FA7 /* RootTabBarViewController.h */,
+				400455E91DACE1CC00669FA7 /* RootTabBarViewController.m */,
 			);
 			name = Guide;
 			sourceTree = "<group>";
@@ -1232,6 +1237,7 @@
 				496DD9681D93D56600D5781A /* ZoomScrollView.m in Sources */,
 				408A901A1D9E65F3000E4761 /* AppStoreUtils.m in Sources */,
 				497AA6631D9A66880059A972 /* MovieTableViewCell.m in Sources */,
+				400455EA1DACE1CC00669FA7 /* RootTabBarViewController.m in Sources */,
 				49F6CA971D90CBEA002D3EF2 /* MusicViewController.m in Sources */,
 				49B802FB1D9563CD004D3D85 /* ColorfulTableViewCell.m in Sources */,
 				49987C071D969D2200E8F9ED /* TopAuthorTableViewCell.m in Sources */,

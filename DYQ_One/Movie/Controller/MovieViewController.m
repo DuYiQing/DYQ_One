@@ -28,16 +28,16 @@ UITableViewDelegate
 @end
 
 @implementation MovieViewController
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = NO;
+    self.tabBarController.tabBar.hidden = NO;
+}
 
 - (void)dealloc {
     [_movieArr release];
     [_movieID release];
     [_tableView release];
     [super dealloc];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    self.tabBarController.tabBar.hidden = NO;
 }
 
 - (void)viewDidLoad {

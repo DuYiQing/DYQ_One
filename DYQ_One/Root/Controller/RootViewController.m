@@ -44,7 +44,7 @@ UIScrollViewDelegate
     [super dealloc];
 }
 - (void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBar.alpha = 1;
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)viewDidLoad {

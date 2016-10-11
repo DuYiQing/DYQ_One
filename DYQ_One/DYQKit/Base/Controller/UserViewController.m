@@ -21,6 +21,12 @@ UITableViewDelegate
 @end
 
 @implementation UserViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    // navigationBar设置为透明色
+//    self.navigationController.navigationBar.alpha = 0.00;
+    self.navigationController.navigationBarHidden = YES;
+}
 - (void)dealloc {
     [_tableView release];
     [super dealloc];
@@ -31,10 +37,7 @@ UITableViewDelegate
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
-
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    self.navigationController.navigationBar.alpha = 0.00;
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     _tableView.delegate = self;

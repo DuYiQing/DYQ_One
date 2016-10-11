@@ -13,6 +13,7 @@
 #import "ReadViewController.h"
 #import "MusicViewController.h"
 #import "MovieViewController.h"
+#import "RootTabBarViewController.h"
 
 @interface GuideViewController ()
 <
@@ -40,6 +41,7 @@ UITabBarControllerDelegate
         
         UIScrollView *guideScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
         for (int i = 1; i < 5; i++) {
+            // 用SDWebImage加载GIF格式的图片
             NSString  *name = [NSString stringWithFormat:@"%d.gif", i];
             NSString  *filePath = [[NSBundle bundleWithPath:[[NSBundle mainBundle] bundlePath]] pathForResource:name ofType:nil];
             NSData  *imageData = [NSData dataWithContentsOfFile:filePath];
@@ -87,9 +89,12 @@ UITabBarControllerDelegate
 //    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
 //    [userDef setBool:_flag forKey:@"notFirst"];
 //    [userDef synchronize];
+    RootTabBarViewController *rootTabBarController = [[RootTabBarViewController alloc] init];
+    self.view.window.rootViewController = rootTabBarController;
+    [rootTabBarController release];
 
 }
-
+// pageController与轮播图关联
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
     _pageControl.currentPage = (NSInteger)(scrollView.contentOffset.x) / [UIScreen mainScreen].bounds.size.width;
