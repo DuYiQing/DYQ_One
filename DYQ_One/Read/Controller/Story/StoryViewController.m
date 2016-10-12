@@ -60,7 +60,6 @@ UICollectionViewDataSource
     
     
 }
-
 - (void)getView {
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -81,6 +80,7 @@ UICollectionViewDataSource
     [_novelCollectionView registerClass:[NovelCollectionViewCell class] forCellWithReuseIdentifier:collectionViewCell];
     
 }
+
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     self.contentOffsetX = scrollView.contentOffset.x;
@@ -186,6 +186,7 @@ UICollectionViewDataSource
     }];
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

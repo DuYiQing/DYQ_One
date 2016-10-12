@@ -64,7 +64,7 @@ UITableViewDelegate
         [_musicTableView release];
         
         _musicTableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT / 4 * 3, 0, 0, 0);
-        _musicTableView.contentOffset = CGPointMake(0, -SCREEN_HEIGHT / 4);
+        _musicTableView.contentOffset = CGPointMake(0, -SCREEN_HEIGHT / 3);
         self.topImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         [_musicTableView addSubview:_topImageView];
         [_topImageView release];
@@ -169,9 +169,9 @@ UITableViewDelegate
     _songNameLabel.frame = CGRectMake(_songImageView.frame.origin.x, _songImageView.frame.origin.y + _songImageView.bounds.size.height + 10, 200, 30);
     
     _playButton.frame = CGRectMake(_songView.bounds.size.width / 7 * 6, _songView.bounds.size.height / 3, _songView.bounds.size.height / 3, _songView.bounds.size.height / 3);
-    _dateLabel.frame = CGRectMake(_songView.bounds.size.width / 4 * 3 + 10, _playButton.frame.origin.y + _playButton.bounds.size.height + 8, 83, 20);
+    _dateLabel.frame = CGRectMake(_songView.bounds.size.width / 4 * 3 - 10, _playButton.frame.origin.y + _playButton.bounds.size.height + 8, 100, 20);
     _dateLabel.textAlignment = NSTextAlignmentRight;
-    [_dateLabel sizeToFit];
+//    [_dateLabel sizeToFit];
     
 }
 

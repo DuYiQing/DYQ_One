@@ -31,6 +31,7 @@ UIScrollViewDelegate
 @property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, retain) UIScrollView *rootScrollView;
 @property (nonatomic, retain) NSMutableArray *scrollViewArr;
+@property (nonatomic, assign) CGFloat contentOffsetX;
 
 @end
 
@@ -45,6 +46,7 @@ UIScrollViewDelegate
 }
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = NO;
+
 }
 
 - (void)viewDidLoad {
@@ -54,7 +56,6 @@ UIScrollViewDelegate
     self.navigationItem.title = @"ONE";
     self.rootDataArr = [NSMutableArray array];
     self.scrollViewArr = [NSMutableArray array];
-
     [self data];
 }
 
@@ -156,22 +157,18 @@ UIScrollViewDelegate
 
 - (void)data {
     [HttpClient GETWithURLString:@"http://v3.wufazhuce.com:8000/api/hp/more/0" success:^(id result) {
-//        NSLog(@"result : %@", result);
+
         NSArray *dataArray = [result objectForKey:@"data"];
         for (NSDictionary *dataDic in dataArray) {
             RootModel *rootModel = [RootModel modelWithDic:dataDic];
             [_rootDataArr addObject:rootModel];
             
         }
-        
         [self setView];
-//        NSLog(@"%@", _rootDataArr);
     } failure:^(id error) {
-        NSLog(@"error :%@", error);
+        [self viewWithoutNetRequest];
     }];
-    
-    
-    
+  
 }
 
 - (void)didReceiveMemoryWarning {

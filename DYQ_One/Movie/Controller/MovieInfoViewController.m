@@ -264,9 +264,10 @@ MovieTargetSectionHeaderViewDelegate
     _movieTableView.contentOffset = CGPointMake(0, -SCREEN_HEIGHT / 4);
     _movieTableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT / 4, 0, 0, 0);
 
+    // 顶部图片
     UIImageView *topImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -SCREEN_HEIGHT / 4, SCREEN_WIDTH, SCREEN_HEIGHT / 4)];
     topImageView.userInteractionEnabled = YES;
-    [topImageView xl_setImageWithURL:[NSURL URLWithString:_movieInfoModel.detailcover] placeholderImage:nil];
+    [topImageView xl_setImageWithURL:[NSURL URLWithString:_movieInfoModel.detailcover] placeholderImage:[UIImage imageNamed:@"28B58PICxtD_1024.png"]];
     [_movieTableView addSubview:topImageView];
     [topImageView release];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];

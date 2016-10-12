@@ -12,6 +12,8 @@
 		400454CA1DAA63B200669FA7 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = 400454C91DAA63B200669FA7 /* picture.png */; };
 		400454CC1DAA63B600669FA7 /* actors.png in Resources */ = {isa = PBXBuildFile; fileRef = 400454CB1DAA63B600669FA7 /* actors.png */; };
 		400455EA1DACE1CC00669FA7 /* RootTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400455E91DACE1CC00669FA7 /* RootTabBarViewController.m */; };
+		400455ED1DADE55100669FA7 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400455EC1DADE55100669FA7 /* SearchViewController.m */; };
+		400455EF1DADFCBA00669FA7 /* without.png in Resources */ = {isa = PBXBuildFile; fileRef = 400455EE1DADFCBA00669FA7 /* without.png */; };
 		408A8F661D9E09B5000E4761 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8F651D9E09B5000E4761 /* CommentModel.m */; };
 		408A8FE21D9E65D2000E4761 /* ReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CA931D90CBDD002D3EF2 /* ReadViewController.m */; };
 		408A900C1D9E65F3000E4761 /* NSArray+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FE61D9E65F3000E4761 /* NSArray+Categories.m */; };
@@ -149,6 +151,9 @@
 		400454CB1DAA63B600669FA7 /* actors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = actors.png; sourceTree = "<group>"; };
 		400455E81DACE1CC00669FA7 /* RootTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarViewController.h; sourceTree = "<group>"; };
 		400455E91DACE1CC00669FA7 /* RootTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarViewController.m; sourceTree = "<group>"; };
+		400455EB1DADE55100669FA7 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		400455EC1DADE55100669FA7 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		400455EE1DADFCBA00669FA7 /* without.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = without.png; sourceTree = "<group>"; };
 		408A8F641D9E09B5000E4761 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		408A8F651D9E09B5000E4761 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		408A8FE51D9E65F3000E4761 /* NSArray+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Categories.h"; sourceTree = "<group>"; };
@@ -524,6 +529,8 @@
 				40F999E61DA6062500E9B4D3 /* UserViewController.m */,
 				40F999881DA3D26F00E9B4D3 /* LoginViewController.h */,
 				40F999891DA3D26F00E9B4D3 /* LoginViewController.m */,
+				400455EB1DADE55100669FA7 /* SearchViewController.h */,
+				400455EC1DADE55100669FA7 /* SearchViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -882,6 +889,7 @@
 		49F6CABB1D90FCB1002D3EF2 /* 素材 */ = {
 			isa = PBXGroup;
 			children = (
+				400455EE1DADFCBA00669FA7 /* without.png */,
 				400454C91DAA63B200669FA7 /* picture.png */,
 				400454CB1DAA63B600669FA7 /* actors.png */,
 				400454C71DAA63AE00669FA7 /* keywords.png */,
@@ -1076,6 +1084,7 @@
 				49F6CAD01D90FCB1002D3EF2 /* Unknown-11.png in Resources */,
 				40F999D91DA5E80900E9B4D3 /* icon_pause@3x.png in Resources */,
 				400454CA1DAA63B200669FA7 /* picture.png in Resources */,
+				400455EF1DADFCBA00669FA7 /* without.png in Resources */,
 				49F6CADD1D90FCB1002D3EF2 /* Unknown-8.png in Resources */,
 				49F6CACE1D90FCB1002D3EF2 /* Unknown-1.png in Resources */,
 				40F999DE1DA5E80900E9B4D3 /* icon_progress@2x.png in Resources */,
@@ -1172,6 +1181,7 @@
 				497AA6601D9A5F390059A972 /* MovieModel.m in Sources */,
 				4914B60C1D98CC1400D3A53F /* NovelModel.m in Sources */,
 				408A90181D9E65F3000E4761 /* DataBaseManager.m in Sources */,
+				400455ED1DADE55100669FA7 /* SearchViewController.m in Sources */,
 				408A900F1D9E65F3000E4761 /* NSDictionary+Categories.m in Sources */,
 				408A902F1D9E8EE3000E4761 /* MusicModel.m in Sources */,
 				496DD9621D93C8CC00D5781A /* ScrollViewModel.m in Sources */,

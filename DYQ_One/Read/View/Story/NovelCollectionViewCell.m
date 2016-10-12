@@ -47,7 +47,6 @@ UITableViewDelegate
     [_commentNumber release];
     [super dealloc];
 }
-
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -187,7 +186,7 @@ UITableViewDelegate
         if (nil == cell) {
             cell = [[[TopAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:novelCVCell] autorelease];
         }
-//        NovelModel *novelModel = _storyArr[0];
+
         cell.novelModel = _novelModel;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;

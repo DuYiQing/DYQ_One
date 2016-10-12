@@ -122,7 +122,7 @@ UITableViewDelegate
         }
         [self getView];
     } failure:^(id error) {
-        NSLog(@"error : %@", error);
+        [self viewWithoutNetRequest];
     }];
 }
 

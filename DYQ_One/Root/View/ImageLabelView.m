@@ -89,10 +89,6 @@
     [_topImageView.image imageByScalingProportionallyToSize:_topImageView.image.size];
     _topImageView.frame = CGRectMake(5, 5, SCREEN_WIDTH - 30, 300);
     
-    
-    
-//    _topImageView.frame = CGRectMake(5, 5, _emptyView.bounds.size.width - 10, 100);
-    
     _volLabel.frame = CGRectMake(_topImageView.frame.origin.x, _topImageView.frame.origin.y + _topImageView.bounds.size.height + 5, 80, 20);
     
     _authorLabel.frame = CGRectMake(_volLabel.frame.origin.x + _volLabel.bounds.size.width + 15, _volLabel.frame.origin.y, _topImageView.bounds.size.width - _volLabel.bounds.size.width - 15 , _volLabel.bounds.size.height);
@@ -114,7 +110,7 @@
         [_rootModel release];
         _rootModel = [rootModel retain];
         
-        [_topImageView xl_setImageWithURL:[NSURL URLWithString:_rootModel.hp_img_url] placeholderImage:nil];
+        [_topImageView xl_setImageWithURL:[NSURL URLWithString:_rootModel.hp_img_url] placeholderImage:[UIImage imageNamed:@"WeChat_1474434946.jpeg"]];
         _volLabel.text = rootModel.hp_title;
         _authorLabel.text = rootModel.hp_author;
         _contentLabel.text = rootModel.hp_content;

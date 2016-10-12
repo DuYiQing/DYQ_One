@@ -29,6 +29,7 @@ UICollectionViewDelegate
 @property (nonatomic, retain) NSMutableArray *commentArr;
 @property (nonatomic, assign) NSInteger currentItem;
 @property (nonatomic, assign) CGFloat contentOffsetX;
+@property (nonatomic, assign) NSInteger index;
 
 @end
 
@@ -54,7 +55,7 @@ UICollectionViewDelegate
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"音乐";
     self.commentArr = [NSMutableArray array];
-
+    self.index = 0;
     [self data];
 }
 
@@ -79,13 +80,22 @@ UICollectionViewDelegate
     
     [_collectionView registerClass:[MusicCollectionViewCell class] forCellWithReuseIdentifier:musicCVCell];
 }
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.contentOffsetX = scrollView.contentOffset.x;
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     
-    NSMutableString *urlString = [@"http://v3.wufazhuce.com:8000/api/music/detail/" mutableCopy];
-    [urlString appendString:_musicListArr[_currentItem + 1]];
-    [HttpClient GETWithURLString:urlString success:^(id result) {
+    if ((scrollView.contentOffset.x >= _contentOffsetX) && (_index <= 8) && (_index >= 0)) {
+        _index++;
+    }
+    if ((scrollView.contentOffset.x < _contentOffsetX) && (_index >= 1) && (_index <= 9)) {
+        _index--;
+    }
 
+    NSMutableString *urlString = [@"http://v3.wufazhuce.com:8000/api/music/detail/" mutableCopy];
+    [urlString appendString:_musicListArr[_index]];
+    [HttpClient GETWithURLString:urlString success:^(id result) {
+        
         NSDictionary *dataDic = [result objectForKey:@"data"];
         self.musicModel = [MusicModel mj_objectWithKeyValues:dataDic];
         self.musicID = [dataDic objectForKey:@"id"];
@@ -149,7 +159,7 @@ UICollectionViewDelegate
             NSLog(@"error : %@", error);
         }];
     } failure:^(id error) {
-        NSLog(@"error : %@", error);
+        [self viewWithoutNetRequest];
     }];
     
 }

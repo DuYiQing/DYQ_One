@@ -117,7 +117,7 @@
         _novelModel = [novelModel retain];
         
         AuthorInfoModel *authorInfoModel = novelModel.author[0];
-        [_headImageView xl_setImageWithURL:[NSURL URLWithString:authorInfoModel.web_url] placeholderImage:nil];
+        [_headImageView xl_setImageWithURL:[NSURL URLWithString:authorInfoModel.web_url] placeholderImage:[UIImage imageNamed:@"robot.png"]];
         _nameLabel.text = novelModel.hp_author;
         NSString *maketime = [novelModel.hp_makettime substringToIndex:11];
         _dateLabel.text = maketime;
@@ -130,7 +130,7 @@
         [_serialModel release];
         _serialModel = [serialModel retain];
         
-        [_headImageView xl_setImageWithURL:[NSURL URLWithString:serialModel.author.web_url] placeholderImage:nil];
+        [_headImageView xl_setImageWithURL:[NSURL URLWithString:serialModel.author.web_url] placeholderImage:[UIImage imageNamed:@"robot.png"]];
         _nameLabel.text = serialModel.author.user_name;
         _dateLabel.text = serialModel.maketime;
         [_playButton removeFromSuperview];

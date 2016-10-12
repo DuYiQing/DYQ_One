@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "UserViewController.h"
+#import "SearchViewController.h"
 
 @interface BaseViewController ()
 
@@ -30,13 +31,28 @@
 
 - (void)leftBarButtonItemAction:(UIBarButtonItem *)leftBarButton {
     NSLog(@"搜索");
+    SearchViewController *searchVC = [[SearchViewController alloc] init];
+    [self presentViewController:searchVC animated:YES completion:nil];
+    [searchVC release];
 }
 - (void)rightBarButtonItemAction:(UIBarButtonItem *)rightBarButton {
     UserViewController *userVC = [[UserViewController alloc] init];
     [self.navigationController pushViewController:userVC animated:YES];
     [userVC release];
 }
-
+- (void)viewWithoutNetRequest {
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 80) / 2, SCREEN_HEIGHT / 4, 80, 80)];
+    imageView.image = [UIImage imageNamed:@"without.png"];
+    [self.view addSubview:imageView];
+    [imageView release];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, imageView.frame.origin.y + imageView.bounds.size.height + 20, 200, 40)];
+    label.text = @"请检查网络设置";
+    label.textColor = [UIColor grayColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+    [label release];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

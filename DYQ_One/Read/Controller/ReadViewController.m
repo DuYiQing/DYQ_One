@@ -212,7 +212,7 @@ ListCollectionViewCellDelegate
         
        
     } failure:^(id error) {
-        NSLog(@"%@", error);
+        [self viewWithoutNetRequest];
     }];
     
 }
