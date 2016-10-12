@@ -280,6 +280,8 @@ MovieTargetSectionHeaderViewDelegate
 // 点击顶部图片播放预告片
 - (void)tapAction {
 
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Play" object:nil];
+    
     // 创建已经封装好的BH_AVPlayerView类
     self.playerView = [[BH_AVPlayerView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.3)];
     [self.view addSubview:_playerView];

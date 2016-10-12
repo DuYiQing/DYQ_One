@@ -39,6 +39,7 @@
     [_player release];
     [_playLabel release];
     [_audioString release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
 
@@ -78,7 +79,7 @@
                 [self stopPlayingNovel];
             }
         }];
-
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAction) name:@"Play" object:nil];
         
         self.playLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _playLabel.text = @"收听";
@@ -90,6 +91,10 @@
     return self;
 }
 
+- (void)playAction {
+    NSLog(@"stop");
+    [self stopPlayingNovel];
+}
 
 - (void)layoutSubviews {
     [super layoutSubviews];
