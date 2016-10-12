@@ -23,12 +23,12 @@ UITableViewDelegate
 @implementation UserViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    // navigationBar设置为透明色
-//    self.navigationController.navigationBar.alpha = 0.00;
+    // 隐藏navigationBar
     self.navigationController.navigationBarHidden = YES;
 }
 - (void)dealloc {
     [_tableView release];
+    [_topImageView release];
     [super dealloc];
 }
 - (void)viewDidLoad {
@@ -53,6 +53,7 @@ UITableViewDelegate
     [_tableView addSubview:_topImageView];
     [_topImageView release];
     
+    // 返回按钮
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(20, 30, 20, 20);
     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
@@ -61,15 +62,18 @@ UITableViewDelegate
         [self.navigationController popViewControllerAnimated:YES];
     }];
     
+    // 头像
     UIImageView *headImageView = [[UIImageView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 60) / 2, -SCREEN_HEIGHT / 5, 60, 60)];
     headImageView.image = [UIImage imageNamed:@"robot.png"];
     headImageView.backgroundColor = [UIColor colorWithRed:0.0938 green:0.2447 blue:0.5 alpha:0.89];
     headImageView.layer.cornerRadius = headImageView.bounds.size.width / 2;
     headImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     headImageView.layer.borderWidth = 1.0f;
+    // 打开用户交互
     headImageView.userInteractionEnabled = YES;
     [_tableView addSubview:headImageView];
     [headImageView release];
+    // 给头像ImageView添加轻拍手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     [headImageView addGestureRecognizer:tap];
     [tap release];
@@ -83,15 +87,18 @@ UITableViewDelegate
     [loginLabel release];
     
 }
+
+// 点击头像跳出登录界面
 - (void)tapAction:(UITapGestureRecognizer *)tap {
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     [self presentViewController:loginVC animated:YES completion:nil];
     [loginVC release];
 }
 
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     CGFloat contentY = scrollView.contentOffset.y;
-    
+    // 下拉放大顶部背景图片
     if (contentY < -245) {
         _topImageView.frame = CGRectMake(0, -(SCREEN_HEIGHT / 3 - scrollView.contentOffset.y), SCREEN_WIDTH, (SCREEN_HEIGHT / 3 - scrollView.contentOffset.y));
     }

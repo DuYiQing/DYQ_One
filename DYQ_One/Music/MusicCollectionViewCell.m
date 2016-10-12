@@ -58,6 +58,7 @@ UITableViewDelegate
         self.musicTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _musicTableView.dataSource = self;
         _musicTableView.delegate = self;
+        // 设置tableView的cell分割线样式为无
         _musicTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.contentView addSubview:_musicTableView];
         [_musicTableView release];
@@ -68,19 +69,24 @@ UITableViewDelegate
         [_musicTableView addSubview:_topImageView];
         [_topImageView release];
         
+        // songView显示歌手歌曲信息
         self.songView = [[UIView alloc] init];
         _songView.backgroundColor = [UIColor whiteColor];
         _songView.layer.cornerRadius = 3.f;
+        // 设置View的边框
         _songView.layer.borderColor = [UIColor lightGrayColor].CGColor;
         _songView.layer.borderWidth = 2.f;
         [_musicTableView addSubview:_songView];
         [_songView release];
         
+        
+        // 头像
         self.songImageView = [[UIImageView alloc] init];
 //        _songImageView.backgroundColor = [UIColor blackColor];
         [_songView addSubview:_songImageView];
         [_songImageView release];
         
+        // 歌手
         self.songAuthorLabel  = [[UILabel alloc] init];
         _songAuthorLabel.backgroundColor = [UIColor whiteColor];
         _songAuthorLabel.textColor = [UIColor colorWithRed:93.2 / 255.f green:182.1 / 255.f blue:223.6 / 255.f alpha:1.0];
@@ -88,6 +94,7 @@ UITableViewDelegate
         [_songView addSubview:_songAuthorLabel];
         [_songAuthorLabel release];
         
+        // 歌手标签
         self.typeLabel = [[UILabel alloc] init];
 //        _typeLabel.backgroundColor = [UIColor purpleColor];
         _typeLabel.textColor = [UIColor lightGrayColor];
@@ -95,12 +102,14 @@ UITableViewDelegate
         [_songView addSubview:_typeLabel];
         [_typeLabel release];
         
+        // 歌名
         self.songNameLabel = [[UILabel alloc] init];
         _songNameLabel.backgroundColor = [UIColor whiteColor];
         _songAuthorLabel.font = kFONT_SIZE_18_BOLD;
         [_songView addSubview:_songNameLabel];
         [_songNameLabel release];
         
+        // 播放歌曲按钮
         self.playButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //        _playButton.backgroundColor = [UIColor whiteColor];
         [_playButton setImage:[UIImage imageNamed:@"musicPlay.png"] forState:UIControlStateNormal];
@@ -125,6 +134,7 @@ UITableViewDelegate
     
 }
 
+// 加载评论内容
 - (void)commentData {
     CommentModel *commentModel = [_commentArr lastObject];
     self.commentNumber = commentModel.ID;
@@ -153,13 +163,10 @@ UITableViewDelegate
     _songImageView.clipsToBounds = YES;
     
     _songAuthorLabel.frame = CGRectMake(_songImageView.frame.origin.x + _songImageView.bounds.size.width + 10, _songImageView.frame.origin.y + 5, 200, 20);
-//    [_songAuthorLabel sizeToFit];
     
     _typeLabel.frame = CGRectMake(_songAuthorLabel.frame.origin.x, _songAuthorLabel.frame.origin.y + _songAuthorLabel.bounds.size.height + 3, 100, 20);
-//    [_typeLabel sizeToFit];
     
     _songNameLabel.frame = CGRectMake(_songImageView.frame.origin.x, _songImageView.frame.origin.y + _songImageView.bounds.size.height + 10, 200, 30);
-//    [_songNameLabel sizeToFit];
     
     _playButton.frame = CGRectMake(_songView.bounds.size.width / 7 * 6, _songView.bounds.size.height / 3, _songView.bounds.size.height / 3, _songView.bounds.size.height / 3);
     _dateLabel.frame = CGRectMake(_songView.bounds.size.width / 4 * 3 + 10, _playButton.frame.origin.y + _playButton.bounds.size.height + 8, 83, 20);

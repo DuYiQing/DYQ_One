@@ -44,6 +44,10 @@ UICollectionViewDelegate
     [super dealloc];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -60,12 +64,14 @@ UICollectionViewDelegate
     flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
     flowLayout.minimumInteritemSpacing = 0;
     flowLayout.minimumLineSpacing = 0;
+    // 设置滚动方向为水平方向
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)collectionViewLayout:flowLayout];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.backgroundColor = [UIColor whiteColor];
+    // 设置整页翻动
     _collectionView.pagingEnabled = YES;
     [self.view addSubview:_collectionView];
     [_collectionView release];
@@ -77,7 +83,6 @@ UICollectionViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     
     NSMutableString *urlString = [@"http://v3.wufazhuce.com:8000/api/music/detail/" mutableCopy];
-    NSLog(@"%ld", _currentItem);
     [urlString appendString:_musicListArr[_currentItem + 1]];
     [HttpClient GETWithURLString:urlString success:^(id result) {
 
@@ -112,7 +117,7 @@ UICollectionViewDelegate
     cell.storyArr = _storyArr;
     cell.commentArr = _commentArr;
     self.currentItem = indexPath.item;
-//    NSLog(@"%ld", _currentItem);
+
     return cell;
 }
 

@@ -39,6 +39,7 @@ NSString *const PictureMode = @"pictureMode";
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.labelArr = [NSMutableArray array];
         self.imageViewArr = [NSMutableArray array];
+        // 存放关键字Label的空白View
         self.targetView = [[UIView alloc] initWithFrame:self.contentView.bounds];
         [self.contentView addSubview:_targetView];
         [_targetView release];
@@ -63,16 +64,17 @@ NSString *const PictureMode = @"pictureMode";
             colum++;
         }
     
+        // 演员信息Label
         self.actorInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, SCREEN_WIDTH - 40, 120)];
         _actorInfoLabel.hidden = YES;
         _actorInfoLabel.font = kFONT_SIZE_12_BOLD;
         _actorInfoLabel.numberOfLines = 0;
-
         [self.contentView addSubview:_actorInfoLabel];
         [_actorInfoLabel release];
         
         self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 130)];
         _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.hidden = YES;
         [self.contentView addSubview:_scrollView];
         [_scrollView release];
         
@@ -94,6 +96,8 @@ NSString *const PictureMode = @"pictureMode";
     if (_pictureArr != pictureArr) {
         [_pictureArr release];
         _pictureArr = [pictureArr retain];
+        
+        // 在scrollView上循环创建ImageView,并将图片附上
         for (int i = 0; i < pictureArr.count; i++) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * (SCREEN_WIDTH / 3), 0, SCREEN_WIDTH / 3 - 3, 130)];
             [imageView xl_setImageWithURL:[NSURL URLWithString:pictureArr[i]] placeholderImage:nil];
@@ -106,7 +110,7 @@ NSString *const PictureMode = @"pictureMode";
         _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH / 3 * pictureArr.count - 3, _scrollView.bounds.size.height);
     }
 }
-
+// 函数 根据模式名判断哪些控件显示哪些控件隐藏
 - (void)displayWithMode:(NSString *)modeName {
     if ([modeName isEqualToString:TargetMode]) {
         _actorInfoLabel.hidden = YES;

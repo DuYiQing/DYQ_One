@@ -27,11 +27,14 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        //电影封面照
         self.movieImageVIew = [[UIImageView alloc] initWithFrame:CGRectZero];
         [self.contentView addSubview:_movieImageVIew];
         [_movieImageVIew release];
         
+        // 封面照上添加电影的评分
         self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        // 设置评分字体
         _scoreLabel.font = [UIFont fontWithName:@"Zapfino" size:24];
         _scoreLabel.textColor = [UIColor redColor];
         _scoreLabel.textAlignment = NSTextAlignmentCenter;

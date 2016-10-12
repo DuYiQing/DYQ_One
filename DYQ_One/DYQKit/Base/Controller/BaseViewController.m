@@ -32,7 +32,6 @@
     NSLog(@"搜索");
 }
 - (void)rightBarButtonItemAction:(UIBarButtonItem *)rightBarButton {
-    NSLog(@"用户信息");
     UserViewController *userVC = [[UserViewController alloc] init];
     [self.navigationController pushViewController:userVC animated:YES];
     [userVC release];

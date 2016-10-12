@@ -74,7 +74,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     
 //    } else {
 //        // 否则直接进入应用
-    RootTabBarViewController *rootTabBarController = [[[RootTabBarViewController alloc] init] autorelease];
+        RootTabBarViewController *rootTabBarController = [[[RootTabBarViewController alloc] init] autorelease];
         self.window.rootViewController = rootTabBarController;
 //
 //    }

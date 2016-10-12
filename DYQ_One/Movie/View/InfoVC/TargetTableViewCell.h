@@ -19,7 +19,7 @@ FOUNDATION_EXTERN NSString *const PictureMode;
 @property (nonatomic, retain) NSArray *pictureArr;
 @property (nonatomic, retain) NSArray *targetArr;
 
-
+// 根据模式名显示哪种模式
 - (void)displayWithMode:(NSString *)modeName;
 
 @end

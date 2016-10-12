@@ -102,21 +102,14 @@ UICollectionViewDataSource
         
         NSDictionary *dataDic = [result objectForKey:@"data"];
         NSString *content = [dataDic objectForKey:@"hp_content"];
-        self.contentArr = [content componentsSeparatedByString:@"<br>"];
-        for (int i = 0; i < _contentArr.count; i++) {
-            if ([_contentArr[i] isEqualToString:@"\n"]) {
-                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
-                [_contentArr removeObjectAtIndex:index];
-            }
-            else if ([_contentArr[i] isEqualToString:@"\r\n"]) {
-                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
-                [_contentArr removeObjectAtIndex:index];
-            }
+        NSArray *array = [NSArray array];
+        array = [content componentsSeparatedByString:@"<br>"];
+        self.contentArr = [NSMutableArray array];
+        for (NSString *string in array) {
+            string = [string stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+            [_contentArr addObject:string];
         }
-        
         self.novelModel = [NovelModel mj_objectWithKeyValues:dataDic];
-//        [_storyArr addObject:_novelModel];
-        
         [_novelCollectionView reloadData];
         
     } failure:^(id error) {
@@ -164,21 +157,16 @@ UICollectionViewDataSource
 
         NSDictionary *dataDic = [result objectForKey:@"data"];
         NSString *content = [dataDic objectForKey:@"hp_content"];
-        self.contentArr = [content componentsSeparatedByString:@"<br>"];
-        for (int i = 0; i < _contentArr.count; i++) {
-            if ([_contentArr[i] isEqualToString:@"\n"]) {
-                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
-                [_contentArr removeObjectAtIndex:index];
-            }
-            if ([_contentArr[i] isEqualToString:@"\r\n"]) {
-                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
-                [_contentArr removeObjectAtIndex:index];
-            }
+
+        NSArray *array = [NSArray array];
+        array = [content componentsSeparatedByString:@"<br>"];
+        self.contentArr = [NSMutableArray array];
+        for (NSString *string in array) {
+            string = [string stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+            [_contentArr addObject:string];
         }
 
         self.novelModel = [NovelModel mj_objectWithKeyValues:dataDic];
-//        [_storyArr addObject:_novelModel];
-
         [_novelCollectionView reloadData];
         [self getView];
      

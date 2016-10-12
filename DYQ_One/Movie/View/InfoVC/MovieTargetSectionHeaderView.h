@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+// 协议 获取点击的Button的tag值
 @protocol MovieTargetSectionHeaderViewDelegate <NSObject>
 
 - (void)getButtonTag:(NSInteger)tag;

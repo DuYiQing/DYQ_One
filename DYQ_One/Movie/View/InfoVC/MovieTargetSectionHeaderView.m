@@ -41,6 +41,7 @@
         [self addSubview:titleLabel];
         [titleLabel release];
 
+        // 关键字按钮
         self.keyWordsButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _keyWordsButton.frame = CGRectMake(SCREEN_WIDTH / 2, -10, 30, 30);
         [_keyWordsButton setImage:[UIImage imageNamed:@"keywords.png"] forState:UIControlStateNormal];
@@ -48,6 +49,7 @@
         [self addSubview:_keyWordsButton];
         [_keyWordsButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         
+        // 剧照轮播图按钮
         self.pictureButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _pictureButton.frame = CGRectMake(SCREEN_WIDTH / 6 * 4, -10, 30, 30);
         [_pictureButton setImage:[UIImage imageNamed:@"picture.png"] forState:UIControlStateNormal];
@@ -55,6 +57,7 @@
         [self addSubview:_pictureButton];
         [_pictureButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         
+        // 演职人员信息按钮
         self.actorsButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _actorsButton.frame = CGRectMake(SCREEN_WIDTH / 6 * 5, -10, 30, 30);
         [_actorsButton setImage:[UIImage imageNamed:@"actors.png"] forState:UIControlStateNormal];
@@ -65,8 +68,9 @@
     }
     return self;
 }
-
+// 点击三个按钮调用同一个点击事件
 - (void)buttonAction:(UIButton *)button {
+    // 点击按钮调用协议
     [self.delegate getButtonTag:button.tag];
 }
 

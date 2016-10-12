@@ -26,11 +26,13 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        // 头像
         self.headImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _headImageView.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:_headImageView];
         [_headImageView release];
         
+        // 作者
         self.authorLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 //        _authorLabel.backgroundColor = [UIColor yellowColor];
         _authorLabel.textColor = [UIColor colorWithRed:93.2 / 255.f green:182.1 / 255.f blue:223.6 / 255.f alpha:1.0];
@@ -38,6 +40,7 @@
         [self.contentView addSubview:_authorLabel];
         [_authorLabel release];
         
+        // 发表日期
         self.dateLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 //        _dateLabel.backgroundColor = [UIColor greenColor];
         _dateLabel.textColor = [UIColor lightGrayColor];
@@ -45,11 +48,13 @@
         [self.contentView addSubview:_dateLabel];
         [_dateLabel release];
         
+        
         self.likeImageView = [[UIImageView alloc] init];
         _likeImageView.image = [UIImage imageNamed:@"Unknown-11.png"];
         [self.contentView addSubview:_likeImageView];
         [_likeImageView release];
         
+        // 点赞数
         self.numLabel = [[UILabel alloc] init];
 //        _numLabel.text = @"1111";
         [self.contentView addSubview:_numLabel];

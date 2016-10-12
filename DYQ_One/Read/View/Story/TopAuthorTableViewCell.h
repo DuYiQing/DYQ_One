@@ -11,9 +11,6 @@
 @class NovelModel;
 @class SerialModel;
 
-@protocol TopAuthorTableViewCellDelegate <NSObject>
-
-@end
 
 @interface TopAuthorTableViewCell : UITableViewCell
 

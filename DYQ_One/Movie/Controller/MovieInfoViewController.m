@@ -23,7 +23,7 @@
 #import "BH_AVPlayerView.h"
 #import "TargetTableViewCell.h"
 #import "MovieTargetSectionHeaderView.h"
-#import "TopAuthorTableViewCell.h"
+
 
 static NSString *const movieCell = @"movieCell";
 
@@ -32,8 +32,7 @@ static NSString *const movieCell = @"movieCell";
 <
 UITableViewDataSource,
 UITableViewDelegate,
-MovieTargetSectionHeaderViewDelegate,
-TopAuthorTableViewCellDelegate
+MovieTargetSectionHeaderViewDelegate
 >
 
 @property (nonatomic, retain) UITableView *movieTableView;
@@ -73,6 +72,7 @@ TopAuthorTableViewCellDelegate
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
+    // 隐藏tabBar
     self.tabBarController.tabBar.hidden = YES;
     self.movieStoryArr = [NSMutableArray array];
     self.contentArr = [NSArray array];
@@ -95,12 +95,14 @@ TopAuthorTableViewCellDelegate
     if (2 == section) {
         return 1;
     }
+    // 热门评论
     if (3 == section) {
         if (_commentArr.count >= 8) {
             return 8;
         }
         return _commentArr.count;
     }
+    // 更多评论
     if (4 == section) {
         return _commentArr.count - 8;
     }
@@ -131,6 +133,7 @@ TopAuthorTableViewCellDelegate
             return 40;
         }
     }
+    // cell自适应文本高度
     if (1 == indexPath.section) {
         NSString *info = _contentArr[indexPath.row];
         CGSize infoSize = CGSizeMake(SCREEN_WIDTH, 1000);
@@ -141,6 +144,7 @@ TopAuthorTableViewCellDelegate
     return 130;
 }
 
+// 自定义分区头视图
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (2 == section) {
         MovieTargetSectionHeaderView *view = [[[MovieTargetSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)] autorelease];
@@ -150,20 +154,19 @@ TopAuthorTableViewCellDelegate
     return 0;
 }
 
+// 协议实现方法
 - (void)getButtonTag:(NSInteger)tag {
     self.buttonTag = tag;
     [_movieTableView reloadData];
 }
 
+// 设置分区头标题
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (0 == section) {
         return @"电影故事";
-    }
-
-    if (3 == section) {
+    } else if (3 == section) {
         return @"评论列表";
-    }
-    if (4 == section) {
+    } else if (4 == section) {
         return @"                                       以上是热门评论";
     }
     
@@ -173,6 +176,7 @@ TopAuthorTableViewCellDelegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (0 == indexPath.section) {
+        // 电影故事的作者信息
         if (0 == indexPath.row) {
             MovieInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell"];
             if (nil == cell) {
@@ -183,6 +187,7 @@ TopAuthorTableViewCellDelegate
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
+        // 电影标题
         if (1 == indexPath.row) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"titleCell"];
             if (nil == cell) {
@@ -194,6 +199,7 @@ TopAuthorTableViewCellDelegate
             return cell;
         }
     }
+    // 电影故事
     if (1 == indexPath.section) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"contentCell%ld", indexPath.row]];
         if (nil == cell) {
@@ -206,12 +212,13 @@ TopAuthorTableViewCellDelegate
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
+    // 自定义cell 显示电影关键字,剧照,电影信息等内容
     if (2 == indexPath.section) {
         TargetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"target"];
         if (nil == _targetCell) {
             cell = [[[TargetTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"target"] autorelease];
         }
-        
+        // 判断点击的是哪个button
         if (1010 == _buttonTag) {
             cell.targetArr = _targetArr;
             [cell displayWithMode:TargetMode];
@@ -266,9 +273,11 @@ TopAuthorTableViewCellDelegate
     [topImageView addGestureRecognizer:tap];
     [tap release];
     
+    // 上滑加载
     _movieTableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(Loading)];
     
 }
+// 点击顶部图片播放预告片
 - (void)tapAction {
 
     // 创建已经封装好的BH_AVPlayerView类
@@ -282,6 +291,7 @@ TopAuthorTableViewCellDelegate
     // 注册一个监听屏幕切换的通知中心
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(statuesBarChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     
+    // 退出播放按钮
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _backButton.frame = CGRectMake(SCREEN_WIDTH - 25, 5, 20, 20);
     [_backButton setImage:[UIImage imageNamed:@"X.png"] forState:UIControlStateNormal];
@@ -289,7 +299,9 @@ TopAuthorTableViewCellDelegate
     [_backButton addTarget:self action:@selector(backButtonAction) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)backButtonAction {
+    // 暂停播放
     [_playerView pause];
+    // 将播放器图层移除
     [_playerView removeFromSuperview];
 }
 // 监听事件
@@ -299,7 +311,7 @@ TopAuthorTableViewCellDelegate
     // 如果Home键向下(默认情况)或者是向上
     if (statues == UIInterfaceOrientationPortrait || statues == UIInterfaceOrientationPortraitUpsideDown) {
         _playerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.3);
-        
+        // 屏幕方向改变同时改变退出按钮的frame
         _backButton.frame = CGRectMake(SCREEN_WIDTH - 25, 5, 20, 20);
         [_backButton setImage:[UIImage imageNamed:@"X.png"] forState:UIControlStateNormal];
         [_playerView addSubview:_backButton];
@@ -311,6 +323,7 @@ TopAuthorTableViewCellDelegate
     }
 }
 
+// 加载
 - (void)Loading {
     [self commentData];
     [_movieTableView reloadData];
@@ -331,7 +344,9 @@ TopAuthorTableViewCellDelegate
         NSLog(@"error : %@", error);
     }];
 }
-
+- (void)viewWillDisappear:(BOOL)animated {
+    [_playerView pause];
+}
 - (void)data {
     NSMutableString *urlString = [@"http://v3.wufazhuce.com:8000/api/movie/detail/" mutableCopy];
     [urlString appendString:_movieModel.movieID];
@@ -357,6 +372,7 @@ TopAuthorTableViewCellDelegate
             self.contentArr = [content componentsSeparatedByString:@"\r\n"];
 
         }
+        // 网络请求完成后加载视图
         [self getView];
     } failure:^(id error) {
         NSLog(@"error : %@", error);

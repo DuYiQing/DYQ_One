@@ -75,13 +75,18 @@ UICollectionViewDelegate
     [_serialCollectionView registerClass:[SerialCollectionViewCell class] forCellWithReuseIdentifier:serialCollectionViewCell];
 
 }
+// 获取scrollView开始拖拽时的偏移量
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     self.contentOffsetX = scrollView.contentOffset.x;
 }
+
+// collectionView左右滑动时更换tableView上的数据
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    // 右滑
     if ((scrollView.contentOffset.x >= _contentOffsetX) && (_index <= 8) && (_index >= 0)) {
         _index++;
     }
+    // 左滑
     if ((scrollView.contentOffset.x < _contentOffsetX) && (_index >= 1) && (_index <= 9)) {
         _index--;
     }
@@ -92,16 +97,14 @@ UICollectionViewDelegate
     [HttpClient GETWithURLString:urlString success:^(id result) {
         NSDictionary *dataDic = [result objectForKey:@"data"];
         NSString *content = [dataDic objectForKey:@"content"];
-        self.contentArr = [content componentsSeparatedByString:@"<br>"];
-        for (int i = 0; i < _contentArr.count; i++) {
-            if ([_contentArr[i] isEqualToString:@"\n"]) {
-                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
-                [_contentArr removeObjectAtIndex:index];
-            }
-            if ([_contentArr[i] isEqualToString:@"\r\n"]) {
-                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
-                [_contentArr removeObjectAtIndex:index];
-            }
+        // 文本内容太多,label无法一次显示全,用<br>标识符将文本分割成段落存入数组
+        NSArray *array = [NSArray array];
+        array = [content componentsSeparatedByString:@"<br>"];
+        self.contentArr = [NSMutableArray array];
+        for (NSString *string in array) {
+            string = [string stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+            
+            [_contentArr addObject:string];
         }
         
         self.serialModel = [SerialModel mj_objectWithKeyValues:dataDic];
@@ -143,6 +146,7 @@ UICollectionViewDelegate
     
 }
 
+// 网络请求.数据解析
 - (void)data {
     
     NSMutableString *urlString = [@"http://v3.wufazhuce.com:8000/api/serialcontent/" mutableCopy];
@@ -151,21 +155,17 @@ UICollectionViewDelegate
     [HttpClient GETWithURLString:urlString success:^(id result) {
         NSDictionary *dataDic = [result objectForKey:@"data"];
         NSString *content = [dataDic objectForKey:@"content"];
-        self.contentArr = [content componentsSeparatedByString:@"<br>"];
-        for (int i = 0; i < _contentArr.count; i++) {
-            if ([_contentArr[i] isEqualToString:@"\n"]) {
-                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
-                [_contentArr removeObjectAtIndex:index];
-            }
-            if ([_contentArr[i] isEqualToString:@"\r\n"]) {
-                NSInteger index = [_contentArr indexOfObject:_contentArr[i]];
-                [_contentArr removeObjectAtIndex:index];
-            }
+
+        NSArray *array = [NSArray array];
+        array = [content componentsSeparatedByString:@"<br>"];
+        self.contentArr = [NSMutableArray array];
+        for (NSString *string in array) {
+            string = [string stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+            [_contentArr addObject:string];
         }
 
         self.serialModel = [SerialModel mj_objectWithKeyValues:dataDic];
         [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/comment/praiseandtime/serial/%@/0", _contentID] success:^(id result) {
-//            NSLog(@"%@", result);
             NSDictionary *dataDic = [result objectForKey:@"data"];
             NSArray *dataArr = [dataDic objectForKey:@"data"];
             for (NSDictionary *commentDic in dataArr) {

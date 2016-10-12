@@ -19,8 +19,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // 背景图
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     backgroundImageView.image = [UIImage imageNamed:@"20150721082414_SVYji.thumb.700_0.jpeg"];
+    // 给背景图添加毛玻璃效果
     backgroundImageView.image = [backgroundImageView.image boxblurImageWithBlur:0.7f];
     [self.view addSubview:backgroundImageView];
     [backgroundImageView release];
@@ -39,7 +41,7 @@
     titleLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:titleLabel];
     [titleLabel release];
-    
+    // 微信登录按钮
     UIButton *wechatButton = [UIButton buttonWithType:UIButtonTypeCustom];
     wechatButton.frame = CGRectMake(50, 120, SCREEN_WIDTH - 100, 40);
     wechatButton.backgroundColor = [UIColor colorWithRed:0.8616 green:0.8616 blue:0.8616 alpha:1.0];
@@ -47,13 +49,12 @@
     wechatButton.layer.cornerRadius = 3.f;
     [self.view addSubview:wechatButton];
     
-
-    
     UIImageView *wechatImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 30, 30)];
     wechatImageView.image = [UIImage imageNamed:@"WeChat.png"];
     [wechatButton addSubview:wechatImageView];
     [wechatImageView release];
     
+    // 微博登录按钮
     UIButton *weiboButton = [UIButton buttonWithType:UIButtonTypeCustom];
     weiboButton.frame = CGRectMake(50, 170, wechatButton.bounds.size.width, wechatButton.bounds.size.height);
     weiboButton.backgroundColor = [UIColor colorWithRed:0.8616 green:0.8616 blue:0.8616 alpha:1.0];
@@ -66,6 +67,7 @@
     [weiboButton addSubview:weiboImageView];
     [weiboImageView release];
     
+    // QQ登录按钮
     UIButton *QQButton = [UIButton buttonWithType:UIButtonTypeCustom];
     QQButton.frame = CGRectMake(50, 220, wechatButton.bounds.size.width, wechatButton.bounds.size.height);
     QQButton.backgroundColor = [UIColor colorWithRed:0.8616 green:0.8616 blue:0.8616 alpha:1.0];
@@ -86,6 +88,8 @@
     [self.view addSubview:orLabel];
     [orLabel release];
     
+    
+    // 手机号登录按钮
     UIButton *phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     phoneButton.frame = CGRectMake(QQButton.frame.origin.x, orLabel.frame.origin.y + orLabel.bounds.size.height, QQButton.bounds.size.width, QQButton.bounds.size.height);
     [phoneButton setTitle:@"使用手机号登录" forState:UIControlStateNormal];

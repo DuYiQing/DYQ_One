@@ -28,6 +28,7 @@ UITableViewDelegate
 @end
 
 @implementation MovieViewController
+
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = NO;
     self.tabBarController.tabBar.hidden = NO;
@@ -85,6 +86,7 @@ UITableViewDelegate
     _tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(Loading)];
 }
 
+// 点击tableView的cell跳转到相应的电影信息页面
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MovieInfoViewController *movieInfoVC = [[MovieInfoViewController alloc] init];
     [self.navigationController pushViewController:movieInfoVC animated:YES];

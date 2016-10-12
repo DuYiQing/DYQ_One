@@ -9,6 +9,7 @@
 #import "GuideViewController.h"
 #import "RootViewController.h"
 #import "UIImage+GIF.h"
+#import "SDImageCache.h"
 #import "RootViewController.h"
 #import "ReadViewController.h"
 #import "MusicViewController.h"
@@ -80,7 +81,7 @@ UITabBarControllerDelegate
         _pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0.3596 green:0.4874 blue:0.6305 alpha:1.0];
         _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
         [self.view addSubview:_pageControl];
-    
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
 }
 
 - (void)buttonAction:(UIButton *)button {
@@ -91,6 +92,7 @@ UITabBarControllerDelegate
 //    [userDef synchronize];
     RootTabBarViewController *rootTabBarController = [[RootTabBarViewController alloc] init];
     self.view.window.rootViewController = rootTabBarController;
+    [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];
     [rootTabBarController release];
 
 }

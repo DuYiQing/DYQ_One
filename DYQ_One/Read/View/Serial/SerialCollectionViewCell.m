@@ -88,7 +88,7 @@ UITableViewDelegate
     if (2 == indexPath.section) {
         NSString *info = _contentArr[indexPath.row];
         CGSize infoSize = CGSizeMake(tableView.frame.size.width - 40, 1000);
-        NSDictionary *dic = @{NSFontAttributeName : [UIFont systemFontOfSize:17.f]};
+        NSDictionary *dic = @{NSFontAttributeName : [UIFont systemFontOfSize:14.f]};
         
         CGRect infoRect = [info boundingRectWithSize:infoSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil];
         
