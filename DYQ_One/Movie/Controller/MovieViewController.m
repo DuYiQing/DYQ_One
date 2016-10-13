@@ -113,14 +113,15 @@ UITableViewDelegate
     
 }
 - (void)data {
+    [SVProgressHUD showImage:[UIImage imageNamed:@"robot.png"] status:@"加载中,请稍后..."];
     [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/movie/list/%@", _movieID] success:^(id result) {
-
         NSArray *dataArr = [result objectForKey:@"data"];
         for (NSDictionary *dataDic in dataArr) {
             MovieModel *movieModel = [MovieModel mj_objectWithKeyValues:dataDic];
             [_movieArr addObject:movieModel];
         }
         [self getView];
+        [SVProgressHUD dismiss];
     } failure:^(id error) {
         [self viewWithoutNetRequest];
     }];

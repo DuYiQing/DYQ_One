@@ -121,7 +121,7 @@ UITableViewDelegate
         if (indexPath.row == 0) {
             cell.textLabel.text = @"夜间模式";
         } else {
-            cell.textLabel.text = @"其他设置";
+            cell.textLabel.text = @"关于我们";
         }
         return cell;
 }

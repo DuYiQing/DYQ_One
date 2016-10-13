@@ -70,7 +70,7 @@ UITableViewDelegate
     
     [self commentData];
     [_novelTableView reloadData];
-    [_novelTableView.mj_footer endRefreshing];
+
 }
 
 - (void)commentData {
@@ -86,6 +86,7 @@ UITableViewDelegate
             CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:dataDic];
             [_commentArr addObject:commentModel];
         }
+        [_novelTableView.mj_footer endRefreshing];
     } failure:^(id error) {
         NSLog(@"error : %@", error);
     }];
@@ -98,14 +99,6 @@ UITableViewDelegate
     }
     [_novelTableView reloadData];
 }
-
-//- (void)setStoryArr:(NSArray *)storyArr {
-//    if (_storyArr != storyArr) {
-//        [_storyArr release];
-//        _storyArr = [storyArr retain];
-//    }
-//    [_novelTableView reloadData];
-//}
 
 - (void)setNovelModel:(NovelModel *)novelModel {
     if (_novelModel != novelModel) {

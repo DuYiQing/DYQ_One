@@ -65,7 +65,7 @@ UICollectionViewDelegate
     = UICollectionViewScrollDirectionHorizontal;
     
     self.serialCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:flowLayout];
-    _serialCollectionView.backgroundColor = [UIColor blueColor];
+    _serialCollectionView.backgroundColor = [UIColor whiteColor];
     _serialCollectionView.dataSource = self;
     _serialCollectionView.delegate = self;
     _serialCollectionView.pagingEnabled = YES;

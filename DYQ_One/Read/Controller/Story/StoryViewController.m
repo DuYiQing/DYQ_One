@@ -70,7 +70,7 @@ UICollectionViewDataSource
     = UICollectionViewScrollDirectionHorizontal;
     
     self.novelCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:flowLayout];
-    _novelCollectionView.backgroundColor = [UIColor blueColor];
+    _novelCollectionView.backgroundColor = [UIColor whiteColor];
     _novelCollectionView.dataSource = self;
     _novelCollectionView.delegate = self;
     _novelCollectionView.pagingEnabled = YES;

@@ -30,9 +30,8 @@
 }
 
 - (void)leftBarButtonItemAction:(UIBarButtonItem *)leftBarButton {
-    NSLog(@"搜索");
     SearchViewController *searchVC = [[SearchViewController alloc] init];
-    [self presentViewController:searchVC animated:YES completion:nil];
+    [self.navigationController pushViewController:searchVC animated:YES];
     [searchVC release];
 }
 - (void)rightBarButtonItemAction:(UIBarButtonItem *)rightBarButton {

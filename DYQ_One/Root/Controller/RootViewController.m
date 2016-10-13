@@ -46,7 +46,7 @@ UIScrollViewDelegate
 }
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = NO;
-
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 - (void)viewDidLoad {
@@ -156,15 +156,15 @@ UIScrollViewDelegate
 }
 
 - (void)data {
+    [SVProgressHUD showImage:[UIImage imageNamed:@"robot.png"] status:@"加载中,请稍后..."];
     [HttpClient GETWithURLString:@"http://v3.wufazhuce.com:8000/api/hp/more/0" success:^(id result) {
-
         NSArray *dataArray = [result objectForKey:@"data"];
         for (NSDictionary *dataDic in dataArray) {
             RootModel *rootModel = [RootModel modelWithDic:dataDic];
             [_rootDataArr addObject:rootModel];
-            
         }
         [self setView];
+        [SVProgressHUD dismiss];
     } failure:^(id error) {
         [self viewWithoutNetRequest];
     }];

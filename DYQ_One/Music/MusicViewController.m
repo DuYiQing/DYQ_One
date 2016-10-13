@@ -47,6 +47,7 @@ UICollectionViewDelegate
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = NO;
+     self.tabBarController.tabBar.hidden = NO;
 }
 
 - (void)viewDidLoad {
@@ -132,6 +133,7 @@ UICollectionViewDelegate
 }
 
 - (void)data {
+    [SVProgressHUD showImage:[UIImage imageNamed:@"robot.png"] status:@"加载中,请稍后..."];
     [HttpClient GETWithURLString:@"http://v3.wufazhuce.com:8000/api/music/idlist/0" success:^(id result) {
         self.musicListArr = [result objectForKey:@"data"];
         
@@ -149,8 +151,9 @@ UICollectionViewDelegate
                     CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:commentDic];
                     [_commentArr addObject:commentModel];
 //                    NSLog(@"%@", _commentArr);
-                    [self getView];
                 }
+                [self getView];
+                [SVProgressHUD dismiss];
             } failure:^(id error) {
                 NSLog(@"error : %@", error);
             }];

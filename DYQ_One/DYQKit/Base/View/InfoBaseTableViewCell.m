@@ -28,18 +28,18 @@
     if (self) {
         
         self.headImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _headImageView.backgroundColor = [UIColor redColor];
+//        _headImageView.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:_headImageView];
         [_headImageView release];
         
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _nameLabel.backgroundColor = [UIColor blueColor];
+//        _nameLabel.backgroundColor = [UIColor blueColor];
         _nameLabel.textColor = [UIColor colorWithRed:93.2 / 255.f green:182.1 / 255.f blue:223.6 / 255.f alpha:1.0];
         [self.contentView addSubview:_nameLabel];
         [_nameLabel release];
         
         self.descLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _descLabel.backgroundColor = [UIColor grayColor];
+//        _descLabel.backgroundColor = [UIColor grayColor];
         [self.contentView addSubview:_descLabel];
         [_descLabel release];
         
