@@ -259,6 +259,7 @@ MovieTargetSectionHeaderViewDelegate
     _movieTableView.delegate = self;
     _movieTableView.dataSource = self;
     _movieTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _movieTableView.contentInset = UIEdgeInsetsMake(0, 0, 76, 0);
     [self.view addSubview:_movieTableView];
     [_movieTableView release];
     _movieTableView.contentOffset = CGPointMake(0, -SCREEN_HEIGHT / 4);

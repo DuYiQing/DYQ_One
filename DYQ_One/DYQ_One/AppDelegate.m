@@ -63,20 +63,19 @@ void uncaughtExceptionHandler(NSException *exception) {
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
-////     使用NSUserDefaults 读取用户数据
+//     使用NSUserDefaults 读取用户数据
 //    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-////     判断是否第一次进入应用
+//     判断是否第一次进入应用
 //    if (![userDef boolForKey:@"notFirst"]) {
 ////         如果是第一次,进入引导页
 //        GuideViewController *guideViewController = [[GuideViewController alloc] init];
 //        self.window.rootViewController = guideViewController;
 //        [guideViewController release];
-    
+//    
 //    } else {
-//        // 否则直接进入应用
+        // 否则直接进入应用
         RootTabBarViewController *rootTabBarController = [[[RootTabBarViewController alloc] init] autorelease];
         self.window.rootViewController = rootTabBarController;
-//
 //    }
     [_window release];
     return YES;

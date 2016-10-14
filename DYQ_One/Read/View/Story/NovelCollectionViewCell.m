@@ -55,6 +55,7 @@ UITableViewDelegate
         self.novelTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
         _novelTableView.dataSource = self;
         _novelTableView.delegate = self;
+        _novelTableView.contentInset = UIEdgeInsetsMake(0, 0, 76, 0);
         _novelTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
         [self.contentView addSubview:_novelTableView];
         [_novelTableView release];

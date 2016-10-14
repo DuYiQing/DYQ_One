@@ -48,6 +48,7 @@ UITableViewDelegate
         _serialTableView.delegate = self;
         _serialTableView.dataSource = self;
         _serialTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _serialTableView.contentInset = UIEdgeInsetsMake(0, 0, 76, 0);
         [self.contentView addSubview:_serialTableView];
         [_serialTableView release];
         

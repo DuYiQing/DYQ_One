@@ -39,6 +39,10 @@ UICollectionViewDataSource
 
 @implementation StoryViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void)dealloc {
     [_storyArr release];
     [_contentArr release];

@@ -50,6 +50,10 @@
         [_emptyView addSubview:_topImageView];
         [_topImageView release];
         
+        UITapGestureRecognizer *tapTopImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapTopImageAction)];
+        [_topImageView addGestureRecognizer:tapTopImage];
+        [tapTopImage release];
+        
         self.volLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 //        _volLabel.backgroundColor = [UIColor redColor];
         _volLabel.textColor = [UIColor lightGrayColor];
@@ -82,7 +86,9 @@
     }
     return self;
 }
-
+- (void)tapTopImageAction {
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)]
+}
 - (void)layoutSubviews {
     [super layoutSubviews];
     

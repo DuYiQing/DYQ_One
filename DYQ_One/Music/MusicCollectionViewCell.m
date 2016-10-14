@@ -60,6 +60,7 @@ UITableViewDelegate
         _musicTableView.delegate = self;
         // 设置tableView的cell分割线样式为无
         _musicTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _musicTableView.contentInset = UIEdgeInsetsMake(0, 0, 76, 0);
         [self.contentView addSubview:_musicTableView];
         [_musicTableView release];
         

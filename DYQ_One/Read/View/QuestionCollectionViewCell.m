@@ -41,6 +41,7 @@ UITableViewDelegate
         _questionTableView.delegate = self;
         _questionTableView.dataSource = self;
         _questionTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _questionTableView.contentInset = UIEdgeInsetsMake(0, 0, 76, 0);
         [self.contentView addSubview:_questionTableView];
         [_questionTableView release];
         
