@@ -9,12 +9,20 @@
 #import "BaseViewController.h"
 #import "UserViewController.h"
 #import "SearchViewController.h"
+#import "BH_AVPlayerView.h"
 
 @interface BaseViewController ()
+
+@property (nonatomic, retain) BH_AVPlayerView *playerView;
 
 @end
 
 @implementation BaseViewController
+
+- (void)dealloc {
+    [_playerView release];
+    [super dealloc];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,8 +32,10 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Unknown.png"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonItemAction:)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Unknown-1.png"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemAction:)];
 
+    UIBarButtonItem *userBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Unknown-1.png"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemAction:)];
+    UIBarButtonItem *playerBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CD.png"] style:UIBarButtonItemStylePlain target:self action:@selector(playerBarButtonItemAction:)];
+    self.navigationItem.rightBarButtonItems = @[userBarButtonItem, playerBarButtonItem];
     
 }
 
@@ -33,6 +43,10 @@
     SearchViewController *searchVC = [[SearchViewController alloc] init];
     [self.navigationController pushViewController:searchVC animated:YES];
     [searchVC release];
+}
+- (void)playerBarButtonItemAction:(UIBarButtonItem *)playerBarButton {
+    self.playerView = [BH_AVPlayerView sharePlayer];
+    [_playerView pause];
 }
 - (void)rightBarButtonItemAction:(UIBarButtonItem *)rightBarButton {
     UserViewController *userVC = [[UserViewController alloc] init];

@@ -47,6 +47,8 @@ typedef NS_ENUM(NSInteger, BH_AVPlayerStyle) {
 /**<#注释#>*/
 @property (nonatomic, assign) BOOL isShowResumViewAtPlayEnd;
 
++ (instancetype)sharePlayer;
+
 /**播放状态*/
 - (BOOL)isPlaying;
 

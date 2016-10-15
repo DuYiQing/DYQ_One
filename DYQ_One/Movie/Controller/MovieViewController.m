@@ -24,6 +24,7 @@ UITableViewDelegate
 @property (nonatomic, retain) NSMutableArray *movieArr;
 @property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, copy) NSString *movieID;
+@property (nonatomic, retain) UIActivityIndicatorView *activity;
 
 @end
 
@@ -38,6 +39,7 @@ UITableViewDelegate
     [_movieArr release];
     [_movieID release];
     [_tableView release];
+    [_activity release];
     [super dealloc];
 }
 
@@ -53,22 +55,24 @@ UITableViewDelegate
 }
 
 - (void)Loading {
+    [_activity startAnimating];
     MovieModel *movieModel = [_movieArr lastObject];
     _movieID = movieModel.movieID;
     [self refreshMovieList];
     [_tableView reloadData];
-    [_tableView.mj_footer endRefreshing];
+
 }
 
 - (void)refreshMovieList {
 
     [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/movie/list/%@", _movieID] success:^(id result) {
-        
         NSArray *dataArr = [result objectForKey:@"data"];
         for (NSDictionary *dataDic in dataArr) {
             MovieModel *movieModel = [MovieModel mj_objectWithKeyValues:dataDic];
             [_movieArr addObject:movieModel];
         }
+        [_tableView.mj_footer endRefreshing];
+        [_activity stopAnimating];
     } failure:^(id error) {
         NSLog(@"error : %@", error);
     }];
@@ -80,8 +84,15 @@ UITableViewDelegate
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.rowHeight = SCREEN_HEIGHT / 4;
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 96, 0);
     [self.view addSubview:_tableView];
     [_tableView release];
+    
+    self.activity = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 50) / 2, SCREEN_HEIGHT - 160, 50, 50)];
+    [_activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+    _activity.color = [UIColor grayColor];
+    _activity.hidesWhenStopped = YES;
+    [self.view addSubview:_activity];
     
     _tableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(Loading)];
 }

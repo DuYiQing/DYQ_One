@@ -19,5 +19,6 @@
 @property (nonatomic, copy) NSString *hp_makettime;
 @property (nonatomic, copy) NSString *audio;
 @property (nonatomic, copy) NSArray *author;
+@property (nonatomic, assign) BOOL isButtonPlaying;
 
 @end

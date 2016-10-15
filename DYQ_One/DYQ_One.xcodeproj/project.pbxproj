@@ -17,6 +17,7 @@
 		400455F31DAE687C00669FA7 /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 400455F21DAE687C00669FA7 /* SearchTableViewCell.m */; };
 		400455F71DAE6B2B00669FA7 /* HPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 400455F61DAE6B2B00669FA7 /* HPModel.m */; };
 		400455F91DAF12B500669FA7 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 400455F81DAF12B500669FA7 /* search.png */; };
+		4076B94B1DB2493800330967 /* CD.png in Resources */ = {isa = PBXBuildFile; fileRef = 4076B94A1DB2493800330967 /* CD.png */; };
 		408A8F661D9E09B5000E4761 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8F651D9E09B5000E4761 /* CommentModel.m */; };
 		408A8FE21D9E65D2000E4761 /* ReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F6CA931D90CBDD002D3EF2 /* ReadViewController.m */; };
 		408A900C1D9E65F3000E4761 /* NSArray+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 408A8FE61D9E65F3000E4761 /* NSArray+Categories.m */; };
@@ -162,6 +163,7 @@
 		400455F51DAE6B2B00669FA7 /* HPModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPModel.h; sourceTree = "<group>"; };
 		400455F61DAE6B2B00669FA7 /* HPModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPModel.m; sourceTree = "<group>"; };
 		400455F81DAF12B500669FA7 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		4076B94A1DB2493800330967 /* CD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CD.png; sourceTree = "<group>"; };
 		408A8F641D9E09B5000E4761 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		408A8F651D9E09B5000E4761 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		408A8FE51D9E65F3000E4761 /* NSArray+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Categories.h"; sourceTree = "<group>"; };
@@ -917,6 +919,7 @@
 		49F6CABB1D90FCB1002D3EF2 /* 素材 */ = {
 			isa = PBXGroup;
 			children = (
+				4076B94A1DB2493800330967 /* CD.png */,
 				400455F81DAF12B500669FA7 /* search.png */,
 				400455EE1DADFCBA00669FA7 /* without.png */,
 				400454C91DAA63B200669FA7 /* picture.png */,
@@ -1094,6 +1097,7 @@
 				40F99A721DA8A64B00E9B4D3 /* robot.png in Resources */,
 				40F9999B1DA3EF6D00E9B4D3 /* 3.gif in Resources */,
 				49CC55961D925023000C8C40 /* 28B58PICxtD_1024.png in Resources */,
+				4076B94B1DB2493800330967 /* CD.png in Resources */,
 				400455F91DAF12B500669FA7 /* search.png in Resources */,
 				40F999DD1DA5E80900E9B4D3 /* icon_play_hl@3x.png in Resources */,
 				49F6CAD81D90FCB1002D3EF2 /* Unknown-3.png in Resources */,

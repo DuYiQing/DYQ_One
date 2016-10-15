@@ -29,6 +29,7 @@ UITableViewDelegate
 @property (nonatomic, retain) UILabel *noResultLabel;
 @property (nonatomic, retain) UIImageView *noResultImageView;
 @property (nonatomic, retain) UIImageView *placeholderImage;
+@property (nonatomic, retain) UICollectionView *searchCollectionView;
 
 @end
 
@@ -43,6 +44,7 @@ UITableViewDelegate
     [_noResultLabel release];
     [_noResultImageView release];
     [_placeholderImage release];
+    [_searchCollectionView release];
     [super dealloc];
 }
 
@@ -82,6 +84,7 @@ UITableViewDelegate
     _resultTableView.delegate = self;
     _resultTableView.dataSource = self;
     _resultTableView.rowHeight = 80;
+    _resultTableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
     [self.view addSubview:_resultTableView];
     [_resultTableView release];
 }
@@ -114,14 +117,17 @@ UITableViewDelegate
     
 }
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    [_resultTableView removeFromSuperview];
+//    [_resultTableView removeFromSuperview];
     _placeholderImage.hidden = NO;
     _noResultImageView.hidden = YES;
     _noResultLabel.hidden = YES;
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
-    [HttpClient GETWithURLString:[NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/search/hp/%@", searchBar.text] success:^(id result) {
+    NSString *string = [NSString stringWithFormat:@"http://v3.wufazhuce.com:8000/api/search/hp/%@", searchBar.text];
+    NSURL *url = [NSURL URLWithString:[string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+    [HttpClient GETWithURLString:[NSString stringWithFormat:@"%@", url] success:^(id result) {
+        [_hpModelArr removeAllObjects];
         self.resultArray = [result objectForKey:@"data"];
         if (_resultArray.count == 0) {
             [self noResult];

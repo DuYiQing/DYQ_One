@@ -156,6 +156,8 @@ UICollectionViewDelegate
                 [SVProgressHUD dismiss];
             } failure:^(id error) {
                 NSLog(@"error : %@", error);
+                [SVProgressHUD dismiss];
+                [self viewWithoutNetRequest];
             }];
            
         } failure:^(id error) {

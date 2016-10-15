@@ -25,10 +25,9 @@
 @property (nonatomic, retain) AVPlayer *player;
 @property (nonatomic, assign) BOOL isPlaying;
 @property (nonatomic, copy) NSString *audioString;
-
+@property (nonatomic, retain) BH_AVPlayerView *playerView;
 
 @end
-
 
 @implementation TopAuthorTableViewCell
 - (void)dealloc {
@@ -39,10 +38,16 @@
     [_player release];
     [_playLabel release];
     [_audioString release];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_playerView release];
+    
     [super dealloc];
 }
 
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    [_playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+    _isPlaying = NO;
+}
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -72,14 +77,27 @@
         self.playButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
         [self.contentView addSubview:_playButton];
+        
         [_playButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
-            if (!_isPlaying) {
-                [self playNovel:_audioString];
-            } else {
-                [self stopPlayingNovel];
+            
+            self.playerView = [BH_AVPlayerView sharePlayer];
+        
+            if (_audioString != nil) {
+                _playerView.playerUrl = [NSURL URLWithString:_audioString];
+                
+                if (_isPlaying == NO) {
+                    [_playButton setImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
+                    [_playerView play];
+                    _isPlaying = YES;
+                    
+                } else {
+                    [_playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+                    [_playerView pause];
+                    _isPlaying = NO;
+                }
             }
         }];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playAction) name:@"Play" object:nil];
+        
         
         self.playLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _playLabel.text = @"收听";
@@ -91,10 +109,21 @@
     return self;
 }
 
-- (void)playAction {
-    NSLog(@"stop");
-    [self stopPlayingNovel];
-}
+//- (void)createPlayer {
+//    [_playButton setImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
+//    self.playerView = [BH_AVPlayerView sharePlayer];
+//    if (_audioString != nil) {
+//        NSURL *url = [NSURL URLWithString:_audioString];
+//        _playerView.playerUrl = url;
+//    }
+//    [_playerView play];
+//    _isPlaying = NO;
+//}
+//- (void)stopPlayingNovel {
+//    [_playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+//    [_playerView pause];
+//    _isPlaying = YES;
+//}
 
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -113,7 +142,6 @@
 - (void)setNovelModel:(NovelModel *)novelModel {
     if (_novelModel != novelModel) {
         [_novelModel release];
-        [self stopPlayingNovel];
         _novelModel = [novelModel retain];
         
         AuthorInfoModel *authorInfoModel = novelModel.author[0];
@@ -138,33 +166,7 @@
     }
 }
 
-- (void)playNovel:(NSString *)audio {
-    [_playButton setImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
-    // 路径
-    NSURL *url = [NSURL URLWithString:audio];
-    // 通过URL创建视频内容对象
-    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
-    // 创建视频播放器对象, 需要AVPlayerItem进行初始化
-    self.player = [[[AVPlayer alloc] initWithPlayerItem:playerItem] autorelease];
-    // 播放
-    [_player play];
-    _isPlaying = YES;
-}
 
-- (void)stopPlayingNovel {
-    [_playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
-    [_player pause];
-    _isPlaying = NO;
-}
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end

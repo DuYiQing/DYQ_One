@@ -213,6 +213,7 @@ UITableViewDelegate
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (0 == section) {
+        NSLog(@"%ld", _storyArr.count);
         return _storyArr.count + 2;
     }
     if (1 == section) {

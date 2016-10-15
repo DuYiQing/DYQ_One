@@ -12,6 +12,8 @@
 
 #define Bottom_Height  (self.bounds.size.height * 0.18)
 
+static BH_AVPlayerView *p = nil;
+
 @interface BH_AVPlayerView ()
 /**负责视频操作，例如播放，暂停，声音大小，跳到指定时间*/
 @property (nonatomic, retain) AVPlayer *avPlayer;
@@ -32,9 +34,28 @@
 /**<#注释#>*/
 @property (nonatomic, assign) BOOL isDragSlider;
 
+
+
 @end
 
 @implementation BH_AVPlayerView
+
++ (instancetype)sharePlayer {
+    if (p == nil) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            p = [[BH_AVPlayerView alloc] init];
+        });
+    }
+    return p;
+}
+
+//- (instancetype)init {
+//    self = [super init];
+//    if (self) {
+//        _avPlayer = [[AVPlayer alloc] init];
+//    }
+//}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -102,6 +123,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarWillChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnterbackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [session setActive:YES error:nil];
     
 }
 
