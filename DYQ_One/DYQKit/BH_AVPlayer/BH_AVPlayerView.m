@@ -303,7 +303,7 @@ static BH_AVPlayerView *p = nil;
     AVPlayerItem *playerItem = (AVPlayerItem *)object;
     if ([keyPath isEqualToString:@"status"]) {
         if ([playerItem status] == AVPlayerStatusReadyToPlay) {
-            NSLog(@"PlayerStatusReadyToPlay");
+//            NSLog(@"PlayerStatusReadyToPlay");
             self.totalDuration = floorf(CMTimeGetSeconds(self.playerItem.duration));
             self.progressView.totalDurationLabel.text = [self convertTimeToString:self.totalDuration];
             self.progressView.progressSlider.maximumValue = self.totalDuration;
@@ -315,13 +315,13 @@ static BH_AVPlayerView *p = nil;
                 [self.delegate BH_AVPlayerView:self ReloadStatuesChanged:BH_PlayerStatusReadyToPlay];
             }
         }else if ([playerItem status] == AVPlayerStatusFailed) {
-            NSLog(@"PlayerStatusFailed");
+//            NSLog(@"PlayerStatusFailed");
             [self.activityView stopAnimating];
             if (self.delegate && [self.delegate respondsToSelector:@selector(BH_AVPlayerView:ReloadStatuesChanged:)]) {
                 [self.delegate BH_AVPlayerView:self ReloadStatuesChanged:BH_PlayerStatusFailed];
             }
         }else if ([playerItem status] == AVPlayerStatusUnknown){
-            NSLog(@"PlayerStatusUnknown");
+//            NSLog(@"PlayerStatusUnknown");
             [self.activityView stopAnimating];
             if (self.delegate && [self.delegate respondsToSelector:@selector(BH_AVPlayerView:ReloadStatuesChanged:)]) {
                 [self.delegate BH_AVPlayerView:self ReloadStatuesChanged:BH_PlayerStatusUnknown];
@@ -425,7 +425,7 @@ static BH_AVPlayerView *p = nil;
 
 #pragma notification
 - (void)playerPlayToEnd:(NSNotification *)notification{
-    NSLog(@"play end");
+//    NSLog(@"play end");
     [self pause];
     [self.avPlayer seekToTime:kCMTimeZero];
     [self.progressView.playBtn setImage:[UIImage imageNamed:@"icon_play"] forState:UIControlStateNormal];
@@ -440,7 +440,7 @@ static BH_AVPlayerView *p = nil;
 }
 
 - (void)statusBarWillChanged:(NSNotification *)notification{
-    NSLog(@"%ld",[UIApplication sharedApplication].statusBarOrientation);
+//    NSLog(@"%ld",[UIApplication sharedApplication].statusBarOrientation);
     if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeRight) {
         if (self.superview != [UIApplication sharedApplication].keyWindow) {
             self.superView = self.superview;

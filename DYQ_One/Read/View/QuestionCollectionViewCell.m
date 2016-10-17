@@ -196,9 +196,9 @@ UITableViewDelegate
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"answerContent%ld", indexPath.row]];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"answerContent%ld", (long)indexPath.row]];
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"answerContent%ld", indexPath.row]] autorelease];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"answerContent%ld", (long)indexPath.row]] autorelease];
         }
         cell.textLabel.text = _contentArr[indexPath.row - 1];
         cell.textLabel.font = [UIFont systemFontOfSize:15.f];
@@ -210,18 +210,18 @@ UITableViewDelegate
 
     }
     if (2 == indexPath.section) {
-        BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"hotCell%ld", indexPath.row]];
+        BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"hotCell%ld", (long)indexPath.row]];
         if (nil == cell) {
-            cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"hotCell%ld", indexPath.row]] autorelease];
+            cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"hotCell%ld", (long)indexPath.row]] autorelease];
         }
         CommentModel *commentModel = _commentArr[indexPath.row];
         cell.commentModel = commentModel;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"cell%ld", indexPath.row]];
+    BottonAuthorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"cell%ld", (long)indexPath.row]];
     if (nil == cell) {
-        cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"cell%ld", indexPath.row]] autorelease];
+        cell = [[[BottonAuthorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"cell%ld", (long)indexPath.row]] autorelease];
     }
     CommentModel *commentModel = _commentArr[indexPath.row + 8];
     cell.commentModel = commentModel;

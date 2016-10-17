@@ -138,7 +138,7 @@ UICollectionViewDelegate
         self.musicListArr = [result objectForKey:@"data"];
         
         NSMutableString *urlString = [@"http://v3.wufazhuce.com:8000/api/music/detail/" mutableCopy];
-        [urlString appendString:_musicListArr[0]];
+        [urlString appendString:_musicListArr[_index]];
         [HttpClient GETWithURLString:urlString success:^(id result) {
             NSDictionary *dataDic = [result objectForKey:@"data"];
             self.musicModel = [MusicModel mj_objectWithKeyValues:dataDic];
@@ -150,18 +150,17 @@ UICollectionViewDelegate
                 for (NSDictionary *commentDic in dataArr) {
                     CommentModel *commentModel = [CommentModel mj_objectWithKeyValues:commentDic];
                     [_commentArr addObject:commentModel];
-//                    NSLog(@"%@", _commentArr);
+
                 }
                 [self getView];
                 [SVProgressHUD dismiss];
             } failure:^(id error) {
-                NSLog(@"error : %@", error);
                 [SVProgressHUD dismiss];
                 [self viewWithoutNetRequest];
             }];
            
         } failure:^(id error) {
-            NSLog(@"error : %@", error);
+            [self viewWithoutNetRequest];
         }];
     } failure:^(id error) {
         [self viewWithoutNetRequest];

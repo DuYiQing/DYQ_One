@@ -95,9 +95,9 @@ UITableViewDelegate
     return _hpModelArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"search%ld", indexPath.row]];
+    SearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"search%ld", (long)indexPath.row]];
     if (cell == nil) {
-        cell = [[SearchTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"search%ld", indexPath.row]];
+        cell = [[SearchTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"search%ld", (long)indexPath.row]];
     }
     cell.hpModel = _hpModelArr[indexPath.row];
     return cell;

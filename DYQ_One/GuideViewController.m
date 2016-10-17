@@ -90,10 +90,10 @@ UITabBarControllerDelegate
 }
 - (void)buttonAction:(UIButton *)button {
     
-//    self.flag = YES;
-//    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-//    [userDef setBool:_flag forKey:@"notFirst"];
-//    [userDef synchronize];
+    self.flag = YES;
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    [userDef setBool:_flag forKey:@"notFirst"];
+    [userDef synchronize];
     RootTabBarViewController *rootTabBarController = [[RootTabBarViewController alloc] init];
     self.view.window.rootViewController = rootTabBarController;
     [[SDImageCache sharedImageCache] setValue:nil forKey:@"memCache"];

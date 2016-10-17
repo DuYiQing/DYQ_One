@@ -75,7 +75,7 @@ UIScrollViewDelegate
 }
 
 - (void)buttomOfView {
-    UIImageView *noteImageView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 560, 20, 20)];
+    UIImageView *noteImageView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 500, 20, 20)];
     noteImageView.image = [UIImage imageNamed:@"Unknown-10.png"];
     [self.view addSubview:noteImageView];
     [noteImageView release];
@@ -93,6 +93,7 @@ UIScrollViewDelegate
     [noteTap release];
     
     RootModel *rootModel = _rootDataArr[_index];
+    NSLog(@"%@", rootModel.praisenum);
     LikeView *likeView = [[LikeView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 2, noteImageView.frame.origin.y, 100, 40)];
     likeView.numLabel.text = [NSString stringWithFormat:@"%@", rootModel.praisenum ];
     [self.view addSubview:likeView];
@@ -143,14 +144,12 @@ UIScrollViewDelegate
     [_rootScrollView release];
     
     _tableView.rowHeight = _rootScrollView.bounds.size.height;
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
     
     for (int i = 0; i < _rootDataArr.count; i++) {
         ImageLabelView *imageLabelView = [[ImageLabelView alloc] initWithFrame:CGRectMake(i * SCREEN_WIDTH + 10 , 10, SCREEN_WIDTH - 20, 400)];
         imageLabelView.rootModel = _rootDataArr[i];
         imageLabelView.userInteractionEnabled = YES;
-//        [imageLabelView.topImageView addGestureRecognizer:tap];
-//        [tap release];
+
         [_rootScrollView addSubview:imageLabelView];
         [imageLabelView release];
     }
@@ -158,13 +157,12 @@ UIScrollViewDelegate
     [self buttomOfView];
     
 }
-//- (void)tapAction {
-//    
-//}
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     _contentOffsetX = scrollView.contentOffset.x;
     self.index = _contentOffsetX / SCREEN_WIDTH;
 }
+
 - (void)data {
     [SVProgressHUD showImage:[UIImage imageNamed:@"robot.png"] status:@"加载中,请稍后..."];
     [HttpClient GETWithURLString:@"http://v3.wufazhuce.com:8000/api/hp/more/0" success:^(id result) {
@@ -177,6 +175,7 @@ UIScrollViewDelegate
         [SVProgressHUD dismiss];
     } failure:^(id error) {
         [self viewWithoutNetRequest];
+        [SVProgressHUD dismiss];
     }];
   
 }

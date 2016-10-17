@@ -146,7 +146,7 @@ UICollectionViewDataSource
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     NovelCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionViewCell forIndexPath:indexPath];
     self.currentSection = indexPath.section;
-//    cell.storyArr = _storyArr;
+
     cell.novelModel = _novelModel;
     cell.contentArr = _contentArr;
     cell.commentArr = _commentArr;

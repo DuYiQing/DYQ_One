@@ -72,6 +72,8 @@
         self.contentLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 //        _contentLabel.backgroundColor = [UIColor yellowColor];
         _contentLabel.numberOfLines = 0;
+        _contentLabel.font = kFONT_SIZE_15_BOLD;
+        _contentLabel.textColor = [UIColor grayColor];
         [_emptyView addSubview:_contentLabel];
         [_contentLabel release];
         
@@ -86,14 +88,12 @@
     }
     return self;
 }
-- (void)tapTopImageAction {
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)]
-}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     
     [_topImageView.image imageByScalingProportionallyToSize:_topImageView.image.size];
-    _topImageView.frame = CGRectMake(5, 5, SCREEN_WIDTH - 30, 300);
+    _topImageView.frame = CGRectMake(5, 5, SCREEN_WIDTH - 30, 250);
     
     _volLabel.frame = CGRectMake(_topImageView.frame.origin.x, _topImageView.frame.origin.y + _topImageView.bounds.size.height + 5, 80, 20);
     
